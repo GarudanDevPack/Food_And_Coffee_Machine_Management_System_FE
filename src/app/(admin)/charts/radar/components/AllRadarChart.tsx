@@ -1,7 +1,7 @@
 'use client'
 import ComponentContainerCard from '@/components/ComponentContainerCard'
 import { useState } from 'react'
-import ReactApexChart from 'react-apexcharts'
+import ReactApexChart from '@/components/ApexChart'
 import { Button, Col, Row } from 'react-bootstrap'
 import { basicRadarChartOpts, multipleSeriesOpts, polygonRadarChartOpts } from '../data'
 

@@ -14,9 +14,9 @@ export const buyLink = ''
 
 export const basePath = ''
 
-export const DEFAULT_PAGE_TITLE = 'Abstack-NextJS | Responsive Bootstrap 5 Admin Dashboard'
+export const DEFAULT_PAGE_TITLE = 'QFOX | Food & Coffee Vending Machine Management System'
 
-// Replace the URL's value in env with your backend's URL or if you're using nextjs's API, add the server's origin URL
-export const API_BASE_PATH = ''
+// Backend API base path — set via NEXT_PUBLIC_API_URL in .env.local
+export const API_BASE_PATH = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/v1'
 
 export const colorVariants = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'dark', 'purple', 'pink', 'orange', 'light', 'link']

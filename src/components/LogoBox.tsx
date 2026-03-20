@@ -1,26 +1,25 @@
-import logoDark from '@/assets/images/logo-dark.png'
-import logoSm from '@/assets/images/logo-sm.png'
-import logo from '@/assets/images/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
+import logoImg from '@/assets/images/logo-qfox.png'
+import logoSmImg from '@/assets/images/logo-qfox-sm.png'
 
 const LogoBox = () => {
   return (
     <Link href="/" className="logo">
       <span className="logo-light">
         <span className="logo-lg">
-          <Image width={132} height={22} src={logo} alt="logo" />
+          <Image width={120} height={36} src={logoImg} alt="QFOX logo" style={{ objectFit: 'contain' }} />
         </span>
         <span className="logo-sm">
-          <Image width={29} height={28} src={logoSm} alt="small logo" />
+          <Image width={36} height={36} src={logoSmImg} alt="QFOX" style={{ objectFit: 'contain' }} />
         </span>
       </span>
       <span className="logo-dark">
         <span className="logo-lg">
-          <Image width={132} height={22} src={logoDark} alt="dark logo" />
+          <Image width={120} height={36} src={logoImg} alt="QFOX logo" style={{ objectFit: 'contain' }} />
         </span>
         <span className="logo-sm">
-          <Image width={29} height={28} src={logoSm} alt="small logo" />
+          <Image width={36} height={36} src={logoSmImg} alt="QFOX" style={{ objectFit: 'contain' }} />
         </span>
       </span>
     </Link>

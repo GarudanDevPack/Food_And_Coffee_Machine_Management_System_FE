@@ -1,7 +1,7 @@
 'use client'
 import { ApexOptions } from 'apexcharts'
 import React from 'react'
-import ReactApexChart from 'react-apexcharts'
+import ReactApexChart from '@/components/ApexChart'
 import { Card, CardBody, Col, Row } from 'react-bootstrap'
 
 const Slope = () => {

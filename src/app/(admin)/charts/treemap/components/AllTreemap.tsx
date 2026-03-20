@@ -1,6 +1,6 @@
 'use client'
 import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from 'react-apexcharts'
+import ReactApexChart from '@/components/ApexChart'
 import { Col, Row } from 'react-bootstrap'
 import { basicTreemapChartOpts, colorTreemapChartOpts, distributedTreemapChartOpts, multipleTreemapChartOpts } from '../data'
 

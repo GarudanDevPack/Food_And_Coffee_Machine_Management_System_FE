@@ -1,6 +1,6 @@
 'use client'
 import { currency } from '@/context/constants'
-import ReactApexChart from 'react-apexcharts'
+import ReactApexChart from '@/components/ApexChart'
 import { Card, CardBody, Col, Row, Table } from 'react-bootstrap'
 import {
   chart1Opts,

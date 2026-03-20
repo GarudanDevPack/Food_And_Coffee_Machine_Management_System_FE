@@ -1,131 +1,121 @@
 'use client'
 import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import ReactApexChart from 'react-apexcharts'
-import { Card, CardBody, Col, Row } from 'react-bootstrap'
-import { customerschart, porfitChart, productChart, salesChart } from '../data'
+import { dashboardApi } from '@/lib/api'
+import { useSession } from 'next-auth/react'
+import { useEffect, useState } from 'react'
+import { Card, CardBody, Col, Row, Spinner } from 'react-bootstrap'
+
+interface Summary {
+  totalRevenue?: number
+  activeMachines?: number
+  totalMachines?: number
+  totalCustomers?: number
+  totalOrders?: number
+  ordersToday?: number
+  pendingOrders?: number
+}
+
+const StatCard = ({
+  title,
+  value,
+  icon,
+  bgClass,
+  textClass,
+  sub,
+}: {
+  title: string
+  value: string | number
+  icon: string
+  bgClass: string
+  textClass: string
+  sub?: string
+}) => (
+  <Col>
+    <Card>
+      <CardBody>
+        <div className="d-flex align-items-start gap-2 justify-content-between">
+          <div>
+            <h5 className="text-muted fs-13 fw-bold text-uppercase">{title}</h5>
+            <h3 className="mt-2 mb-1 fw-bold">{value}</h3>
+            {sub && <p className="mb-0 text-muted fs-13">{sub}</p>}
+          </div>
+          <div className="avatar-lg flex-shrink-0">
+            <span className={`avatar-title ${bgClass} ${textClass} rounded fs-28`}>
+              <IconifyIcon icon={icon} />
+            </span>
+          </div>
+        </div>
+      </CardBody>
+    </Card>
+  </Col>
+)
 
 const Stat = () => {
-  return (
-    <>
+  const { data: session } = useSession()
+  const token = (session?.user as any)?.token ?? ''
+  const [summary, setSummary] = useState<Summary>({})
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if (!token) return
+    dashboardApi
+      .getSummary(token)
+      .then((data) => setSummary(data as Summary))
+      .catch(() => {})
+      .finally(() => setLoading(false))
+  }, [token])
+
+  if (loading) {
+    return (
       <Row className="row-cols-xxl-4 row-cols-md-2 row-cols-1">
-        <Col>
-          <Card>
-            <CardBody>
-              <div className="d-flex align-items-start gap-2 justify-content-between">
-                <div>
-                  <h5 className="text-muted fs-13 fw-bold text-uppercase" title="Revenue">
-                    Total Revenue
-                  </h5>
-                  <h3 className="mt-2 mb-1 fw-bold">$1.25M</h3>
-                  <p className="mb-0 text-muted">
-                    <span className="text-success me-1">
-                      <IconifyIcon icon="ri:arrow-up-line" style={{ marginBottom: '5px', marginRight: '5px' }} />
-                      15.34%
-                    </span>
-                    <span className="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-                <div className="avatar-lg flex-shrink-0">
-                  <span className="avatar-title bg-success-subtle text-success rounded fs-28">
-                    <IconifyIcon icon="solar:wallet-bold-duotone" />
-                  </span>
-                </div>
-              </div>
-            </CardBody>
-            <div className="apex-charts" id="chart-revenue">
-              <ReactApexChart options={salesChart} series={salesChart.series} height={45} type="area" />
-            </div>
-          </Card>
-        </Col>
-        <Col>
-          <Card>
-            <CardBody>
-              <div className="d-flex align-items-start gap-2 justify-content-between">
-                <div>
-                  <h5 className="text-muted fs-13 fw-bold text-uppercase" title="Products Sold">
-                    Products Sold
-                  </h5>
-                  <h3 className="mt-2 mb-1 fw-bold">48.7k</h3>
-                  <p className="mb-0 text-muted">
-                    <span className="text-success me-1">
-                      <IconifyIcon icon="ri:arrow-up-line" style={{ marginBottom: '5px', marginRight: '5px' }} />
-                      10.12%
-                    </span>
-                    <span className="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-                <div className="avatar-lg flex-shrink-0">
-                  <span className="avatar-title bg-info-subtle text-info rounded fs-28">
-                    <IconifyIcon icon="solar:cart-bold-duotone" />
-                  </span>
-                </div>
-              </div>
-            </CardBody>
-            <div className="apex-charts" id="chart-products">
-              <ReactApexChart options={productChart} series={productChart.series} height={45} type="area" />
-            </div>
-          </Card>
-        </Col>
-        <Col>
-          <Card>
-            <CardBody>
-              <div className="d-flex align-items-start gap-2 justify-content-between">
-                <div>
-                  <h5 className="text-muted fs-13 fw-bold text-uppercase" title="New Customers">
-                    New Customers
-                  </h5>
-                  <h3 className="mt-2 mb-1 fw-bold">1.2k</h3>
-                  <p className="mb-0 text-muted">
-                    <span className="text-danger me-1">
-                      <IconifyIcon icon="ri:arrow-down-line" style={{ marginBottom: '5px', marginRight: '5px' }} />
-                      5.47%
-                    </span>
-                    <span className="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-                <div className="avatar-lg flex-shrink-0">
-                  <span className="avatar-title bg-warning-subtle text-warning rounded fs-28">
-                    <IconifyIcon icon="solar:user-bold-duotone" />
-                  </span>
-                </div>
-              </div>
-            </CardBody>
-            <div className="apex-charts" id="chart-customers">
-              <ReactApexChart options={customerschart} series={customerschart.series} height={45} type="area" />
-            </div>
-          </Card>
-        </Col>
-        <Col>
-          <Card>
-            <CardBody>
-              <div className="d-flex align-items-start gap-2 justify-content-between">
-                <div>
-                  <h5 className="text-muted fs-13 fw-bold text-uppercase" title="Profit Margin">
-                    Profit Margin
-                  </h5>
-                  <h3 className="mt-2 mb-1 fw-bold">38.5%</h3>
-                  <p className="mb-0 text-muted">
-                    <span className="text-success me-1">
-                      <IconifyIcon icon="ri:arrow-up-line" style={{ marginBottom: '5px', marginRight: '5px' }} />
-                      8.21%
-                    </span>
-                    <span className="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-                <div className="avatar-lg flex-shrink-0">
-                  <span className="avatar-title bg-primary-subtle text-primary rounded fs-28">
-                    <IconifyIcon icon="solar:graph-up-bold-duotone" />
-                  </span>
-                </div>
-              </div>
-            </CardBody>
-            <div className="apex-charts" id="chart-profit">
-              <ReactApexChart options={porfitChart} series={porfitChart.series} height={45} type="area" />
-            </div>
-          </Card>
-        </Col>
+        {[1, 2, 3, 4].map((i) => (
+          <Col key={i}>
+            <Card>
+              <CardBody className="text-center py-4">
+                <Spinner size="sm" />
+              </CardBody>
+            </Card>
+          </Col>
+        ))}
       </Row>
-    </>
+    )
+  }
+
+  return (
+    <Row className="row-cols-xxl-4 row-cols-md-2 row-cols-1">
+      <StatCard
+        title="Total Revenue"
+        value={`LKR ${(summary.totalRevenue ?? 0).toLocaleString()}`}
+        icon="solar:wallet-bold-duotone"
+        bgClass="bg-success-subtle"
+        textClass="text-success"
+        sub="All time revenue"
+      />
+      <StatCard
+        title="Active Machines"
+        value={`${summary.activeMachines ?? 0} / ${summary.totalMachines ?? 0}`}
+        icon="solar:cpu-bold-duotone"
+        bgClass="bg-info-subtle"
+        textClass="text-info"
+        sub="Online / Total"
+      />
+      <StatCard
+        title="Total Customers"
+        value={(summary.totalCustomers ?? 0).toLocaleString()}
+        icon="solar:users-group-two-rounded-bold-duotone"
+        bgClass="bg-warning-subtle"
+        textClass="text-warning"
+        sub="Registered customers"
+      />
+      <StatCard
+        title="Orders Today"
+        value={summary.ordersToday ?? 0}
+        icon="solar:cart-bold-duotone"
+        bgClass="bg-primary-subtle"
+        textClass="text-primary"
+        sub={`${summary.totalOrders ?? 0} total orders`}
+      />
+    </Row>
   )
 }
 

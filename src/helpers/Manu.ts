@@ -1,7 +1,9 @@
-import { HORIZONTAL_MENU_ITEM, MENU_ITEMS } from '../assets/data/menu-items'
+import { AGENT_MENU_ITEMS, CUSTOMER_MENU_ITEMS, HORIZONTAL_MENU_ITEM, MENU_ITEMS } from '../assets/data/menu-items'
 import { MenuItemType } from '../types/menu'
 
-export const getMenuItems = (): MenuItemType[] => {
+export const getMenuItems = (role?: number): MenuItemType[] => {
+  if (role === 4) return AGENT_MENU_ITEMS
+  if (role === 5) return CUSTOMER_MENU_ITEMS
   return MENU_ITEMS
 }
 export const getHorizontalMenuItems = (): MenuItemType[] => {

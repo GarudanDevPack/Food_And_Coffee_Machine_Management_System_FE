@@ -1,13 +1,9 @@
 'use client'
 import { NotificationProvider } from '@/context/useNotificationContext'
 import { SessionProvider } from 'next-auth/react'
-import dynamic from 'next/dynamic'
 import { ToastContainer } from 'react-toastify'
 import { ChildrenType } from '../../types/component-props'
-
-const LayoutProvider = dynamic(() => import('@/context/useLayoutContext').then((mod) => mod.LayoutProvider), {
-  ssr: false,
-})
+import { LayoutProvider } from '@/context/useLayoutContext'
 
 const AppProvidersWrapper = ({ children }: ChildrenType) => {
   return (

@@ -1,69 +1,110 @@
 import type { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { randomBytes } from 'crypto'
-import { UserType } from '@/types/auth'
 
-export const fakeUsers: UserType[] = [
-  {
-    id: '1',
-    email: 'user@demo.com',
-    username: 'demo_user',
-    password: '123456',
-    firstName: 'Demo',
-    lastName: 'User',
-    role: 'Admin',
-    token:
-      'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ0ZWNoemFhIiwiYXVkIjoiaHR0cHM6Ly90ZWNoemFhLmdldGFwcHVpLmNvbS8iLCJzdWIiOiJzdXBwb3J0QGNvZGVydGhlbWVzLmNvbSIsImxhc3ROYW1lIjoiVGVjaHphYSIsIkVtYWlsIjoidGVjaHphYXN0dWRpb0BnbWFpbC5jb20iLCJSb2xlIjoiQWRtaW4iLCJmaXJzdE5hbWUiOiJUZXN0VG9rZW4ifQ.ud4LnFZ-mqhHEYiPf2wCLM7KvLGoAxhXTBSymRIZEFLleFkO119AXd8p3OfPCpdUWSyeZl8-pZyElANc_KHj5w',
-  },
-]
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/v1'
 
 export const options: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'credentials',
       credentials: {
-        email: {
-          label: 'Email:',
-          type: 'text',
-          placeholder: 'Enter your username',
-        },
-        password: {
-          label: 'Password',
-          type: 'password',
-        },
+        email: { label: 'Email', type: 'text' },
+        password: { label: 'Password', type: 'password' },
+        // OTP path: pass pre-verified token directly
+        token: { label: 'Token', type: 'text' },
+        phone: { label: 'Phone', type: 'text' },
       },
-      async authorize(credentials, req) {
-        const filteredUser = fakeUsers.find((user) => {
-          return user.email === credentials?.email && user.password === credentials?.password
+      async authorize(credentials) {
+        // ── OTP path: frontend already verified OTP and got token ──────────
+        if (credentials?.token) {
+          const res = await fetch(`${API_URL}/auth/me`, {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${credentials.token}`,
+            },
+          })
+          if (!res.ok) throw new Error('Invalid session token')
+          const user = await res.json()
+          return {
+            id: user.id,
+            email: user.email,
+            name: `${user.firstName || ''} ${user.lastName || ''}`.trim(),
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role,
+            token: credentials.token,
+            refreshToken: '',
+            tokenExpires: Date.now() + 24 * 60 * 60 * 1000,
+          }
+        }
+
+        // ── Email/password path ─────────────────────────────────────────────
+        if (!credentials?.email || !credentials?.password) {
+          throw new Error('Email and password are required')
+        }
+
+        const res = await fetch(`${API_URL}/auth/email/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: credentials.email, password: credentials.password }),
+          credentials: 'include',
         })
-        if (filteredUser) {
-          return filteredUser
-        } else {
-          throw new Error('Email or Password is not valid')
+
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}))
+          throw new Error(body?.message || 'Invalid email or password')
+        }
+
+        const data = await res.json()
+        const user = data.user
+
+        return {
+          id: user.id,
+          email: user.email,
+          name: `${user.firstName || ''} ${user.lastName || ''}`.trim(),
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role,
+          token: data.token,
+          refreshToken: data.refreshToken,
+          tokenExpires: data.tokenExpires,
         }
       },
     }),
   ],
-  secret: 'kvwLrfri/MBznUCofIoRH9+NvGu6GqvVdqO3mor1GuA=',
+  secret: process.env.NEXTAUTH_SECRET || 'qfox-admin-secret-change-in-production',
   pages: {
-    signIn: '/auth/sign-in',
+    signIn: '/auth/login',
   },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      return true
-    },
-    session: ({ session, token }) => {
-      session.user = {
-        email: 'user@demo.com',
-        name: 'Test User',
+    async jwt({ token, user }) {
+      // On first sign-in, persist the BE tokens
+      if (user) {
+        token.id = (user as any).id
+        token.role = (user as any).role
+        token.firstName = (user as any).firstName
+        token.lastName = (user as any).lastName
+        token.accessToken = (user as any).token
+        token.refreshToken = (user as any).refreshToken
+        token.tokenExpires = (user as any).tokenExpires
       }
-      return Promise.resolve(session)
+      return token
+    },
+    async session({ session, token }) {
+      session.user = {
+        ...session.user,
+        id: token.id as string,
+        role: token.role as string | { id: number },
+        firstName: token.firstName as string,
+        lastName: token.lastName as string,
+        token: token.accessToken as string,
+        refreshToken: token.refreshToken as string,
+      } as any
+      return session
     },
   },
   session: {
-    maxAge: 24 * 60 * 60 * 1000,
-    generateSessionToken: () => {
-      return randomBytes(32).toString('hex')
-    },
+    strategy: 'jwt',
+    maxAge: 24 * 60 * 60, // 24 hours in seconds
   },
 }
