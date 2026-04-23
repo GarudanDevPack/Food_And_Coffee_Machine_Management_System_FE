@@ -1,15 +1,22 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import { Col, Pagination, Row } from 'react-bootstrap'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import { Col, Pagination, Row } from "react-bootstrap";
 
 const DefaultPagination = () => {
-  const items = []
+  const items = [];
   for (let number = 1; number <= 5; number++) {
-    items.push(<Pagination.Item key={number}>{number}</Pagination.Item>)
+    items.push(<Pagination.Item key={number}>{number}</Pagination.Item>);
   }
   return (
-    <ComponentContainerCard title="Default Pagination" description={<>Simple pagination inspired by Rdio, great for apps and search results.</>}>
+    <ComponentContainerCard
+      title="Default Pagination"
+      description={
+        <>
+          Simple pagination inspired by Rdio, great for apps and search results.
+        </>
+      }
+    >
       <nav>
         <Pagination className="mb-0">
           <Pagination.Prev />
@@ -18,8 +25,8 @@ const DefaultPagination = () => {
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const DisabledAndActive = () => {
   return (
@@ -27,10 +34,12 @@ const DisabledAndActive = () => {
       title="Disabled and active states"
       description={
         <>
-          Pagination links are customizable for different circumstances. Use <code>.disabled</code> for links that appear un-clickable and
+          Pagination links are customizable for different circumstances. Use{" "}
+          <code>.disabled</code> for links that appear un-clickable and
           <code>.active</code> to indicate the current page.
         </>
-      }>
+      }
+    >
       <nav aria-label="...">
         <Pagination className="mb-0">
           <Pagination.Prev disabled>Previous</Pagination.Prev>
@@ -41,12 +50,19 @@ const DisabledAndActive = () => {
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AlignmentPagination = () => {
   return (
-    <ComponentContainerCard title="Alignment" description={<>Change the alignment of pagination components with flexbox utilities.</>}>
+    <ComponentContainerCard
+      title="Alignment"
+      description={
+        <>
+          Change the alignment of pagination components with flexbox utilities.
+        </>
+      }
+    >
       <nav aria-label="Page navigation example">
         <Pagination className="justify-content-center">
           <Pagination.Prev disabled>Previous</Pagination.Prev>
@@ -66,8 +82,8 @@ const AlignmentPagination = () => {
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const CustomIconPagination = () => {
   return (
@@ -77,7 +93,8 @@ const CustomIconPagination = () => {
         <>
           Add <code> .pagination-boxed</code> for rounded pagination.
         </>
-      }>
+      }
+    >
       <nav>
         <Pagination className="pagination-boxed">
           <Pagination.Prev>
@@ -111,7 +128,10 @@ const CustomIconPagination = () => {
       <nav>
         <Pagination className="pagination-boxed">
           <Pagination.Prev>
-            <IconifyIcon icon="solar:arrow-left-line-duotone" className="fs-18" />
+            <IconifyIcon
+              icon="solar:arrow-left-line-duotone"
+              className="fs-18"
+            />
           </Pagination.Prev>
           <Pagination.Item>1</Pagination.Item>
           <Pagination.Item>2</Pagination.Item>
@@ -119,13 +139,16 @@ const CustomIconPagination = () => {
           <Pagination.Item>4</Pagination.Item>
           <Pagination.Item active>5</Pagination.Item>
           <Pagination.Next>
-            <IconifyIcon icon="solar:arrow-right-line-duotone" className="fs-18" />
+            <IconifyIcon
+              icon="solar:arrow-right-line-duotone"
+              className="fs-18"
+            />
           </Pagination.Next>
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const CustomColorPagination = () => {
   return (
@@ -135,7 +158,8 @@ const CustomColorPagination = () => {
         <>
           Add <code> .pagination-boxed</code> for rounded pagination.
         </>
-      }>
+      }
+    >
       <nav>
         <Pagination className="pagination-boxed pagination-info">
           <Pagination.Prev>
@@ -169,7 +193,10 @@ const CustomColorPagination = () => {
       <nav>
         <Pagination className="pagination-boxed pagination-dark mb-0">
           <Pagination.Prev>
-            <IconifyIcon icon="solar:arrow-left-line-duotone" className="fs-18" />
+            <IconifyIcon
+              icon="solar:arrow-left-line-duotone"
+              className="fs-18"
+            />
           </Pagination.Prev>
           <Pagination.Item>1</Pagination.Item>
           <Pagination.Item>2</Pagination.Item>
@@ -177,27 +204,32 @@ const CustomColorPagination = () => {
           <Pagination.Item>4</Pagination.Item>
           <Pagination.Item active>5</Pagination.Item>
           <Pagination.Next>
-            <IconifyIcon icon="solar:arrow-right-line-duotone" className="fs-18" />
+            <IconifyIcon
+              icon="solar:arrow-right-line-duotone"
+              className="fs-18"
+            />
           </Pagination.Next>
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const SizingPagination = () => {
-  const items = []
+  const items = [];
   for (let number = 1; number <= 3; number++) {
-    items.push(<Pagination.Item key={number}>{number}</Pagination.Item>)
+    items.push(<Pagination.Item key={number}>{number}</Pagination.Item>);
   }
   return (
     <ComponentContainerCard
       title="Sizing"
       description={
         <>
-          Add <code> .pagination-lg</code> or <code> .pagination-sm</code> for additional sizes.
+          Add <code> .pagination-lg</code> or <code> .pagination-sm</code> for
+          additional sizes.
         </>
-      }>
+      }
+    >
       <nav>
         <Pagination size="lg">
           <Pagination.Prev />
@@ -211,8 +243,8 @@ const SizingPagination = () => {
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const BoxedPagination = () => {
   return (
@@ -222,7 +254,8 @@ const BoxedPagination = () => {
         <>
           Add <code> .pagination-boxed</code> for rounded pagination.
         </>
-      }>
+      }
+    >
       <nav>
         <Pagination className="pagination-boxed">
           <Pagination.Prev />
@@ -253,8 +286,8 @@ const BoxedPagination = () => {
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const RoundedPagination = () => {
   return (
@@ -264,7 +297,8 @@ const RoundedPagination = () => {
         <>
           Add <code> .pagination-rounded</code> for rounded pagination.
         </>
-      }>
+      }
+    >
       <nav>
         <Pagination className="pagination-rounded pagination-boxed mb-0">
           <Pagination.Prev />
@@ -277,8 +311,8 @@ const RoundedPagination = () => {
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const SoftPagination = () => {
   return (
@@ -288,7 +322,8 @@ const SoftPagination = () => {
         <>
           Add <code> .pagination-rounded</code> for rounded pagination.
         </>
-      }>
+      }
+    >
       <nav>
         <Pagination className="pagination-soft-danger pagination-boxed mb-0">
           <Pagination.Prev />
@@ -301,8 +336,8 @@ const SoftPagination = () => {
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const GradientColorPagination = () => {
   return (
@@ -312,7 +347,8 @@ const GradientColorPagination = () => {
         <>
           Add <code> .pagination-boxed</code> for rounded pagination.
         </>
-      }>
+      }
+    >
       <nav>
         <Pagination className="pagination-boxed pagination-gradient pagination-info">
           <Pagination.Prev>
@@ -346,7 +382,10 @@ const GradientColorPagination = () => {
       <nav>
         <Pagination className="pagination-boxed pagination-dark pagination-gradient mb-0">
           <Pagination.Prev>
-            <IconifyIcon icon="solar:arrow-left-line-duotone" className="fs-18" />
+            <IconifyIcon
+              icon="solar:arrow-left-line-duotone"
+              className="fs-18"
+            />
           </Pagination.Prev>
           <Pagination.Item>1</Pagination.Item>
           <Pagination.Item>2</Pagination.Item>
@@ -354,13 +393,16 @@ const GradientColorPagination = () => {
           <Pagination.Item>4</Pagination.Item>
           <Pagination.Item active>5</Pagination.Item>
           <Pagination.Next>
-            <IconifyIcon icon="solar:arrow-right-line-duotone" className="fs-18" />
+            <IconifyIcon
+              icon="solar:arrow-right-line-duotone"
+              className="fs-18"
+            />
           </Pagination.Next>
         </Pagination>
       </nav>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllPagination = () => {
   return (
@@ -382,7 +424,7 @@ const AllPagination = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllPagination
+export default AllPagination;

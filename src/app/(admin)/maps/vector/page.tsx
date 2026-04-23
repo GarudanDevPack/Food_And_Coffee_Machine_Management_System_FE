@@ -1,9 +1,9 @@
-import PageTitle from '@/components/PageTitle'
-import React from 'react'
-import AllVectorMaps from './components/AllVectorMaps'
-import { Metadata } from 'next'
+import PageTitle from "@/components/PageTitle";
+import React from "react";
+import AllVectorMaps from "./components/AllVectorMaps";
+import { Metadata } from "next";
 
-export const metadata: Metadata = { title: 'Vector Maps' }
+export const metadata: Metadata = { title: "Vector Maps" };
 
 const VectorMaps = () => {
   return (
@@ -11,7 +11,7 @@ const VectorMaps = () => {
       <PageTitle title="Vector Maps" subTitle="Maps" />
       <AllVectorMaps />
     </>
-  )
-}
+  );
+};
 
-export default VectorMaps
+export default VectorMaps;

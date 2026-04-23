@@ -1,8 +1,8 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import { useMemo, useState } from 'react'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import { useMemo, useState } from "react";
 
-import { Col, Row } from 'react-bootstrap'
+import { Col, Row } from "react-bootstrap";
 import {
   Circle,
   CircleMarker,
@@ -17,15 +17,15 @@ import {
   Rectangle,
   Tooltip,
   TileLayer,
-} from 'react-leaflet'
+} from "react-leaflet";
 
 const LeafletQuickMap = () => {
-  const position = [51.505, -0.09]
+  const position = [51.505, -0.09];
   const polyline = [
     [51.505, -0.09],
     [51.51, -0.1],
     [51.51, -0.12],
-  ]
+  ];
   const multiPolyline = [
     [
       [51.5, -0.1],
@@ -37,16 +37,16 @@ const LeafletQuickMap = () => {
       [51.5, -0.06],
       [51.52, -0.06],
     ],
-  ]
+  ];
   const fillBlueOptions = {
-    fillColor: 'blue',
-  }
+    fillColor: "blue",
+  };
   const limeOptions = {
-    color: 'lime',
-  }
+    color: "lime",
+  };
   const redOptions = {
-    color: 'red',
-  }
+    color: "red",
+  };
   return (
     <ComponentContainerCard title="Basic Map">
       <div style={{ height: 400 }}>
@@ -56,14 +56,23 @@ const LeafletQuickMap = () => {
           zoom={13}
           scrollWheelZoom={true}
           style={{
-            height: '400px',
-          }}>
+            height: "400px",
+          }}
+        >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Circle center={position} pathOptions={fillBlueOptions} radius={200} />
-          <CircleMarker center={[51.51, -0.12]} pathOptions={redOptions} radius={20}>
+          <Circle
+            center={position}
+            pathOptions={fillBlueOptions}
+            radius={200}
+          />
+          <CircleMarker
+            center={[51.51, -0.12]}
+            pathOptions={redOptions}
+            radius={20}
+          >
             <Popup>Popup in CircleMarker</Popup>
           </CircleMarker>
           <Polyline pathOptions={limeOptions} positions={polyline} />
@@ -71,32 +80,34 @@ const LeafletQuickMap = () => {
         </MapContainer>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const BoundsExtendMap = () => {
-  const position = [51.505, -0.09]
+  const position = [51.505, -0.09];
   const rectangle = [
     [51.49, -0.08],
     [51.5, -0.06],
-  ]
+  ];
   const blackOptions = {
-    color: 'blue',
-  }
+    color: "blue",
+  };
   return (
     <ComponentContainerCard title="Bounds Extend">
       <div
         style={{
           height: 400,
-        }}>
+        }}
+      >
         <MapContainer
           center={position}
           maxZoom={18}
           zoom={13}
           scrollWheelZoom={true}
           style={{
-            height: '400px',
-          }}>
+            height: "400px",
+          }}
+        >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -105,11 +116,11 @@ const BoundsExtendMap = () => {
         </MapContainer>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const VectorBoundMap = () => {
-  const position = [39.69596043694606, -104.95084762573242]
+  const position = [39.69596043694606, -104.95084762573242];
   const polyline = [
     [39.70348880963439, -104.98603820800781],
     [39.69926245589766, -104.95582580566406],
@@ -117,25 +128,27 @@ const VectorBoundMap = () => {
     [39.663856582926165, -104.95307922363281],
     [39.66279941218785, -104.9867248535156],
     [39.70348880963439, -104.98603820800781],
-  ]
+  ];
   const limeOptions = {
-    color: 'skyblue',
+    color: "skyblue",
     fill: true,
-  }
+  };
   return (
     <ComponentContainerCard title="Vector Bounds">
       <div
         style={{
           height: 400,
-        }}>
+        }}
+      >
         <MapContainer
           center={position}
           maxZoom={18}
           zoom={12}
           scrollWheelZoom={true}
           style={{
-            height: '400px',
-          }}>
+            height: "400px",
+          }}
+        >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -144,11 +157,11 @@ const VectorBoundMap = () => {
         </MapContainer>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const SimpleVectorMap = () => {
-  const position = [51.505, -0.09]
+  const position = [51.505, -0.09];
   return (
     <ComponentContainerCard title="Simple Vector Map">
       <MapContainer
@@ -157,8 +170,9 @@ const SimpleVectorMap = () => {
         maxZoom={18}
         scrollWheelZoom
         style={{
-          height: '400px',
-        }}>
+          height: "400px",
+        }}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -170,15 +184,15 @@ const SimpleVectorMap = () => {
         </Marker>
       </MapContainer>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const LayerControlMap = () => {
-  const center = [51.505, -0.09]
+  const center = [51.505, -0.09];
   const rectangle = [
     [51.49, -0.08],
     [51.5, -0.06],
-  ]
+  ];
   return (
     <ComponentContainerCard title="Layers control">
       <MapContainer
@@ -188,7 +202,8 @@ const LayerControlMap = () => {
         scrollWheelZoom={true}
         style={{
           height: 400,
-        }}>
+        }}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -206,14 +221,14 @@ const LayerControlMap = () => {
               <Circle
                 center={center}
                 pathOptions={{
-                  fillColor: 'blue',
+                  fillColor: "blue",
                 }}
                 radius={200}
               />
               <Circle
                 center={center}
                 pathOptions={{
-                  fillColor: 'red',
+                  fillColor: "red",
                 }}
                 radius={100}
                 stroke={false}
@@ -222,8 +237,8 @@ const LayerControlMap = () => {
                 <Circle
                   center={[51.51, -0.08]}
                   pathOptions={{
-                    color: 'green',
-                    fillColor: 'green',
+                    color: "green",
+                    fillColor: "green",
                   }}
                   radius={100}
                 />
@@ -233,8 +248,9 @@ const LayerControlMap = () => {
           <LayersControl.Overlay name="Feature group">
             <FeatureGroup
               pathOptions={{
-                color: 'purple',
-              }}>
+                color: "purple",
+              }}
+            >
               <Popup>Popup in FeatureGroup</Popup>
               <Circle center={[51.51, -0.06]} radius={200} />
               <Rectangle bounds={rectangle} />
@@ -243,11 +259,11 @@ const LayerControlMap = () => {
         </LayersControl>
       </MapContainer>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const TooltipMap = () => {
-  const center = [51.505, -0.09]
+  const center = [51.505, -0.09];
   const multiPolygon = [
     [
       [51.51, -0.12],
@@ -259,33 +275,37 @@ const TooltipMap = () => {
       [51.51, -0.07],
       [51.53, -0.07],
     ],
-  ]
+  ];
   const rectangle = [
     [51.49, -0.08],
     [51.5, -0.06],
-  ]
+  ];
   function TooltipCircle() {
-    const [clickedCount, setClickedCount] = useState(0)
+    const [clickedCount, setClickedCount] = useState(0);
     const eventHandlers = useMemo(
       () => ({
         click() {
-          setClickedCount((count) => count + 1)
+          setClickedCount((count) => count + 1);
         },
       }),
       [],
-    )
-    const clickedText = clickedCount === 0 ? 'Click this Circle to change the Tooltip text' : `Circle click: ${clickedCount}`
+    );
+    const clickedText =
+      clickedCount === 0
+        ? "Click this Circle to change the Tooltip text"
+        : `Circle click: ${clickedCount}`;
     return (
       <Circle
         center={center}
         eventHandlers={eventHandlers}
         pathOptions={{
-          fillColor: 'blue',
+          fillColor: "blue",
         }}
-        radius={200}>
+        radius={200}
+      >
         <Tooltip>{clickedText}</Tooltip>
       </Circle>
-    )
+    );
   }
   return (
     <ComponentContainerCard title="Tooltips">
@@ -296,7 +316,8 @@ const TooltipMap = () => {
         scrollWheelZoom
         style={{
           height: 400,
-        }}>
+        }}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -305,9 +326,10 @@ const TooltipMap = () => {
         <CircleMarker
           center={[51.51, -0.12]}
           pathOptions={{
-            color: 'red',
+            color: "red",
           }}
-          radius={20}>
+          radius={20}
+        >
           <Tooltip>Tooltip for CircleMarker</Tooltip>
         </CircleMarker>
         <Marker position={[51.51, -0.09]}>
@@ -316,24 +338,26 @@ const TooltipMap = () => {
         </Marker>
         <Polygon
           pathOptions={{
-            color: 'purple',
+            color: "purple",
           }}
-          positions={multiPolygon}>
+          positions={multiPolygon}
+        >
           <Tooltip sticky>sticky Tooltip for Polygon</Tooltip>
         </Polygon>
         <Rectangle
           bounds={rectangle}
           pathOptions={{
-            color: 'black',
-          }}>
+            color: "black",
+          }}
+        >
           <Tooltip direction="bottom" offset={[0, 20]} opacity={1} permanent>
             permanent Tooltip for Rectangle
           </Tooltip>
         </Rectangle>
       </MapContainer>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllLeaflet = () => {
   return (
@@ -359,7 +383,7 @@ const AllLeaflet = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllLeaflet
+export default AllLeaflet;

@@ -1,9 +1,7 @@
-import FullScreenView from './components/FullScreenView'
+import FullScreenView from "./components/FullScreenView";
 
 const FullScreenViewPage = () => {
-  return (
-    <FullScreenView />
-  )
-}
+  return <FullScreenView />;
+};
 
-export default FullScreenViewPage
+export default FullScreenViewPage;

@@ -1,18 +1,28 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from '@/components/ApexChart'
-import { Col, Row } from 'react-bootstrap'
-import { dateTimeScatterChartOpts, scatterChartOpts, scatterImagesChartOpts } from '../data'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import ReactApexChart from "@/components/ApexChart";
+import { Col, Row } from "react-bootstrap";
+import {
+  dateTimeScatterChartOpts,
+  scatterChartOpts,
+  scatterImagesChartOpts,
+} from "../data";
 
 const ScatterChart = () => {
   return (
     <ComponentContainerCard title="Scatter (XY) Chart">
       <div dir="ltr">
-        <ReactApexChart height={380} options={scatterChartOpts} series={scatterChartOpts.series} type="scatter" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={scatterChartOpts}
+          series={scatterChartOpts.series}
+          type="scatter"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ScatterDatetimeChart = () => {
   return (
@@ -27,18 +37,24 @@ const ScatterDatetimeChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ScatterImagesChart = () => {
   return (
     <ComponentContainerCard title="Scatter - Images">
       <div dir="ltr">
-        <ReactApexChart height={380} options={scatterImagesChartOpts} series={scatterImagesChartOpts.series} type="scatter" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={scatterImagesChartOpts}
+          series={scatterImagesChartOpts.series}
+          type="scatter"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllScatterChart = () => {
   return (
@@ -57,7 +73,7 @@ const AllScatterChart = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllScatterChart
+export default AllScatterChart;

@@ -1,19 +1,19 @@
-'use client'
-import FallbackLoading from '@/components/FallbackLoading'
-import LogoBox from '@/components/LogoBox'
-import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import SimplebarReactClient from '@/components/wrappers/SimplebarReactClient'
-import { useLayoutContext } from '@/context/useLayoutContext'
-import { getMenuItems } from '@/helpers/Manu'
-import { useUserRole } from '@/hooks/useApi'
-import { Suspense } from 'react'
-import AppMenu from './components/AppMenu'
+"use client";
+import FallbackLoading from "@/components/FallbackLoading";
+import LogoBox from "@/components/LogoBox";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import SimplebarReactClient from "@/components/wrappers/SimplebarReactClient";
+import { useLayoutContext } from "@/context/useLayoutContext";
+import { getMenuItems } from "@/helpers/Manu";
+import { useUserRole } from "@/hooks/useApi";
+import { Suspense } from "react";
+import AppMenu from "./components/AppMenu";
 
 const VerticalNavigationBar = () => {
-  const role = useUserRole()
-  const menuItems = getMenuItems(role)
+  const role = useUserRole();
+  const menuItems = getMenuItems(role);
 
-  const { toggleBackdrop } = useLayoutContext()
+  const { toggleBackdrop } = useLayoutContext();
   return (
     <div className="sidenav-menu">
       <LogoBox />
@@ -27,7 +27,7 @@ const VerticalNavigationBar = () => {
         </Suspense>
       </SimplebarReactClient>
     </div>
-  )
-}
+  );
+};
 
-export default VerticalNavigationBar
+export default VerticalNavigationBar;

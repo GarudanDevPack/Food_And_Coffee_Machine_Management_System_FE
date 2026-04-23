@@ -1,13 +1,13 @@
-import logoDark from '@/assets/images/logo-dark.png'
-import logo from '@/assets/images/logo.png'
-import { currentYear, developedBy } from '@/context/constants'
-import { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Card, Col, Row } from 'react-bootstrap'
-import CreatePass from './components/CreatePass'
+import logoDark from "@/assets/images/logo-dark.png";
+import logo from "@/assets/images/logo.png";
+import { currentYear, developedBy } from "@/context/constants";
+import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Card, Col, Row } from "react-bootstrap";
+import CreatePass from "./components/CreatePass";
 
-export const metadata: Metadata = { title: 'Create Password' }
+export const metadata: Metadata = { title: "Create Password" };
 
 const CreatePasswordPage = () => {
   return (
@@ -16,14 +16,27 @@ const CreatePasswordPage = () => {
         <Col xl={4} lg={5} md={6}>
           <Card className="overflow-hidden text-center h-100 p-xxl-4 p-3 mb-0">
             <Link href="/" className="auth-brand mb-4">
-              <Image src={logoDark} alt="dark logo" height={26} className="logo-dark" />
-              <Image src={logo} alt="logo light" height={26} className="logo-light" />
+              <Image
+                src={logoDark}
+                alt="dark logo"
+                height={26}
+                className="logo-dark"
+              />
+              <Image
+                src={logo}
+                alt="logo light"
+                height={26}
+                className="logo-light"
+              />
             </Link>
             <h4 className="fw-semibold mb-2 fs-20">Create New Password</h4>
             <p className="text-muted mb-2">Please create your new password.</p>
             <p className="mb-4">
               Need password suggestion ?
-              <Link href="" className="link-dark fw-semibold text-decoration-underline">
+              <Link
+                href=""
+                className="link-dark fw-semibold text-decoration-underline"
+              >
                 Suggestion
               </Link>
             </p>
@@ -35,13 +48,16 @@ const CreatePasswordPage = () => {
               </Link>
             </p>
             <p className="mt-auto mb-0">
-              {currentYear} © Abstack - By <span className="fw-bold text-decoration-underline text-uppercase text-reset fs-12">{developedBy}</span>
+              {currentYear} © Abstack - By{" "}
+              <span className="fw-bold text-decoration-underline text-uppercase text-reset fs-12">
+                {developedBy}
+              </span>
             </p>
           </Card>
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default CreatePasswordPage
+export default CreatePasswordPage;

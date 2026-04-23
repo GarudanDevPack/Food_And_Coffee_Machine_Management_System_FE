@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllPieChart from './components/AllPieChart'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllPieChart from "./components/AllPieChart";
 
-export const metadata: Metadata = { title: 'Apex Pie Charts' }
+export const metadata: Metadata = { title: "Apex Pie Charts" };
 
 const PieChart = () => {
   return (
@@ -10,7 +10,7 @@ const PieChart = () => {
       <PageTitle title="Pie Charts" subTitle="Apex" />
       <AllPieChart />
     </>
-  )
-}
+  );
+};
 
-export default PieChart
+export default PieChart;

@@ -1,9 +1,9 @@
-'use client'
-import { NotificationProvider } from '@/context/useNotificationContext'
-import { SessionProvider } from 'next-auth/react'
-import { ToastContainer } from 'react-toastify'
-import { ChildrenType } from '../../types/component-props'
-import { LayoutProvider } from '@/context/useLayoutContext'
+"use client";
+import { NotificationProvider } from "@/context/useNotificationContext";
+import { SessionProvider } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
+import { ChildrenType } from "../../types/component-props";
+import { LayoutProvider } from "@/context/useLayoutContext";
 
 const AppProvidersWrapper = ({ children }: ChildrenType) => {
   return (
@@ -17,6 +17,6 @@ const AppProvidersWrapper = ({ children }: ChildrenType) => {
         </LayoutProvider>
       </SessionProvider>
     </>
-  )
-}
-export default AppProvidersWrapper
+  );
+};
+export default AppProvidersWrapper;

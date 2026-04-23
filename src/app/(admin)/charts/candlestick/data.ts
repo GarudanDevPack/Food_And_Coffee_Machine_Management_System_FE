@@ -1,5 +1,5 @@
-import { ApexOptions } from 'apexcharts'
-import dayjs from 'dayjs'
+import { ApexOptions } from "apexcharts";
+import dayjs from "dayjs";
 
 const seriesData = [
   {
@@ -94,18 +94,18 @@ const seriesData = [
     x: new Date(2017, 11, 1),
     y: [61.71, 64.15, 61.29, 63.04],
   },
-]
+];
 
 export const simpleCandlestickChartOpts: ApexOptions = {
   chart: {
     height: 400,
-    type: 'candlestick',
+    type: "candlestick",
   },
   plotOptions: {
     candlestick: {
       colors: {
-        upward: '#31ce77',
-        downward: '#fa5c7c',
+        upward: "#31ce77",
+        downward: "#fa5c7c",
       },
     },
   },
@@ -117,21 +117,21 @@ export const simpleCandlestickChartOpts: ApexOptions = {
 
   stroke: {
     show: true,
-    colors: ['#f1f3fa'],
+    colors: ["#f1f3fa"],
     width: 1,
   },
   xaxis: {
-    type: 'datetime',
+    type: "datetime",
   },
   grid: {
-    borderColor: '#f1f3fa',
+    borderColor: "#f1f3fa",
   },
-}
+};
 
 export const categoryChartChartOpts: ApexOptions = {
   series: [
     {
-      name: 'candle',
+      name: "candle",
       data: [
         {
           x: new Date(1538778600000),
@@ -378,11 +378,11 @@ export const categoryChartChartOpts: ApexOptions = {
   ],
   chart: {
     height: 380,
-    type: 'candlestick',
+    type: "candlestick",
   },
   title: {
-    text: 'CandleStick Chart - Category X-axis',
-    align: 'left',
+    text: "CandleStick Chart - Category X-axis",
+    align: "left",
   },
   grid: {
     padding: {
@@ -395,18 +395,18 @@ export const categoryChartChartOpts: ApexOptions = {
   annotations: {
     xaxis: [
       {
-        x: 'Oct 06 14:00',
-        borderColor: '#6b5eae',
+        x: "Oct 06 14:00",
+        borderColor: "#6b5eae",
         label: {
-          borderColor: '#6b5eae',
+          borderColor: "#6b5eae",
           style: {
-            fontSize: '12px',
-            color: '#fff',
-            background: '#6b5eae',
+            fontSize: "12px",
+            color: "#fff",
+            background: "#6b5eae",
           },
-          orientation: 'horizontal',
+          orientation: "horizontal",
           offsetY: 7,
-          text: 'Annotation Test',
+          text: "Annotation Test",
         },
       },
     ],
@@ -414,20 +414,20 @@ export const categoryChartChartOpts: ApexOptions = {
   plotOptions: {
     candlestick: {
       colors: {
-        upward: '#31ce77',
-        downward: '#fa5c7c',
+        upward: "#31ce77",
+        downward: "#fa5c7c",
       },
     },
   },
   tooltip: {
     enabled: true,
   },
-  colors: ['#31ce77', '#fa5c7c', '#6b5eae'],
+  colors: ["#31ce77", "#fa5c7c", "#6b5eae"],
   xaxis: {
-    type: 'category',
+    type: "category",
     labels: {
       formatter: function (val) {
-        return dayjs(val).format('MMM DD HH:mm')
+        return dayjs(val).format("MMM DD HH:mm");
       },
     },
   },
@@ -436,13 +436,13 @@ export const categoryChartChartOpts: ApexOptions = {
       enabled: true,
     },
   },
-}
+};
 
 export const candlestickLineChartOpts: ApexOptions = {
   series: [
     {
-      name: 'Line',
-      type: 'line',
+      name: "Line",
+      type: "line",
       data: [
         {
           x: new Date(1538778600000),
@@ -463,8 +463,8 @@ export const candlestickLineChartOpts: ApexOptions = {
       ],
     },
     {
-      name: 'Candle',
-      type: 'candlestick',
+      name: "Candle",
+      type: "candlestick",
       data: [
         {
           x: new Date(1538778600000),
@@ -711,18 +711,18 @@ export const candlestickLineChartOpts: ApexOptions = {
   ],
   chart: {
     height: 380,
-    type: 'line',
+    type: "line",
   },
   title: {
-    text: 'CandleStick Chart',
-    align: 'left',
+    text: "CandleStick Chart",
+    align: "left",
   },
   stroke: {
     width: [3, 1],
   },
   legend: {
     show: true,
-    horizontalAlign: 'center',
+    horizontalAlign: "center",
     offsetX: 0,
     offsetY: 5,
   },
@@ -734,12 +734,12 @@ export const candlestickLineChartOpts: ApexOptions = {
       left: 10,
     },
   },
-  colors: ['#6b5eae', '#31ce77', '#fa5c7c'],
+  colors: ["#6b5eae", "#31ce77", "#fa5c7c"],
   plotOptions: {
     candlestick: {
       colors: {
-        upward: '#31ce77',
-        downward: '#fa5c7c',
+        upward: "#31ce77",
+        downward: "#fa5c7c",
       },
     },
   },
@@ -747,41 +747,41 @@ export const candlestickLineChartOpts: ApexOptions = {
     shared: true,
     custom: [
       function (_ref) {
-        const seriesIndex = _ref.seriesIndex
-        const dataPointIndex = _ref.dataPointIndex
-        const w = _ref.w
+        const seriesIndex = _ref.seriesIndex;
+        const dataPointIndex = _ref.dataPointIndex;
+        const w = _ref.w;
 
-        return w.globals.series[seriesIndex][dataPointIndex]
+        return w.globals.series[seriesIndex][dataPointIndex];
       },
       function (_ref2) {
-        const seriesIndex = _ref2.seriesIndex
-        const dataPointIndex = _ref2.dataPointIndex
-        const w = _ref2.w
+        const seriesIndex = _ref2.seriesIndex;
+        const dataPointIndex = _ref2.dataPointIndex;
+        const w = _ref2.w;
 
-        const o = w.globals.seriesCandleO[seriesIndex][dataPointIndex]
-        const h = w.globals.seriesCandleH[seriesIndex][dataPointIndex]
-        const l = w.globals.seriesCandleL[seriesIndex][dataPointIndex]
-        const c = w.globals.seriesCandleC[seriesIndex][dataPointIndex]
+        const o = w.globals.seriesCandleO[seriesIndex][dataPointIndex];
+        const h = w.globals.seriesCandleH[seriesIndex][dataPointIndex];
+        const l = w.globals.seriesCandleL[seriesIndex][dataPointIndex];
+        const c = w.globals.seriesCandleC[seriesIndex][dataPointIndex];
         return (
           '<div class="apexcharts-tooltip-candlestick">' +
           '<div>Open: <span class="value">' +
           o +
-          '</span></div>' +
+          "</span></div>" +
           '<div>High: <span class="value">' +
           h +
-          '</span></div>' +
+          "</span></div>" +
           '<div>Low: <span class="value">' +
           l +
-          '</span></div>' +
+          "</span></div>" +
           '<div>Close: <span class="value">' +
           c +
-          '</span></div>' +
-          '</div>'
-        )
+          "</span></div>" +
+          "</div>"
+        );
       },
     ],
   },
   xaxis: {
-    type: 'datetime',
+    type: "datetime",
   },
-}
+};

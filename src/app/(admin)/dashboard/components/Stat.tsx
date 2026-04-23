@@ -1,18 +1,20 @@
-'use client'
-import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import { dashboardApi } from '@/lib/api'
-import { useSession } from 'next-auth/react'
-import { useEffect, useState } from 'react'
-import { Card, CardBody, Col, Row, Spinner } from 'react-bootstrap'
+"use client";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import { dashboardApi } from "@/lib/api";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { Card, CardBody, Col, Row, Spinner } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 interface Summary {
-  totalRevenue?: number
-  activeMachines?: number
-  totalMachines?: number
-  totalCustomers?: number
-  totalOrders?: number
-  ordersToday?: number
-  pendingOrders?: number
+  totalRevenue?: number;
+  activeMachines?: number;
+  totalMachines?: number;
+  totalCustomers?: number;
+  totalOrders?: number;
+  completedOrders?: number;
+  ordersToday?: number;
+  unresolvedAlerts?: number;
 }
 
 const StatCard = ({
@@ -23,12 +25,12 @@ const StatCard = ({
   textClass,
   sub,
 }: {
-  title: string
-  value: string | number
-  icon: string
-  bgClass: string
-  textClass: string
-  sub?: string
+  title: string;
+  value: string | number;
+  icon: string;
+  bgClass: string;
+  textClass: string;
+  sub?: string;
 }) => (
   <Col>
     <Card>
@@ -40,7 +42,9 @@ const StatCard = ({
             {sub && <p className="mb-0 text-muted fs-13">{sub}</p>}
           </div>
           <div className="avatar-lg flex-shrink-0">
-            <span className={`avatar-title ${bgClass} ${textClass} rounded fs-28`}>
+            <span
+              className={`avatar-title ${bgClass} ${textClass} rounded fs-28`}
+            >
               <IconifyIcon icon={icon} />
             </span>
           </div>
@@ -48,22 +52,24 @@ const StatCard = ({
       </CardBody>
     </Card>
   </Col>
-)
+);
 
 const Stat = () => {
-  const { data: session } = useSession()
-  const token = (session?.user as any)?.token ?? ''
-  const [summary, setSummary] = useState<Summary>({})
-  const [loading, setLoading] = useState(true)
+  const { data: session } = useSession();
+  const token = (session?.user as any)?.token ?? "";
+  const [summary, setSummary] = useState<Summary>({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!token) return
+    if (!token) return;
     dashboardApi
       .getSummary(token)
       .then((data) => setSummary(data as Summary))
-      .catch(() => {})
-      .finally(() => setLoading(false))
-  }, [token])
+      .catch((err: any) =>
+        toast.error(err?.message ?? "Failed to load dashboard stats"),
+      )
+      .finally(() => setLoading(false));
+  }, [token]);
 
   if (loading) {
     return (
@@ -78,7 +84,7 @@ const Stat = () => {
           </Col>
         ))}
       </Row>
-    )
+    );
   }
 
   return (
@@ -116,7 +122,7 @@ const Stat = () => {
         sub={`${summary.totalOrders ?? 0} total orders`}
       />
     </Row>
-  )
-}
+  );
+};
 
-export default Stat
+export default Stat;

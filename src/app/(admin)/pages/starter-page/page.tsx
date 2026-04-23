@@ -1,10 +1,10 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
 
-export const metadata: Metadata = { title: 'Starter' }
+export const metadata: Metadata = { title: "Starter" };
 
 const StarterPage = () => {
-  return <PageTitle title="Starter" subTitle="Pages" />
-}
+  return <PageTitle title="Starter" subTitle="Pages" />;
+};
 
-export default StarterPage
+export default StarterPage;

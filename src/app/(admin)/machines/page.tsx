@@ -1,369 +1,246 @@
-'use client'
-import PageTitle from '@/components/PageTitle'
-import { machinesApi } from '@/lib/api'
-import { useSession } from 'next-auth/react'
-import { useEffect, useRef, useState } from 'react'
-import { Badge, Button, Card, CardBody, Col, Modal, Row, Spinner, Table } from 'react-bootstrap'
-import { toast } from 'react-toastify'
-import Swal from 'sweetalert2'
-import MachineModal from './components/MachineModal'
-import { QRCodeCanvas } from 'qrcode.react'
+"use client";
+import { fmtDateTime } from "@/lib/fmt";
+import PageTitle from "@/components/PageTitle";
+import { machinesApi } from "@/lib/api";
+import { useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
+import {
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Row,
+  Spinner,
+  Table,
+} from "react-bootstrap";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import { disconnectSocket, getSocket } from "@/lib/socket";
+import BatchModal from "./components/BatchModal";
+import MachineModal from "./components/MachineModal";
 
-interface CalibrationEntry {
-  itemId?: string
-  nozzle?: number
-  timerOfPowder?: number
-  timerOfWater?: number
-  cupSize?: string
-  volMl?: number
-  volGram?: number
+interface Sensor {
+  temp?: number;
+  water?: string;
+  powderlevel?: { canister: number; level: number }[];
+}
+
+interface Batch {
+  _id?: string;
+  batchId?: string;
+  itemName?: string;
+  nozzleId?: number;
+  quantity?: number;
+  expiryDate?: string;
+  status?: string;
 }
 
 interface Machine {
-  _id?: string
-  id?: string
-  machineId: string
-  name: string
-  machineType?: string
-  location?: string
-  isOnline?: boolean
-  sleepMode?: boolean
-  status?: string
-  totalOrders?: number
-  totalRevenue?: number
-  sensor?: {
-    temp?: number
-    water?: string
-    powderlevel?: number[]
-  }
-  calibration?: CalibrationEntry[]
-  lastSeen?: string
-  error?: string
+  _id?: string;
+  machineId?: string;
+  name?: string;
+  machineType?: "coffee" | "food";
+  location?: string;
+  isOnline?: boolean;
+  sleepMode?: boolean;
+  flushMode?: boolean;
+  error?: string;
+  sensor?: Sensor;
+  totalOrders?: number;
+  totalRevenue?: number;
+  status?: string;
+  clientId?: string;
+  agentId?: string;
+  timerOfWater?: number;
+  timerOfPowder?: number;
+  batches?: Batch[];
 }
 
-function TelemetryModal({ machine, onHide }: { machine: Machine | null; onHide: () => void }) {
-  if (!machine) return null
-  const sensor = machine.sensor ?? {}
-  const waterColor = sensor.water === 'full' ? 'success' : sensor.water === 'low' ? 'warning' : 'danger'
+const statusDot = (m: Machine) => {
+  if (m.sleepMode || m.error === "Sleep_Mode_ON")
+    return { color: "#fd7e14", label: "Sleeping" };
+  if (m.isOnline) return { color: "#28a745", label: "Online" };
+  return { color: "#dc3545", label: "Offline" };
+};
 
-  return (
-    <Modal show={!!machine} onHide={onHide} centered size="sm">
-      <Modal.Header closeButton>
-        <Modal.Title className="fs-15">
-          <i className="ri-temp-hot-line me-2 text-info" />
-          Telemetry — {machine.name}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <div className="mb-3 d-flex align-items-center gap-3">
-          <span className={`badge bg-${machine.isOnline ? 'success' : 'danger'} fs-12`}>
-            {machine.isOnline ? 'Online' : 'Offline'}
-          </span>
-          {machine.lastSeen && (
-            <span className="text-muted fs-12">
-              Last seen: {new Date(machine.lastSeen).toLocaleString('en-GB')}
-            </span>
-          )}
-        </div>
-
-        <div className="row g-3 mb-3">
-          <div className="col-6">
-            <div className="card border text-center p-3">
-              <div className="fs-28 fw-bold text-danger">
-                {sensor.temp != null ? `${sensor.temp}°C` : '—'}
-              </div>
-              <div className="text-muted fs-12 mt-1">Temperature</div>
-              {sensor.temp != null && sensor.temp > 70 && (
-                <div className="text-danger fs-11 mt-1">⚠ High temp!</div>
-              )}
-            </div>
-          </div>
-          <div className="col-6">
-            <div className="card border text-center p-3">
-              <div className={`fs-24 fw-bold text-${waterColor} text-capitalize`}>
-                {sensor.water ?? '—'}
-              </div>
-              <div className="text-muted fs-12 mt-1">Water Level</div>
-            </div>
-          </div>
-        </div>
-
-        {sensor.powderlevel && sensor.powderlevel.length > 0 && (
-          <div>
-            <div className="fw-semibold fs-13 mb-2">Powder / Nozzle Levels</div>
-            {sensor.powderlevel.map((item: any, i) => {
-              const pct = typeof item === 'object' ? (item.level ?? 0) : item
-              const label = typeof item === 'object' ? (item.canister ?? `Nozzle ${i + 1}`) : `Nozzle ${i + 1}`
-              return (
-              <div key={i} className="mb-2">
-                <div className="d-flex justify-content-between fs-12 mb-1">
-                  <span>{label}</span>
-                  <span className={pct < 20 ? 'text-danger fw-bold' : 'text-muted'}>{pct}%</span>
-                </div>
-                <div className="progress" style={{ height: 8 }}>
-                  <div
-                    className={`progress-bar bg-${pct < 20 ? 'danger' : pct < 50 ? 'warning' : 'success'}`}
-                    style={{ width: `${pct}%` }}
-                  />
-                </div>
-              </div>
-              )
-            })}
-          </div>
-        )}
-
-        {machine.error && (
-          <div className="alert alert-danger py-2 fs-13 mt-2">
-            <i className="ri-error-warning-line me-1" />
-            Error: {machine.error}
-          </div>
-        )}
-
-        {!sensor.temp && !sensor.water && !sensor.powderlevel?.length && !machine.error && (
-          <div className="text-center text-muted py-3 fs-13">
-            <i className="ri-wifi-off-line d-block fs-28 mb-2" />
-            No telemetry data received yet.<br />Machine may be offline or not reporting.
-          </div>
-        )}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="light" size="sm" onClick={onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  )
-}
-
-function QRModal({ machine, onHide }: { machine: Machine | null; onHide: () => void }) {
-  const canvasRef = useRef<HTMLDivElement>(null)
-
-  const handleDownload = () => {
-    if (!canvasRef.current) return
-    const canvas = canvasRef.current.querySelector('canvas')
-    if (!canvas) return
-    const url = canvas.toDataURL('image/png')
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `qr-${machine?.machineId ?? 'machine'}.png`
-    a.click()
-  }
-
-  return (
-    <Modal show={!!machine} onHide={onHide} centered size="sm">
-      <Modal.Header closeButton>
-        <Modal.Title className="fs-15">QR Code</Modal.Title>
-      </Modal.Header>
-      <Modal.Body className="text-center py-4">
-        {machine && (
-          <>
-            <div ref={canvasRef} className="d-inline-block p-3 border rounded mb-3">
-              <QRCodeCanvas
-                value={machine.machineId}
-                size={220}
-                level="H"
-                marginSize={2}
-              />
-            </div>
-            <p className="mb-1 fw-semibold">{machine.name}</p>
-            <code className="text-muted small">{machine.machineId}</code>
-          </>
-        )}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="light" onClick={onHide}>Close</Button>
-        <Button variant="primary" onClick={handleDownload}>
-          <i className="ri-download-2-line me-1" /> Download PNG
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  )
-}
-
-function CalibrationModal({ machine, onHide, token }: { machine: Machine | null; onHide: () => void; token: string }) {
-  const [rows, setRows] = useState<CalibrationEntry[]>([])
-  const [saving, setSaving] = useState(false)
-
-  useEffect(() => {
-    if (machine) setRows(machine.calibration ?? [])
-  }, [machine])
-
-  const update = (i: number, field: keyof CalibrationEntry, val: string) => {
-    setRows((prev) => prev.map((r, idx) => idx === i ? { ...r, [field]: field === 'cupSize' || field === 'itemId' ? val : Number(val) } : r))
-  }
-
-  const handleSave = async () => {
-    if (!machine) return
-    setSaving(true)
-    try {
-      await machinesApi.updateCalibration(token, machine.machineId, { calibration: rows })
-      toast.success('Calibration saved')
-      onHide()
-    } catch (err: any) {
-      toast.error(err.message ?? 'Failed to save calibration')
-    } finally { setSaving(false) }
-  }
-
-  return (
-    <Modal show={!!machine} onHide={onHide} centered size="lg">
-      <Modal.Header closeButton>
-        <Modal.Title className="fs-15">
-          <i className="ri-settings-3-line me-2 text-warning" />
-          Calibration — {machine?.name}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {rows.length === 0 ? (
-          <div className="text-center text-muted py-4 fs-13">
-            <i className="ri-settings-3-line d-block fs-32 mb-2" />
-            No calibration data stored for this machine.
-          </div>
-        ) : (
-          <div className="table-responsive">
-            <table className="table table-sm table-bordered fs-13">
-              <thead className="table-light">
-                <tr>
-                  <th>Nozzle</th>
-                  <th>Cup Size</th>
-                  <th>Powder Timer (ms)</th>
-                  <th>Water Timer (ms)</th>
-                  <th>Vol (ml)</th>
-                  <th>Vol (g)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((r, i) => (
-                  <tr key={i}>
-                    <td className="text-muted">{r.nozzle ?? i + 1}</td>
-                    <td><input className="form-control form-control-sm" value={r.cupSize ?? ''} onChange={(e) => update(i, 'cupSize', e.target.value)} /></td>
-                    <td><input className="form-control form-control-sm" type="number" value={r.timerOfPowder ?? ''} onChange={(e) => update(i, 'timerOfPowder', e.target.value)} /></td>
-                    <td><input className="form-control form-control-sm" type="number" value={r.timerOfWater ?? ''} onChange={(e) => update(i, 'timerOfWater', e.target.value)} /></td>
-                    <td><input className="form-control form-control-sm" type="number" value={r.volMl ?? ''} onChange={(e) => update(i, 'volMl', e.target.value)} /></td>
-                    <td><input className="form-control form-control-sm" type="number" value={r.volGram ?? ''} onChange={(e) => update(i, 'volGram', e.target.value)} /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="light" size="sm" onClick={onHide}>Cancel</Button>
-        <Button variant="warning" size="sm" onClick={handleSave} disabled={saving || rows.length === 0}>
-          {saving ? <Spinner size="sm" className="me-1" /> : <i className="ri-save-line me-1" />}
-          Save Calibration
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  )
-}
+const typeBg = (t?: string) => (t === "food" ? "warning" : "info");
 
 export default function MachinesPage() {
-  const { data: session } = useSession()
-  const token = (session?.user as any)?.token ?? ''
+  const { data: session } = useSession();
+  const token = (session?.user as any)?.token ?? "";
 
-  const [machines, setMachines] = useState<Machine[]>([])
-  const [loading, setLoading] = useState(true)
-  const [showModal, setShowModal] = useState(false)
-  const [editing, setEditing] = useState<Machine | null>(null)
-  const [qrMachine, setQrMachine] = useState<Machine | null>(null)
-  const [telemetryMachine, setTelemetryMachine] = useState<Machine | null>(null)
-  const [calibrationMachine, setCalibrationMachine] = useState<Machine | null>(null)
+  const [machines, setMachines] = useState<Machine[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [actionId, setActionId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [modalMachine, setModalMachine] = useState<Machine | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [batchMachineId, setBatchMachineId] = useState<string | null>(null);
 
   const fetchMachines = async () => {
-    if (!token) return
-    setLoading(true)
+    if (!token) return;
     try {
-      const data = await machinesApi.list(token)
-      setMachines(data as Machine[])
+      const data = (await machinesApi.list(token)) as Machine[];
+      setMachines(data);
     } catch (err: any) {
-      toast.error(err.message ?? 'Failed to load machines')
+      toast.error(err.message ?? "Failed to load machines");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  useEffect(() => { fetchMachines() }, [token])
+  // Initial load
+  useEffect(() => {
+    fetchMachines();
+  }, [token]);
 
-  const handleDelete = async (m: Machine) => {
-    const result = await Swal.fire({
-      title: 'Delete Machine?',
-      text: `"${m.name}" will be permanently deleted.`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      confirmButtonText: 'Delete',
-    })
-    if (!result.isConfirmed) return
+  // Real-time machine status via Socket.io
+  useEffect(() => {
+    if (!token) return;
+    const sock = getSocket(token);
+    sock.on("machine:status", (update: Partial<Machine>) => {
+      setMachines((prev) =>
+        prev.map((m) =>
+          m.machineId === update.machineId ? { ...m, ...update } : m,
+        ),
+      );
+    });
+    return () => {
+      sock.off("machine:status");
+      disconnectSocket();
+    };
+  }, [token]);
+
+  // Re-fetch on tab focus (catches missed events while hidden)
+  useEffect(() => {
+    const onVisible = () => {
+      if (document.visibilityState === "visible") fetchMachines();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, [token]);
+
+  // 35s flush badge auto-clear
+  useEffect(() => {
+    const isFlushing = machines.some((m) => m.flushMode);
+    if (!isFlushing) return;
+    const t = setTimeout(() => fetchMachines(), 35_000);
+    return () => clearTimeout(t);
+  }, [machines]);
+
+  const withAction = async (id: string, fn: () => Promise<void>) => {
+    setActionId(id);
     try {
-      await machinesApi.delete(token, m._id ?? m.id)
-      toast.success('Machine deleted')
-      fetchMachines()
+      await fn();
     } catch (err: any) {
-      toast.error(err.message ?? 'Failed to delete')
+      toast.error(err.message ?? "Action failed");
+    } finally {
+      setActionId(null);
     }
-  }
-
-  const handleSleep = async (m: Machine) => {
-    const isSleeping = m.sleepMode
-    const action = isSleeping ? 'Wake' : 'Sleep'
-    const result = await Swal.fire({
-      title: `${action} Machine?`,
-      text: isSleeping ? `Wake \"${m.name}\" — it will start accepting orders again.` : `Put \"${m.name}\" to sleep — it will stop accepting orders.`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: action,
-    })
-    if (!result.isConfirmed) return
-    try {
-      if (isSleeping) {
-        await machinesApi.wake(token, m.machineId)
-        toast.success('Machine woken up')
-      } else {
-        await machinesApi.sleep(token, m.machineId)
-        toast.success('Machine put to sleep')
-      }
-      fetchMachines()
-    } catch (err: any) {
-      toast.error(err.message ?? `Failed to ${action.toLowerCase()} machine`)
-    }
-  }
+  };
 
   const handleFlush = async (m: Machine) => {
-    const result = await Swal.fire({
-      title: 'Flush Machine?',
-      text: `Send flush command to "${m.name}"?`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Flush',
-    })
-    if (!result.isConfirmed) return
-    try {
-      await machinesApi.flush(token, m.machineId)
-      toast.success('Flush command sent')
-    } catch (err: any) {
-      toast.error(err.message ?? 'Failed to flush')
-    }
-  }
+    await withAction(m.machineId!, async () => {
+      await machinesApi.flush(token, m.machineId!);
+      toast.success("Flush command sent");
+      fetchMachines();
+    });
+  };
 
-  const onlineCount = machines.filter((m) => m.isOnline).length
+  const handleSleepToggle = async (m: Machine) => {
+    const isSleeping = m.sleepMode || m.error === "Sleep_Mode_ON";
+    await withAction(m.machineId!, async () => {
+      if (isSleeping) {
+        await machinesApi.wake(token, m.machineId!);
+        toast.success("Wake command sent");
+      } else {
+        await machinesApi.sleep(token, m.machineId!);
+        toast.success("Sleep command sent");
+      }
+      fetchMachines();
+    });
+  };
+
+  const handleDelete = async (m: Machine) => {
+    const r = await Swal.fire({
+      title: "Delete Machine?",
+      text: `Machine "${m.name}" will be permanently removed.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    });
+    if (!r.isConfirmed) return;
+    try {
+      await machinesApi.delete(token, m._id!);
+      toast.success("Machine deleted");
+      fetchMachines();
+    } catch (err: any) {
+      toast.error(err.message ?? "Delete failed");
+    }
+  };
+
+  const openAdd = () => {
+    setModalMachine(null);
+    setShowModal(true);
+  };
+  const openEdit = (m: Machine) => {
+    setModalMachine(m);
+    setShowModal(true);
+  };
+
+  const total = machines.length;
+  const online = machines.filter(
+    (m) => m.isOnline && !m.sleepMode && m.error !== "Sleep_Mode_ON",
+  ).length;
+  const offline = machines.filter(
+    (m) => !m.isOnline && !m.sleepMode && m.error !== "Sleep_Mode_ON",
+  ).length;
+  const sleeping = machines.filter(
+    (m) => m.sleepMode || m.error === "Sleep_Mode_ON",
+  ).length;
 
   return (
     <>
       <PageTitle title="Machine Management" subTitle="Operations" />
 
-      <Row className="mb-3">
+      {/* Summary + actions */}
+      <Row className="mb-3 align-items-center">
         <Col>
-          <div className="d-flex gap-2 flex-wrap align-items-center">
-            <Badge bg="secondary" className="fs-13 fw-normal px-3 py-2">Total: {machines.length}</Badge>
-            <Badge bg="success" className="fs-13 fw-normal px-3 py-2">Online: {onlineCount}</Badge>
-            <Badge bg="danger" className="fs-13 fw-normal px-3 py-2">Offline: {machines.length - onlineCount}</Badge>
+          <div className="d-flex flex-wrap gap-2">
+            <Badge bg="secondary" className="fs-13 fw-normal px-3 py-2">
+              Total: {total}
+            </Badge>
+            <Badge bg="success" className="fs-13 fw-normal px-3 py-2">
+              Online: {online}
+            </Badge>
+            <Badge bg="danger" className="fs-13 fw-normal px-3 py-2">
+              Offline: {offline}
+            </Badge>
+            <Badge bg="warning" className="fs-13 fw-normal px-3 py-2 text-dark">
+              Sleeping: {sleeping}
+            </Badge>
           </div>
         </Col>
-        <Col xs="auto">
-          <Button variant="primary" size="sm" onClick={() => { setEditing(null); setShowModal(true) }}>
-            + Add Machine
+        <Col xs="auto" className="d-flex gap-2">
+          <Button variant="primary" size="sm" onClick={openAdd}>
+            <IconifyIcon icon="ri:add-line" className="me-1" />
+            Add Machine
           </Button>
-          <Button variant="light" size="sm" className="ms-2" onClick={fetchMachines} disabled={loading}>
-            {loading ? <Spinner size="sm" /> : <i className="ri-refresh-line" />} Refresh
+          <Button
+            variant="light"
+            size="sm"
+            onClick={fetchMachines}
+            disabled={loading}
+          >
+            {loading ? (
+              <Spinner size="sm" />
+            ) : (
+              <IconifyIcon icon="ri:refresh-line" />
+            )}{" "}
+            Refresh
           </Button>
         </Col>
       </Row>
@@ -371,10 +248,12 @@ export default function MachinesPage() {
       <Card>
         <CardBody className="p-0">
           {loading ? (
-            <div className="text-center py-5"><Spinner /></div>
+            <div className="text-center py-5">
+              <Spinner />
+            </div>
           ) : (
             <div className="table-responsive">
-              <Table className="table-custom table-centered table-sm table-nowrap table-hover mb-0">
+              <Table className="table-custom table-centered table-sm table-nowrap mb-0">
                 <thead>
                   <tr>
                     <th>Machine ID</th>
@@ -382,63 +261,388 @@ export default function MachinesPage() {
                     <th>Type</th>
                     <th>Location</th>
                     <th>Status</th>
-                    <th className="text-end">Orders</th>
-                    <th className="text-end">Revenue</th>
+                    <th>Sensor</th>
+                    <th>Orders</th>
+                    <th>Revenue</th>
                     <th className="text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {machines.length === 0 ? (
-                    <tr><td colSpan={8} className="text-center text-muted py-4">No machines found</td></tr>
-                  ) : machines.map((m) => (
-                    <tr key={m.machineId}>
-                      <td><code className="fs-12">{m.machineId}</code></td>
-                      <td className="fw-semibold">{m.name}</td>
-                      <td>
-                        <Badge bg={m.machineType === 'food' ? 'warning' : 'info'} className="text-capitalize">
-                          {m.machineType ?? 'coffee'}
-                        </Badge>
-                      </td>
-                      <td className="text-muted">{m.location ?? '—'}</td>
-                      <td>
-                        <span className={`d-flex align-items-center gap-1 fs-13 ${m.isOnline ? 'text-success' : 'text-danger'}`}>
-                          <span style={{ width: 8, height: 8, borderRadius: '50%', background: m.isOnline ? '#0acf97' : '#fa5c7c', display: 'inline-block' }} />
-                          {m.isOnline ? 'Online' : 'Offline'}
-                        </span>
-                      </td>
-                      <td className="text-end">{m.totalOrders ?? 0}</td>
-                      <td className="text-end text-success">LKR {(m.totalRevenue ?? 0).toLocaleString()}</td>
-                      <td className="text-center">
-                        <div className="d-flex gap-1 justify-content-center">
-                          <Button variant="soft-info" size="sm" onClick={() => setQrMachine(m)} title="Show QR Code">
-                            <i className="ri-qr-code-line" />
-                          </Button>
-                          <Button variant="soft-secondary" size="sm" onClick={() => setTelemetryMachine(m)} title="Telemetry">
-                            <i className="ri-temp-hot-line" />
-                          </Button>
-                          <Button variant="soft-primary" size="sm" onClick={() => { setEditing(m); setShowModal(true) }} title="Edit">
-                            <i className="ri-edit-line" />
-                          </Button>
-                          <Button
-                            variant={m.sleepMode ? 'soft-success' : 'soft-secondary'}
-                            size="sm"
-                            onClick={() => handleSleep(m)}
-                            title={m.sleepMode ? 'Wake Machine' : 'Sleep Machine'}>
-                            <i className={m.sleepMode ? 'ri-sun-line' : 'ri-moon-line'} />
-                          </Button>
-                          <Button variant="soft-warning" size="sm" onClick={() => setCalibrationMachine(m)} title="Calibration">
-                            <i className="ri-settings-3-line" />
-                          </Button>
-                          <Button variant="soft-warning" size="sm" onClick={() => handleFlush(m)} title="Flush">
-                            <i className="ri-refresh-line" />
-                          </Button>
-                          <Button variant="soft-danger" size="sm" onClick={() => handleDelete(m)} title="Delete">
-                            <i className="ri-delete-bin-line" />
-                          </Button>
-                        </div>
+                    <tr>
+                      <td colSpan={9} className="text-center text-muted py-4">
+                        No machines found
                       </td>
                     </tr>
-                  ))}
+                  ) : (
+                    machines.map((m) => {
+                      const dot = statusDot(m);
+                      const isSleeping =
+                        m.sleepMode || m.error === "Sleep_Mode_ON";
+                      const canControl = m.isOnline && !isSleeping;
+                      const isActing = actionId === m.machineId;
+                      const rowId = m.machineId ?? (m._id ? String(m._id) : "");
+                      const isExpanded = expandedId === rowId;
+
+                      return (
+                        <React.Fragment key={rowId}>
+                          <tr>
+                            <td>
+                              <code className="text-primary fs-12">
+                                {m.machineId ?? "—"}
+                              </code>
+                            </td>
+                            <td className="fw-semibold">{m.name ?? "—"}</td>
+                            <td>
+                              <Badge
+                                bg={typeBg(m.machineType)}
+                                className="text-capitalize"
+                              >
+                                {m.machineType ?? "coffee"}
+                              </Badge>
+                            </td>
+                            <td className="text-muted fs-13">
+                              {m.location ?? "—"}
+                            </td>
+                            <td>
+                              <span className="d-flex align-items-center gap-2">
+                                <span
+                                  style={{
+                                    width: 8,
+                                    height: 8,
+                                    borderRadius: "50%",
+                                    background: dot.color,
+                                    display: "inline-block",
+                                    flexShrink: 0,
+                                  }}
+                                />
+                                <span className="fs-13">{dot.label}</span>
+                                {m.flushMode && (
+                                  <Badge
+                                    bg="warning"
+                                    className="text-dark d-flex align-items-center gap-1 fs-11"
+                                  >
+                                    <Spinner
+                                      size="sm"
+                                      style={{
+                                        width: "0.6rem",
+                                        height: "0.6rem",
+                                      }}
+                                    />
+                                    Flushing...
+                                  </Badge>
+                                )}
+                              </span>
+                            </td>
+                            <td className="fs-12 text-muted">
+                              {m.sensor?.temp != null
+                                ? `${m.sensor.temp}°C`
+                                : "—"}
+                              {m.sensor?.water && (
+                                <Badge
+                                  bg={
+                                    m.sensor.water === "low"
+                                      ? "danger"
+                                      : "secondary"
+                                  }
+                                  className="ms-1 fs-11 text-capitalize"
+                                >
+                                  {m.sensor.water}
+                                </Badge>
+                              )}
+                            </td>
+                            <td className="fs-13">{m.totalOrders ?? 0}</td>
+                            <td className="fs-13">
+                              LKR {(m.totalRevenue ?? 0).toLocaleString()}
+                            </td>
+                            <td>
+                              <div className="d-flex gap-1 justify-content-center align-items-center">
+                                {/* Flush — coffee only */}
+                                {m.machineType !== "food" && (
+                                  <button
+                                    title="Flush"
+                                    disabled={
+                                      !canControl || !!m.flushMode || isActing
+                                    }
+                                    onClick={() => handleFlush(m)}
+                                    style={{
+                                      width: 32,
+                                      height: 32,
+                                      borderRadius: "50%",
+                                      border: "none",
+                                      cursor: "pointer",
+                                      background:
+                                        !canControl || !!m.flushMode || isActing
+                                          ? "#d8ccf5"
+                                          : "#7c3aed",
+                                      color: "#fff",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      transition: "background 0.2s",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    {isActing ? (
+                                      <Spinner
+                                        size="sm"
+                                        style={{
+                                          width: "0.75rem",
+                                          height: "0.75rem",
+                                        }}
+                                      />
+                                    ) : (
+                                      <IconifyIcon
+                                        icon="ri:recycle-line"
+                                        style={{ fontSize: 16 }}
+                                      />
+                                    )}
+                                  </button>
+                                )}
+                                {/* Sleep / Wake */}
+                                <button
+                                  title={isSleeping ? "Wake" : "Sleep"}
+                                  disabled={
+                                    (!canControl && !isSleeping) || isActing
+                                  }
+                                  onClick={() => handleSleepToggle(m)}
+                                  style={{
+                                    width: 32,
+                                    height: 32,
+                                    borderRadius: "50%",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    background:
+                                      (!canControl && !isSleeping) || isActing
+                                        ? "#ccc"
+                                        : isSleeping
+                                          ? "#198754"
+                                          : "#1a1a2e",
+                                    color: "#fff",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    transition: "background 0.2s",
+                                    padding: 0,
+                                  }}
+                                >
+                                  {isActing ? (
+                                    <Spinner
+                                      size="sm"
+                                      style={{
+                                        width: "0.75rem",
+                                        height: "0.75rem",
+                                      }}
+                                    />
+                                  ) : (
+                                    <IconifyIcon
+                                      icon={
+                                        isSleeping
+                                          ? "ri:sun-line"
+                                          : "ri:moon-fill"
+                                      }
+                                      style={{ fontSize: 16 }}
+                                    />
+                                  )}
+                                </button>
+                                {/* Food: Load Batch */}
+                                {m.machineType === "food" && (
+                                  <button
+                                    title="Load Batch"
+                                    onClick={() =>
+                                      setBatchMachineId(m.machineId!)
+                                    }
+                                    style={{
+                                      width: 32,
+                                      height: 32,
+                                      borderRadius: "50%",
+                                      border: "none",
+                                      cursor: "pointer",
+                                      background: "#0d6efd",
+                                      color: "#fff",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    <IconifyIcon
+                                      icon="ri:inbox-line"
+                                      style={{ fontSize: 16 }}
+                                    />
+                                  </button>
+                                )}
+                                {/* Expand batches (food) */}
+                                {m.machineType === "food" && (
+                                  <button
+                                    title="View Batches"
+                                    onClick={() =>
+                                      setExpandedId(isExpanded ? null : rowId)
+                                    }
+                                    style={{
+                                      width: 32,
+                                      height: 32,
+                                      borderRadius: "50%",
+                                      border: "none",
+                                      cursor: "pointer",
+                                      background: "#6c757d",
+                                      color: "#fff",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      padding: 0,
+                                    }}
+                                  >
+                                    <IconifyIcon
+                                      icon={
+                                        isExpanded
+                                          ? "ri:arrow-up-s-line"
+                                          : "ri:arrow-down-s-line"
+                                      }
+                                      style={{ fontSize: 16 }}
+                                    />
+                                  </button>
+                                )}
+                                {/* Edit */}
+                                <button
+                                  title="Edit"
+                                  onClick={() => openEdit(m)}
+                                  style={{
+                                    width: 32,
+                                    height: 32,
+                                    borderRadius: "50%",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    background:
+                                      "linear-gradient(135deg, #f7971e, #e84040)",
+                                    color: "#fff",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    padding: 0,
+                                  }}
+                                >
+                                  <IconifyIcon
+                                    icon="ri:pencil-fill"
+                                    style={{ fontSize: 16 }}
+                                  />
+                                </button>
+                                {/* Delete */}
+                                <button
+                                  title="Delete"
+                                  onClick={() => handleDelete(m)}
+                                  style={{
+                                    width: 32,
+                                    height: 32,
+                                    borderRadius: "50%",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    background: "#e63946",
+                                    color: "#fff",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    padding: 0,
+                                  }}
+                                >
+                                  <IconifyIcon
+                                    icon="ri:delete-bin-5-fill"
+                                    style={{ fontSize: 16 }}
+                                  />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                          {/* Food batches expanded row */}
+                          {isExpanded && m.machineType === "food" && (
+                            <tr
+                              key={`${rowId}-batches`}
+                              className="table-light"
+                            >
+                              <td colSpan={9} className="p-3">
+                                <div className="fw-semibold mb-2 fs-13">
+                                  Loaded Batches
+                                </div>
+                                {!m.batches || m.batches.length === 0 ? (
+                                  <span className="text-muted fs-13">
+                                    No batches loaded
+                                  </span>
+                                ) : (
+                                  <Table size="sm" className="mb-0" bordered>
+                                    <thead>
+                                      <tr className="fs-12">
+                                        <th>Slot</th>
+                                        <th>Item</th>
+                                        <th>Qty</th>
+                                        <th>Expiry</th>
+                                        <th>Status</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {m.batches.map((b, i) => {
+                                        const hoursLeft = b.expiryDate
+                                          ? (new Date(b.expiryDate).getTime() -
+                                              Date.now()) /
+                                            3_600_000
+                                          : null;
+                                        const nearExpiry =
+                                          hoursLeft !== null &&
+                                          hoursLeft < 24 &&
+                                          hoursLeft > 0;
+                                        const expired =
+                                          hoursLeft !== null && hoursLeft <= 0;
+                                        return (
+                                          <tr
+                                            key={b._id ?? b.batchId ?? i}
+                                            className="fs-12"
+                                          >
+                                            <td>N{b.nozzleId ?? "—"}</td>
+                                            <td>{b.itemName ?? "—"}</td>
+                                            <td>{b.quantity ?? 0}</td>
+                                            <td>
+                                              {fmtDateTime(b.expiryDate)}
+                                              {nearExpiry && (
+                                                <Badge
+                                                  bg="warning"
+                                                  className="ms-1 text-dark fs-11"
+                                                >
+                                                  Expiring Soon
+                                                </Badge>
+                                              )}
+                                              {expired && (
+                                                <Badge
+                                                  bg="danger"
+                                                  className="ms-1 fs-11"
+                                                >
+                                                  Expired
+                                                </Badge>
+                                              )}
+                                            </td>
+                                            <td>
+                                              <Badge
+                                                bg={
+                                                  b.status === "active"
+                                                    ? "success"
+                                                    : "secondary"
+                                                }
+                                                className="text-capitalize fs-11"
+                                              >
+                                                {b.status ?? "active"}
+                                              </Badge>
+                                            </td>
+                                          </tr>
+                                        );
+                                      })}
+                                    </tbody>
+                                  </Table>
+                                )}
+                              </td>
+                            </tr>
+                          )}
+                        </React.Fragment>
+                      );
+                    })
+                  )}
                 </tbody>
               </Table>
             </div>
@@ -446,10 +650,21 @@ export default function MachinesPage() {
         </CardBody>
       </Card>
 
-      <MachineModal show={showModal} onHide={() => setShowModal(false)} machine={editing} onSaved={fetchMachines} />
-      <QRModal machine={qrMachine} onHide={() => setQrMachine(null)} />
-      <TelemetryModal machine={telemetryMachine} onHide={() => setTelemetryMachine(null)} />
-      <CalibrationModal machine={calibrationMachine} onHide={() => setCalibrationMachine(null)} token={token} />
+      <MachineModal
+        show={showModal}
+        machine={modalMachine}
+        token={token}
+        onHide={() => setShowModal(false)}
+        onSaved={fetchMachines}
+      />
+
+      <BatchModal
+        show={!!batchMachineId}
+        machineId={batchMachineId ?? ""}
+        token={token}
+        onHide={() => setBatchMachineId(null)}
+        onSaved={fetchMachines}
+      />
     </>
-  )
+  );
 }

@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllEditors from './components/AllEditors'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllEditors from "./components/AllEditors";
 
-export const metadata: Metadata = { title: 'Editors' }
+export const metadata: Metadata = { title: "Editors" };
 
 const EditorsPage = () => {
   return (
@@ -10,7 +10,7 @@ const EditorsPage = () => {
       <PageTitle title="Editors" subTitle="Forms" />
       <AllEditors />
     </>
-  )
-}
+  );
+};
 
-export default EditorsPage
+export default EditorsPage;

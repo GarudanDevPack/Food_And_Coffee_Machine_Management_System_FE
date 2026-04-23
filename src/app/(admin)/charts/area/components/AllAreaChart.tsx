@@ -1,7 +1,7 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from '@/components/ApexChart'
-import { Col, Row } from 'react-bootstrap'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import ReactApexChart from "@/components/ApexChart";
+import { Col, Row } from "react-bootstrap";
 import {
   basicChartOpts,
   dateTimeChartChartOpts,
@@ -10,27 +10,39 @@ import {
   splineChartOpts,
   stackedChartOpts,
   timeSeriesChartOpts,
-} from '../data'
+} from "../data";
 
 const BasicAreaChart = () => {
   return (
     <ComponentContainerCard title="Basic Area Chart">
       <div dir="ltr">
-        <ReactApexChart height={380} options={basicChartOpts} series={basicChartOpts.series} type="area" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={basicChartOpts}
+          series={basicChartOpts.series}
+          type="area"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const SplineArea = () => {
   return (
     <ComponentContainerCard title="Spline Area">
       <div dir="ltr">
-        <ReactApexChart height={380} options={splineChartOpts} series={splineChartOpts.series} type="area" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={splineChartOpts}
+          series={splineChartOpts.series}
+          type="area"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const DatetimeChart = () => {
   return (
@@ -57,51 +69,81 @@ const DatetimeChart = () => {
         </button>
       </div>
       <div dir="ltr">
-        <ReactApexChart height={350} options={dateTimeChartChartOpts} series={dateTimeChartChartOpts.series} type="area" className="apex-charts" />
+        <ReactApexChart
+          height={350}
+          options={dateTimeChartChartOpts}
+          series={dateTimeChartChartOpts.series}
+          type="area"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const NegativeValuesChart = () => {
   return (
     <ComponentContainerCard title="Area with Negative Values">
       <div dir="ltr">
-        <ReactApexChart height={380} options={NegativeValuesChartOpts} series={NegativeValuesChartOpts.series} type="area" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={NegativeValuesChartOpts}
+          series={NegativeValuesChartOpts.series}
+          type="area"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const StackedArea = () => {
   return (
     <ComponentContainerCard title="Stacked Area">
       <div dir="ltr">
-        <ReactApexChart height={422} options={stackedChartOpts} series={stackedChartOpts.series} type="area" className="apex-charts" />
+        <ReactApexChart
+          height={422}
+          options={stackedChartOpts}
+          series={stackedChartOpts.series}
+          type="area"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const TimeSeriesChart = () => {
   return (
     <ComponentContainerCard title="Irregular TimeSeries">
       <div dir="ltr">
-        <ReactApexChart height={350} options={timeSeriesChartOpts} series={timeSeriesChartOpts.series} type="area" className="apex-charts" />
+        <ReactApexChart
+          height={350}
+          options={timeSeriesChartOpts}
+          series={timeSeriesChartOpts.series}
+          type="area"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const NullValuesChart = () => {
   return (
     <ComponentContainerCard title="Area Chart with Null values">
       <div dir="ltr">
-        <ReactApexChart height={350} options={nullValuesChartOpts} series={nullValuesChartOpts.series} type="area" className="apex-charts" />
+        <ReactApexChart
+          height={350}
+          options={nullValuesChartOpts}
+          series={nullValuesChartOpts.series}
+          type="area"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllAreaChart = () => {
   return (
@@ -136,7 +178,7 @@ const AllAreaChart = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllAreaChart
+export default AllAreaChart;

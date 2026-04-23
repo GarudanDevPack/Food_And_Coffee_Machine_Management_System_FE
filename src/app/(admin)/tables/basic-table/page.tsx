@@ -1,14 +1,14 @@
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import PageTitle from '@/components/PageTitle'
-import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Fragment } from 'react'
-import { Col, ProgressBar, Row, Table } from 'react-bootstrap'
-import { expandableRecords, nestedRecords, records } from '../data'
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import PageTitle from "@/components/PageTitle";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Fragment } from "react";
+import { Col, ProgressBar, Row, Table } from "react-bootstrap";
+import { expandableRecords, nestedRecords, records } from "../data";
 
-export const metadata: Metadata = { title: 'Basic Tables' }
+export const metadata: Metadata = { title: "Basic Tables" };
 
 const BasicTable = () => {
   return (
@@ -16,9 +16,11 @@ const BasicTable = () => {
       title="My Table"
       description={
         <>
-          For basic styling—light padding and only horizontal dividers—add the base class <code>.table</code> to any <code>&lt;table&gt;</code>.
+          For basic styling—light padding and only horizontal dividers—add the
+          base class <code>.table</code> to any <code>&lt;table&gt;</code>.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="mb-0">
           <thead>
@@ -39,13 +41,32 @@ const BasicTable = () => {
                   <div>
                     {item.active ? (
                       <>
-                        <input type="checkbox" id="switch01" defaultChecked data-switch="success" />
-                        <label htmlFor="switch01" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                        <input
+                          type="checkbox"
+                          id="switch01"
+                          defaultChecked
+                          data-switch="success"
+                        />
+                        <label
+                          htmlFor="switch01"
+                          data-on-label="Yes"
+                          data-off-label="No"
+                          className="mb-0 d-block"
+                        />
                       </>
                     ) : (
                       <>
-                        <input type="checkbox" id="switch04" data-switch="success" />
-                        <label htmlFor="switch04" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                        <input
+                          type="checkbox"
+                          id="switch04"
+                          data-switch="success"
+                        />
+                        <label
+                          htmlFor="switch04"
+                          data-on-label="Yes"
+                          data-off-label="No"
+                          className="mb-0 d-block"
+                        />
                       </>
                     )}
                   </div>
@@ -56,8 +77,8 @@ const BasicTable = () => {
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const InverseTable = () => {
   return (
@@ -65,9 +86,11 @@ const InverseTable = () => {
       title="Inverse Table"
       description={
         <>
-          You can also invert the colors—with light text on dark backgrounds—with <code>.table-dark</code>.
+          You can also invert the colors—with light text on dark
+          backgrounds—with <code>.table-dark</code>.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-dark mb-0">
           <thead>
@@ -88,13 +111,32 @@ const InverseTable = () => {
                   <div>
                     {item.active ? (
                       <>
-                        <input type="checkbox" id="switch01" defaultChecked data-switch="success" />
-                        <label htmlFor="switch01" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                        <input
+                          type="checkbox"
+                          id="switch01"
+                          defaultChecked
+                          data-switch="success"
+                        />
+                        <label
+                          htmlFor="switch01"
+                          data-on-label="Yes"
+                          data-off-label="No"
+                          className="mb-0 d-block"
+                        />
                       </>
                     ) : (
                       <>
-                        <input type="checkbox" id="switch04" data-switch="success" />
-                        <label htmlFor="switch04" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                        <input
+                          type="checkbox"
+                          id="switch04"
+                          data-switch="success"
+                        />
+                        <label
+                          htmlFor="switch04"
+                          data-on-label="Yes"
+                          data-off-label="No"
+                          className="mb-0 d-block"
+                        />
                       </>
                     )}
                   </div>
@@ -105,8 +147,8 @@ const InverseTable = () => {
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const StripedRowTable = () => {
   return (
@@ -114,9 +156,11 @@ const StripedRowTable = () => {
       title="Striped Rows"
       description={
         <>
-          Use <code>.table-striped</code> to add zebra-striping to any table row within the <code>&lt;tbody&gt;</code>.
+          Use <code>.table-striped</code> to add zebra-striping to any table row
+          within the <code>&lt;tbody&gt;</code>.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-striped mb-0">
           <thead>
@@ -132,7 +176,11 @@ const StripedRowTable = () => {
               return (
                 <tr key={idx}>
                   <td className="table-user">
-                    <Image src={record.image} alt="table-user" className="me-2 rounded-circle avatar-sm" />
+                    <Image
+                      src={record.image}
+                      alt="table-user"
+                      className="me-2 rounded-circle avatar-sm"
+                    />
                     &nbsp;{record.name}
                   </td>
                   <td>{record.accountNo}</td>
@@ -146,14 +194,14 @@ const StripedRowTable = () => {
                     </Link>
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const StripedColumnsTable = () => {
   return (
@@ -161,9 +209,11 @@ const StripedColumnsTable = () => {
       title="Striped Columns"
       description={
         <>
-          Use <code>.table-striped-columns</code> to add zebra-striping to any table column.
+          Use <code>.table-striped-columns</code> to add zebra-striping to any
+          table column.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-striped-columns mb-0">
           <thead>
@@ -179,7 +229,11 @@ const StripedColumnsTable = () => {
               return (
                 <tr key={idx}>
                   <td>
-                    <Image src={record.image} alt="table-user" className="me-2 avatar-sm rounded-circle" />
+                    <Image
+                      src={record.image}
+                      alt="table-user"
+                      className="me-2 avatar-sm rounded-circle"
+                    />
                     &nbsp;{record.name}
                   </td>
                   <td>{record.accountNo}</td>
@@ -193,14 +247,14 @@ const StripedColumnsTable = () => {
                     </Link>
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const TableHeadOptions = () => {
   return (
@@ -208,9 +262,11 @@ const TableHeadOptions = () => {
       title="Table Head Options"
       description={
         <>
-          Use one of two modifier classes to make <code>&lt;thead&gt;</code>s appear light or dark gray.
+          Use one of two modifier classes to make <code>&lt;thead&gt;</code>s
+          appear light or dark gray.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="mb-0">
           <thead className="table-light">
@@ -228,20 +284,28 @@ const TableHeadOptions = () => {
                   <td>{item.product}</td>
                   <td>{item.courier}</td>
                   <td>
-                    <ProgressBar now={item.now} variant={item.variant} className="progress-sm" />
+                    <ProgressBar
+                      now={item.now}
+                      variant={item.variant}
+                      className="progress-sm"
+                    />
                   </td>
                   <td>
-                    <IconifyIcon icon="tabler:circle" className={`text-${item.variant}`} /> {item.status}
+                    <IconifyIcon
+                      icon="tabler:circle"
+                      className={`text-${item.variant}`}
+                    />{" "}
+                    {item.status}
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const TableHeadOptions2 = () => {
   return (
@@ -249,9 +313,11 @@ const TableHeadOptions2 = () => {
       title="Table Head Options"
       description={
         <>
-          Use one of two modifier classes to make <code>&lt;thead&gt;</code>s appear light or dark gray.
+          Use one of two modifier classes to make <code>&lt;thead&gt;</code>s
+          appear light or dark gray.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="mb-0">
           <thead className="table-dark">
@@ -269,20 +335,28 @@ const TableHeadOptions2 = () => {
                   <td>{item.product}</td>
                   <td>{item.courier}</td>
                   <td>
-                    <ProgressBar now={item.now} variant={item.variant} className="progress-sm" />
+                    <ProgressBar
+                      now={item.now}
+                      variant={item.variant}
+                      className="progress-sm"
+                    />
                   </td>
                   <td>
-                    <IconifyIcon icon="tabler:circle" className={`text-${item.variant}`} /> {item.status}
+                    <IconifyIcon
+                      icon="tabler:circle"
+                      className={`text-${item.variant}`}
+                    />{" "}
+                    {item.status}
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const HoverableRows = () => {
   return (
@@ -290,9 +364,11 @@ const HoverableRows = () => {
       title="Hoverable Rows"
       description={
         <>
-          Add <code>.table-hover</code> to enable a hover state on table rows within a <code>&lt;tbody&gt;</code>.
+          Add <code>.table-hover</code> to enable a hover state on table rows
+          within a <code>&lt;tbody&gt;</code>.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-hover mb-0">
           <thead>
@@ -310,18 +386,20 @@ const HoverableRows = () => {
                   <td>{record.product}</td>
                   <td>{record.price}</td>
                   <td>
-                    <span className="badge bg-primary">{record.Quantity} Pcs</span>
+                    <span className="badge bg-primary">
+                      {record.Quantity} Pcs
+                    </span>
                   </td>
                   <td>${record.Amount}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const InverseHoverableRows = () => {
   return (
@@ -329,9 +407,11 @@ const InverseHoverableRows = () => {
       title="Inverse Hoverable Rows"
       description={
         <>
-          Add <code>.table-hover</code> to enable a hover state on table rows within a <code>&lt;tbody&gt;</code>.
+          Add <code>.table-hover</code> to enable a hover state on table rows
+          within a <code>&lt;tbody&gt;</code>.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-dark table-hover mb-0">
           <thead>
@@ -349,18 +429,20 @@ const InverseHoverableRows = () => {
                   <td>{record.product}</td>
                   <td>{record.price}</td>
                   <td>
-                    <span className="badge bg-primary">{record.Quantity} Pcs</span>
+                    <span className="badge bg-primary">
+                      {record.Quantity} Pcs
+                    </span>
                   </td>
                   <td>${record.Amount}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const BorderedTable = () => {
   return (
@@ -368,9 +450,11 @@ const BorderedTable = () => {
       title="Bordered Table"
       description={
         <>
-          Add <code>.table-bordered</code> for borders on all sides of the table and cells.
+          Add <code>.table-bordered</code> for borders on all sides of the table
+          and cells.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-bordered mb-0">
           <thead>
@@ -386,7 +470,11 @@ const BorderedTable = () => {
               return (
                 <tr key={idx}>
                   <td className="table-user">
-                    <Image src={record.image} alt="table-user" className="me-2 avatar-sm rounded-circle" />
+                    <Image
+                      src={record.image}
+                      alt="table-user"
+                      className="me-2 avatar-sm rounded-circle"
+                    />
                     &nbsp;{record.name}
                   </td>
                   <td>{record.accountNo}</td>
@@ -397,14 +485,14 @@ const BorderedTable = () => {
                     </Link>
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const BorderedColorTable = () => {
   return (
@@ -412,9 +500,11 @@ const BorderedColorTable = () => {
       title="Bordered Color Table"
       description={
         <>
-          Add <code>.table-bordered</code> &amp; <code>.border-primary</code> can be added to change colors.
+          Add <code>.table-bordered</code> &amp; <code>.border-primary</code>{" "}
+          can be added to change colors.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-bordered border-secondary mb-0">
           <thead>
@@ -430,7 +520,11 @@ const BorderedColorTable = () => {
               return (
                 <tr key={idx}>
                   <td className="table-user">
-                    <Image src={record.image} alt="table-user" className="me-2 avatar-sm rounded-circle" />
+                    <Image
+                      src={record.image}
+                      alt="table-user"
+                      className="me-2 avatar-sm rounded-circle"
+                    />
                     &nbsp;{record.name}
                   </td>
                   <td>{record.accountNo}</td>
@@ -441,14 +535,14 @@ const BorderedColorTable = () => {
                     </Link>
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AlwaysResponsive = () => {
   return (
@@ -459,12 +553,14 @@ const AlwaysResponsive = () => {
           Across every breakpoint, use
           <code>.table-responsive</code> for horizontally scrolling tables. Use
           <code>
-            .table-responsive{'{'}-sm|-md|-lg|-xl{'}'}
+            .table-responsive{"{"}-sm|-md|-lg|-xl{"}"}
           </code>
-          as needed to create responsive tables up to a particular breakpoint. From that breakpoint and up, the table will behave normally and not
+          as needed to create responsive tables up to a particular breakpoint.
+          From that breakpoint and up, the table will behave normally and not
           scroll horizontally.
         </>
-      }>
+      }
+    >
       <div className="table-responsive">
         <Table className="mb-0">
           <thead>
@@ -496,14 +592,14 @@ const AlwaysResponsive = () => {
                   <td>{record.cell}</td>
                   <td>{record.cell}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const BasicBorderlessTable = () => {
   return (
@@ -513,7 +609,8 @@ const BasicBorderlessTable = () => {
         <>
           Add <code>.table-borderless</code> for a table without borders.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-borderless mb-0">
           <thead>
@@ -534,13 +631,32 @@ const BasicBorderlessTable = () => {
                   <div>
                     {item.active ? (
                       <>
-                        <input type="checkbox" id="switch01" defaultChecked data-switch="success" />
-                        <label htmlFor="switch01" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                        <input
+                          type="checkbox"
+                          id="switch01"
+                          defaultChecked
+                          data-switch="success"
+                        />
+                        <label
+                          htmlFor="switch01"
+                          data-on-label="Yes"
+                          data-off-label="No"
+                          className="mb-0 d-block"
+                        />
                       </>
                     ) : (
                       <>
-                        <input type="checkbox" id="switch04" data-switch="success" />
-                        <label htmlFor="switch04" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                        <input
+                          type="checkbox"
+                          id="switch04"
+                          data-switch="success"
+                        />
+                        <label
+                          htmlFor="switch04"
+                          data-on-label="Yes"
+                          data-off-label="No"
+                          className="mb-0 d-block"
+                        />
                       </>
                     )}
                   </div>
@@ -551,8 +667,8 @@ const BasicBorderlessTable = () => {
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const InverseBorderlessTable = () => {
   return (
@@ -562,7 +678,8 @@ const InverseBorderlessTable = () => {
         <>
           Add <code>.table-borderless</code> for a table without borders.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-dark table-borderless mb-0">
           <thead>
@@ -583,13 +700,32 @@ const InverseBorderlessTable = () => {
                   <div>
                     {item.active ? (
                       <>
-                        <input type="checkbox" id="switch01" defaultChecked data-switch="success" />
-                        <label htmlFor="switch01" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                        <input
+                          type="checkbox"
+                          id="switch01"
+                          defaultChecked
+                          data-switch="success"
+                        />
+                        <label
+                          htmlFor="switch01"
+                          data-on-label="Yes"
+                          data-off-label="No"
+                          className="mb-0 d-block"
+                        />
                       </>
                     ) : (
                       <>
-                        <input type="checkbox" id="switch04" data-switch="success" />
-                        <label htmlFor="switch04" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                        <input
+                          type="checkbox"
+                          id="switch04"
+                          data-switch="success"
+                        />
+                        <label
+                          htmlFor="switch04"
+                          data-on-label="Yes"
+                          data-off-label="No"
+                          className="mb-0 d-block"
+                        />
                       </>
                     )}
                   </div>
@@ -600,8 +736,8 @@ const InverseBorderlessTable = () => {
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ActiveTables = () => {
   return (
@@ -609,9 +745,11 @@ const ActiveTables = () => {
       title="Active Tables"
       description={
         <>
-          Highlight a table row or cell by adding a <code>.table-active</code> class.
+          Highlight a table row or cell by adding a <code>.table-active</code>{" "}
+          class.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="mb-0">
           <thead>
@@ -625,13 +763,16 @@ const ActiveTables = () => {
           <tbody>
             {records.map((record, idx) => {
               return (
-                <tr className={record.activeClass ? record.activeClass : ''} key={idx}>
+                <tr
+                  className={record.activeClass ? record.activeClass : ""}
+                  key={idx}
+                >
                   <td>{record.name}</td>
                   <td>{record.phoneNo}</td>
                   <td>{record.dob}</td>
                   <td>{record.country}</td>
                 </tr>
-              )
+              );
             })}
             <tr>
               <td>Risa D. Pearson</td>
@@ -643,12 +784,20 @@ const ActiveTables = () => {
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const NestingTable = () => {
   return (
-    <ComponentContainerCard title="Nesting" description={<>Border styles, active styles, and table variants are not inherited by nested tables.</>}>
+    <ComponentContainerCard
+      title="Nesting"
+      description={
+        <>
+          Border styles, active styles, and table variants are not inherited by
+          nested tables.
+        </>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-striped mb-0">
           <thead>
@@ -671,13 +820,32 @@ const NestingTable = () => {
                       <div>
                         {record.active ? (
                           <>
-                            <input type="checkbox" id="switch01" defaultChecked data-switch="success" />
-                            <label htmlFor="switch01" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                            <input
+                              type="checkbox"
+                              id="switch01"
+                              defaultChecked
+                              data-switch="success"
+                            />
+                            <label
+                              htmlFor="switch01"
+                              data-on-label="Yes"
+                              data-off-label="No"
+                              className="mb-0 d-block"
+                            />
                           </>
                         ) : (
                           <>
-                            <input type="checkbox" id="switch04" data-switch="success" />
-                            <label htmlFor="switch04" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                            <input
+                              type="checkbox"
+                              id="switch04"
+                              data-switch="success"
+                            />
+                            <label
+                              htmlFor="switch04"
+                              data-on-label="Yes"
+                              data-off-label="No"
+                              className="mb-0 d-block"
+                            />
                           </>
                         )}
                       </div>
@@ -705,19 +873,38 @@ const NestingTable = () => {
                                   <div>
                                     {record.active ? (
                                       <>
-                                        <input type="checkbox" id="switch01" defaultChecked data-switch="success" />
-                                        <label htmlFor="switch01" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                                        <input
+                                          type="checkbox"
+                                          id="switch01"
+                                          defaultChecked
+                                          data-switch="success"
+                                        />
+                                        <label
+                                          htmlFor="switch01"
+                                          data-on-label="Yes"
+                                          data-off-label="No"
+                                          className="mb-0 d-block"
+                                        />
                                       </>
                                     ) : (
                                       <>
-                                        <input type="checkbox" id="switch04" data-switch="success" />
-                                        <label htmlFor="switch04" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                                        <input
+                                          type="checkbox"
+                                          id="switch04"
+                                          data-switch="success"
+                                        />
+                                        <label
+                                          htmlFor="switch04"
+                                          data-on-label="Yes"
+                                          data-off-label="No"
+                                          className="mb-0 d-block"
+                                        />
                                       </>
                                     )}
                                   </div>
                                 </td>
                               </tr>
-                            )
+                            );
                           })}
                         </tbody>
                       </Table>
@@ -733,26 +920,45 @@ const NestingTable = () => {
                     <div>
                       {record.active ? (
                         <>
-                          <input type="checkbox" id="switch01" defaultChecked data-switch="success" />
-                          <label htmlFor="switch01" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                          <input
+                            type="checkbox"
+                            id="switch01"
+                            defaultChecked
+                            data-switch="success"
+                          />
+                          <label
+                            htmlFor="switch01"
+                            data-on-label="Yes"
+                            data-off-label="No"
+                            className="mb-0 d-block"
+                          />
                         </>
                       ) : (
                         <>
-                          <input type="checkbox" id="switch04" data-switch="success" />
-                          <label htmlFor="switch04" data-on-label="Yes" data-off-label="No" className="mb-0 d-block" />
+                          <input
+                            type="checkbox"
+                            id="switch04"
+                            data-switch="success"
+                          />
+                          <label
+                            htmlFor="switch04"
+                            data-on-label="Yes"
+                            data-off-label="No"
+                            className="mb-0 d-block"
+                          />
                         </>
                       )}
                     </div>
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const SmallTable = () => {
   return (
@@ -760,9 +966,11 @@ const SmallTable = () => {
       title="Small Table"
       description={
         <>
-          Add <code>.table-sm</code> to make tables more compact by cutting cell padding in half.
+          Add <code>.table-sm</code> to make tables more compact by cutting cell
+          padding in half.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="table-sm mb-0">
           <thead>
@@ -780,18 +988,20 @@ const SmallTable = () => {
                   <td>{record.product}</td>
                   <td>{record.price}</td>
                   <td>
-                    <span className="badge bg-primary">{record.Quantity}&nbsp;Pcs</span>
+                    <span className="badge bg-primary">
+                      {record.Quantity}&nbsp;Pcs
+                    </span>
                   </td>
                   <td>${record.Amount}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const TableFoot = () => {
   return (
@@ -799,9 +1009,11 @@ const TableFoot = () => {
       title="Table Foot"
       description={
         <>
-          Add <code>.table-sm</code> to make tables more compact by cutting cell padding in half.
+          Add <code>.table-sm</code> to make tables more compact by cutting cell
+          padding in half.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="mb-0">
           <thead>
@@ -819,11 +1031,13 @@ const TableFoot = () => {
                   <td>{record.product}</td>
                   <td>${record.price}</td>
                   <td>
-                    <span className="badge bg-primary">{record.Quantity}&nbsp;Pcs</span>
+                    <span className="badge bg-primary">
+                      {record.Quantity}&nbsp;Pcs
+                    </span>
                   </td>
                   <td>${record.Amount}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
           <tfoot>
@@ -837,8 +1051,8 @@ const TableFoot = () => {
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const CaptionsTable = () => {
   return (
@@ -846,9 +1060,11 @@ const CaptionsTable = () => {
       title="Captions"
       description={
         <>
-          Add <code>.table-sm</code> to make tables more compact by cutting cell padding in half.
+          Add <code>.table-sm</code> to make tables more compact by cutting cell
+          padding in half.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="mb-0">
           <caption>List of users</caption>
@@ -867,18 +1083,20 @@ const CaptionsTable = () => {
                   <td>{record.product}</td>
                   <td>{record.price}</td>
                   <td>
-                    <span className="badge bg-primary">{record.Quantity}&nbsp;Pcs</span>
+                    <span className="badge bg-primary">
+                      {record.Quantity}&nbsp;Pcs
+                    </span>
                   </td>
                   <td>${record.Amount}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const CaptionTopTable = () => {
   return (
@@ -886,9 +1104,11 @@ const CaptionTopTable = () => {
       title="Caption Top"
       description={
         <>
-          Add <code>.table-sm</code> to make tables more compact by cutting cell padding in half.
+          Add <code>.table-sm</code> to make tables more compact by cutting cell
+          padding in half.
         </>
-      }>
+      }
+    >
       <div className="table-responsive-sm">
         <Table className="mb-0 caption-top">
           <caption>List of users</caption>
@@ -907,18 +1127,20 @@ const CaptionTopTable = () => {
                   <td>{record.product}</td>
                   <td>{record.price}</td>
                   <td>
-                    <span className="badge bg-primary">{record.Quantity}&nbsp;Pcs</span>
+                    <span className="badge bg-primary">
+                      {record.Quantity}&nbsp;Pcs
+                    </span>
                   </td>
                   <td>${record.Amount}</td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </Table>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const BasicTables = () => {
   return (
@@ -1002,7 +1224,7 @@ const BasicTables = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default BasicTables
+export default BasicTables;

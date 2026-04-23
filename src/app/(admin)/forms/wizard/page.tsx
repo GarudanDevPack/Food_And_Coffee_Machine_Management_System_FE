@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllWizard from './components/AllWizard'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllWizard from "./components/AllWizard";
 
-export const metadata: Metadata = { title: 'Form Wizard' }
+export const metadata: Metadata = { title: "Form Wizard" };
 
 const WizardPage = () => {
   return (
@@ -10,7 +10,7 @@ const WizardPage = () => {
       <PageTitle title="Form Validation" subTitle="Forms" />
       <AllWizard />
     </>
-  )
-}
+  );
+};
 
-export default WizardPage
+export default WizardPage;

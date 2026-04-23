@@ -1,70 +1,107 @@
-'use client'
-import PageTitle from '@/components/PageTitle'
-import { ordersApi, walletApi, membershipsApi, reservationsApi } from '@/lib/api'
-import { useApiToken } from '@/hooks/useApi'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { Badge, Button, Card, CardBody, Col, Row, Spinner } from 'react-bootstrap'
+"use client";
+import { fmtDate } from "@/lib/fmt";
+import PageTitle from "@/components/PageTitle";
+import {
+  ordersApi,
+  walletApi,
+  membershipsApi,
+  reservationsApi,
+} from "@/lib/api";
+import { useApiToken } from "@/hooks/useApi";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import {
+  Badge,
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Row,
+  Spinner,
+} from "react-bootstrap";
 
 interface Order {
-  _id: string
-  itemName?: string
-  machineId?: string
-  totalAmount?: number
-  status?: string
-  createdAt?: string
+  _id: string;
+  itemName?: string;
+  machineId?: string;
+  totalAmount?: number;
+  status?: string;
+  createdAt?: string;
 }
 
 interface Membership {
-  _id: string
-  plan?: string
-  discount?: number
-  endDate?: string
-  isActive?: boolean
+  _id: string;
+  plan?: string;
+  discount?: number;
+  endDate?: string;
+  isActive?: boolean;
 }
 
 interface Reservation {
-  _id: string
-  itemName?: string
-  date?: string
-  timeSlot?: string
-  status?: string
+  _id: string;
+  itemName?: string;
+  date?: string;
+  timeSlot?: string;
+  status?: string;
 }
 
 const statusBg = (s?: string) =>
-  ({ completed: 'success', dispensing: 'info', pending: 'warning', failed: 'danger', cancelled: 'secondary' })[s ?? ''] ?? 'secondary'
+  ({
+    completed: "success",
+    dispensing: "info",
+    pending: "warning",
+    failed: "danger",
+    cancelled: "secondary",
+  })[s ?? ""] ?? "secondary";
 
 const planColor = (p?: string) =>
-  ({ basic: 'info', premium: 'primary', vip: 'warning' })[p ?? ''] ?? 'secondary'
+  ({ basic: "info", premium: "primary", vip: "warning" })[p ?? ""] ??
+  "secondary";
 
 export default function CustomerDashboardPage() {
-  const token = useApiToken()
-  const [balance, setBalance] = useState<number | null>(null)
-  const [orders, setOrders] = useState<Order[]>([])
-  const [membership, setMembership] = useState<Membership | null>(null)
-  const [reservations, setReservations] = useState<Reservation[]>([])
-  const [loading, setLoading] = useState(true)
+  const token = useApiToken();
+  const [balance, setBalance] = useState<number | null>(null);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [membership, setMembership] = useState<Membership | null>(null);
+  const [reservations, setReservations] = useState<Reservation[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!token) return
-    setLoading(true)
+    if (!token) return;
+    setLoading(true);
     Promise.all([
-      walletApi.getMyBalance(token).then((r) => setBalance(r.balance)).catch(() => {}),
-      ordersApi.myOrders(token).then((r) => setOrders(r as Order[])).catch(() => {}),
-      membershipsApi.my(token).then((r) => setMembership(r as Membership)).catch(() => {}),
-      reservationsApi.myReservations(token).then((r) => setReservations(r as Reservation[])).catch(() => {}),
-    ]).finally(() => setLoading(false))
-  }, [token])
+      walletApi
+        .getMyBalance(token)
+        .then((r) => setBalance(r.balance))
+        .catch(() => {}),
+      ordersApi
+        .myOrders(token)
+        .then((r) => setOrders(r as Order[]))
+        .catch(() => {}),
+      membershipsApi
+        .my(token)
+        .then((r) => setMembership(r as unknown as Membership))
+        .catch(() => {}),
+      reservationsApi
+        .myReservations(token)
+        .then((r) => setReservations(r as Reservation[]))
+        .catch(() => {}),
+    ]).finally(() => setLoading(false));
+  }, [token]);
 
-  const recentOrders = orders.slice(0, 3)
-  const upcomingReservations = reservations.filter((r) => r.status === 'pending' || r.status === 'confirmed')
+  const recentOrders = orders.slice(0, 3);
+  const upcomingReservations = reservations.filter(
+    (r) => r.status === "pending" || r.status === "confirmed",
+  );
 
   return (
     <>
       <PageTitle title="My Dashboard" subTitle="Welcome back" />
 
       {loading ? (
-        <div className="text-center py-5"><Spinner /></div>
+        <div className="text-center py-5">
+          <Spinner />
+        </div>
       ) : (
         <>
           {/* Top stat cards */}
@@ -72,12 +109,17 @@ export default function CustomerDashboardPage() {
             <Col xs={12} sm={6} lg={3}>
               <Card className="h-100">
                 <CardBody className="d-flex align-items-center gap-3">
-                  <div className="avatar-sm bg-soft-primary rounded d-flex align-items-center justify-content-center" style={{ width: 48, height: 48, flexShrink: 0 }}>
+                  <div
+                    className="avatar-sm bg-soft-primary rounded d-flex align-items-center justify-content-center"
+                    style={{ width: 48, height: 48, flexShrink: 0 }}
+                  >
                     <i className="ri-wallet-3-line text-primary fs-20" />
                   </div>
                   <div>
                     <div className="text-muted fs-13">Wallet Balance</div>
-                    <div className="fw-bold fs-20 text-primary">LKR {(balance ?? 0).toLocaleString()}</div>
+                    <div className="fw-bold fs-20 text-primary">
+                      LKR {(balance ?? 0).toLocaleString()}
+                    </div>
                   </div>
                 </CardBody>
               </Card>
@@ -86,7 +128,10 @@ export default function CustomerDashboardPage() {
             <Col xs={12} sm={6} lg={3}>
               <Card className="h-100">
                 <CardBody className="d-flex align-items-center gap-3">
-                  <div className="avatar-sm bg-soft-success rounded d-flex align-items-center justify-content-center" style={{ width: 48, height: 48, flexShrink: 0 }}>
+                  <div
+                    className="avatar-sm bg-soft-success rounded d-flex align-items-center justify-content-center"
+                    style={{ width: 48, height: 48, flexShrink: 0 }}
+                  >
                     <i className="ri-shopping-bag-line text-success fs-20" />
                   </div>
                   <div>
@@ -100,13 +145,19 @@ export default function CustomerDashboardPage() {
             <Col xs={12} sm={6} lg={3}>
               <Card className="h-100">
                 <CardBody className="d-flex align-items-center gap-3">
-                  <div className="avatar-sm bg-soft-warning rounded d-flex align-items-center justify-content-center" style={{ width: 48, height: 48, flexShrink: 0 }}>
+                  <div
+                    className="avatar-sm bg-soft-warning rounded d-flex align-items-center justify-content-center"
+                    style={{ width: 48, height: 48, flexShrink: 0 }}
+                  >
                     <i className="ri-vip-crown-line text-warning fs-20" />
                   </div>
                   <div>
                     <div className="text-muted fs-13">Membership</div>
                     {membership?.isActive ? (
-                      <Badge bg={planColor(membership.plan)} className="text-capitalize fs-13 fw-normal">
+                      <Badge
+                        bg={planColor(membership.plan)}
+                        className="text-capitalize fs-13 fw-normal"
+                      >
                         {membership.plan}
                       </Badge>
                     ) : (
@@ -120,12 +171,17 @@ export default function CustomerDashboardPage() {
             <Col xs={12} sm={6} lg={3}>
               <Card className="h-100">
                 <CardBody className="d-flex align-items-center gap-3">
-                  <div className="avatar-sm bg-soft-info rounded d-flex align-items-center justify-content-center" style={{ width: 48, height: 48, flexShrink: 0 }}>
+                  <div
+                    className="avatar-sm bg-soft-info rounded d-flex align-items-center justify-content-center"
+                    style={{ width: 48, height: 48, flexShrink: 0 }}
+                  >
                     <i className="ri-calendar-check-line text-info fs-20" />
                   </div>
                   <div>
                     <div className="text-muted fs-13">Upcoming Bookings</div>
-                    <div className="fw-bold fs-20">{upcomingReservations.length}</div>
+                    <div className="fw-bold fs-20">
+                      {upcomingReservations.length}
+                    </div>
                   </div>
                 </CardBody>
               </Card>
@@ -139,15 +195,19 @@ export default function CustomerDashboardPage() {
                 <div>
                   <div className="fw-semibold">
                     <i className="ri-vip-crown-line me-1 text-warning" />
-                    {membership.plan?.charAt(0).toUpperCase()}{membership.plan?.slice(1)} Membership Active
+                    {membership.plan?.charAt(0).toUpperCase()}
+                    {membership.plan?.slice(1)} Membership Active
                   </div>
                   <div className="text-muted fs-13">
                     {membership.discount}% discount on all orders
-                    {membership.endDate && ` · Expires ${new Date(membership.endDate).toLocaleDateString('en-GB')}`}
+                    {membership.endDate &&
+                      ` · Expires ${fmtDate(membership.endDate)}`}
                   </div>
                 </div>
                 <Link href="/customer/membership">
-                  <Button variant="outline-warning" size="sm">View Membership</Button>
+                  <Button variant="outline-warning" size="sm">
+                    View Membership
+                  </Button>
                 </Link>
               </CardBody>
             </Card>
@@ -159,23 +219,38 @@ export default function CustomerDashboardPage() {
               <Card className="h-100">
                 <div className="card-header d-flex align-items-center justify-content-between">
                   <h5 className="mb-0">Recent Orders</h5>
-                  <Link href="/customer/orders" className="text-muted fs-13">View all →</Link>
+                  <Link href="/customer/orders" className="text-muted fs-13">
+                    View all →
+                  </Link>
                 </div>
                 <CardBody className="p-0">
                   {recentOrders.length === 0 ? (
-                    <div className="text-center text-muted py-4 fs-13">No orders yet</div>
+                    <div className="text-center text-muted py-4 fs-13">
+                      No orders yet
+                    </div>
                   ) : (
                     <table className="table table-sm table-hover mb-0">
                       <tbody>
                         {recentOrders.map((o) => (
                           <tr key={o._id}>
                             <td className="ps-3">
-                              <div className="fw-semibold fs-13">{o.itemName ?? '—'}</div>
-                              <div className="text-muted fs-11">{o.machineId}</div>
+                              <div className="fw-semibold fs-13">
+                                {o.itemName ?? "—"}
+                              </div>
+                              <div className="text-muted fs-11">
+                                {o.machineId}
+                              </div>
                             </td>
-                            <td className="text-end text-muted fs-13">LKR {(o.totalAmount ?? 0).toLocaleString()}</td>
+                            <td className="text-end text-muted fs-13">
+                              LKR {(o.totalAmount ?? 0).toLocaleString()}
+                            </td>
                             <td className="pe-3 text-end">
-                              <Badge bg={statusBg(o.status)} className="text-capitalize">{o.status}</Badge>
+                              <Badge
+                                bg={statusBg(o.status)}
+                                className="text-capitalize"
+                              >
+                                {o.status}
+                              </Badge>
                             </td>
                           </tr>
                         ))}
@@ -196,23 +271,27 @@ export default function CustomerDashboardPage() {
                   <div className="d-grid gap-2">
                     <Link href="/customer/reservations">
                       <Button variant="primary" className="w-100">
-                        <i className="ri-calendar-check-line me-2" />Book Food Reservation
+                        <i className="ri-calendar-check-line me-2" />
+                        Book Food Reservation
                       </Button>
                     </Link>
                     <Link href="/customer/wallet">
                       <Button variant="outline-primary" className="w-100">
-                        <i className="ri-add-circle-line me-2" />Top Up Wallet
+                        <i className="ri-add-circle-line me-2" />
+                        Top Up Wallet
                       </Button>
                     </Link>
                     <Link href="/customer/orders">
                       <Button variant="outline-secondary" className="w-100">
-                        <i className="ri-history-line me-2" />View All Orders
+                        <i className="ri-file-list-3-line me-2" />
+                        View All Orders
                       </Button>
                     </Link>
                     {!membership?.isActive && (
                       <Link href="/customer/membership">
                         <Button variant="outline-warning" className="w-100">
-                          <i className="ri-vip-crown-line me-2" />Get Membership
+                          <i className="ri-vip-crown-line me-2" />
+                          Get Membership
                         </Button>
                       </Link>
                     )}
@@ -227,20 +306,35 @@ export default function CustomerDashboardPage() {
             <Card>
               <div className="card-header d-flex align-items-center justify-content-between">
                 <h5 className="mb-0">Upcoming Food Reservations</h5>
-                <Link href="/customer/reservations" className="text-muted fs-13">View all →</Link>
+                <Link
+                  href="/customer/reservations"
+                  className="text-muted fs-13"
+                >
+                  View all →
+                </Link>
               </div>
               <CardBody className="p-0">
                 <table className="table table-sm table-hover mb-0">
                   <tbody>
                     {upcomingReservations.slice(0, 3).map((r) => (
                       <tr key={r._id}>
-                        <td className="ps-3 fw-semibold fs-13">{r.itemName ?? '—'}</td>
-                        <td className="text-muted fs-13">
-                          <i className="ri-calendar-line me-1" />{r.date}
+                        <td className="ps-3 fw-semibold fs-13">
+                          {r.itemName ?? "—"}
                         </td>
-                        <td className="text-muted fs-13 text-capitalize">{r.timeSlot}</td>
+                        <td className="text-muted fs-13">
+                          <i className="ri-calendar-line me-1" />
+                          {r.date}
+                        </td>
+                        <td className="text-muted fs-13 text-capitalize">
+                          {r.timeSlot}
+                        </td>
                         <td className="pe-3 text-end">
-                          <Badge bg={r.status === 'confirmed' ? 'info' : 'warning'} className="text-capitalize">{r.status}</Badge>
+                          <Badge
+                            bg={r.status === "confirmed" ? "info" : "warning"}
+                            className="text-capitalize"
+                          >
+                            {r.status}
+                          </Badge>
                         </td>
                       </tr>
                     ))}
@@ -252,5 +346,5 @@ export default function CustomerDashboardPage() {
         </>
       )}
     </>
-  )
+  );
 }

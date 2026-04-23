@@ -1,24 +1,25 @@
-import googleImg from '@/assets/images/brands/google.svg'
-import whatsappImg from '@/assets/images/brands/whatsapp.svg'
-import { ApexOptions } from 'apexcharts'
+import googleImg from "@/assets/images/brands/google.svg";
+import whatsappImg from "@/assets/images/brands/whatsapp.svg";
+import { ApexOptions } from "apexcharts";
 
 function generateDayWiseTimeSeries(baseval: any, count: number, yrange: any) {
-  let i = 0
-  const series = []
+  let i = 0;
+  const series = [];
   while (i < count) {
-    const y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
+    const y =
+      Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
-    series.push([baseval, y])
-    baseval += 86400000
-    i++
+    series.push([baseval, y]);
+    baseval += 86400000;
+    i++;
   }
-  return series
+  return series;
 }
 
 export const scatterChartOpts: ApexOptions = {
   chart: {
     height: 380,
-    type: 'scatter',
+    type: "scatter",
     zoom: {
       enabled: false,
     },
@@ -26,7 +27,7 @@ export const scatterChartOpts: ApexOptions = {
 
   series: [
     {
-      name: 'Sample A',
+      name: "Sample A",
       data: [
         [16.4, 5.4],
         [21.7, 2],
@@ -62,7 +63,7 @@ export const scatterChartOpts: ApexOptions = {
       ],
     },
     {
-      name: 'Sample B',
+      name: "Sample B",
       data: [
         [6.4, 13.4],
         [1.7, 11],
@@ -98,7 +99,7 @@ export const scatterChartOpts: ApexOptions = {
       ],
     },
     {
-      name: 'Sample C',
+      name: "Sample C",
       data: [
         [21.7, 3],
         [23.6, 3.5],
@@ -140,9 +141,9 @@ export const scatterChartOpts: ApexOptions = {
   yaxis: {
     tickAmount: 7,
   },
-  colors: ['#39afd1', '#fbcc5c', '#6b5eae'],
+  colors: ["#39afd1", "#fbcc5c", "#6b5eae"],
   grid: {
-    borderColor: '#f1f3fa',
+    borderColor: "#f1f3fa",
     padding: {
       bottom: 5,
     },
@@ -165,59 +166,79 @@ export const scatterChartOpts: ApexOptions = {
       },
     },
   ],
-}
+};
 
 export const dateTimeScatterChartOpts: ApexOptions = {
   chart: {
     height: 380,
-    type: 'scatter',
+    type: "scatter",
     zoom: {
-      type: 'xy',
+      type: "xy",
     },
   },
   series: [
     {
-      name: 'Team 1',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
-        min: 10,
-        max: 60,
-      }),
+      name: "Team 1",
+      data: generateDayWiseTimeSeries(
+        new Date("11 Feb 2017 GMT").getTime(),
+        20,
+        {
+          min: 10,
+          max: 60,
+        },
+      ),
     },
     {
-      name: 'Team 2',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
-        min: 10,
-        max: 60,
-      }),
+      name: "Team 2",
+      data: generateDayWiseTimeSeries(
+        new Date("11 Feb 2017 GMT").getTime(),
+        20,
+        {
+          min: 10,
+          max: 60,
+        },
+      ),
     },
     {
-      name: 'Team 3',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 30, {
-        min: 10,
-        max: 60,
-      }),
+      name: "Team 3",
+      data: generateDayWiseTimeSeries(
+        new Date("11 Feb 2017 GMT").getTime(),
+        30,
+        {
+          min: 10,
+          max: 60,
+        },
+      ),
     },
     {
-      name: 'Team 4',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 10, {
-        min: 10,
-        max: 60,
-      }),
+      name: "Team 4",
+      data: generateDayWiseTimeSeries(
+        new Date("11 Feb 2017 GMT").getTime(),
+        10,
+        {
+          min: 10,
+          max: 60,
+        },
+      ),
     },
     {
-      name: 'Team 5',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 30, {
-        min: 10,
-        max: 60,
-      }),
+      name: "Team 5",
+      data: generateDayWiseTimeSeries(
+        new Date("11 Feb 2017 GMT").getTime(),
+        30,
+        {
+          min: 10,
+          max: 60,
+        },
+      ),
     },
   ],
   dataLabels: {
     enabled: false,
   },
-  colors: ['#35b8e0', '#fbcc5c', '#6b5eae', '#31ce77', '#fa5c7c'],
+  colors: ["#35b8e0", "#fbcc5c", "#6b5eae", "#31ce77", "#fa5c7c"],
   grid: {
-    borderColor: '#f1f3fa',
+    borderColor: "#f1f3fa",
     padding: {
       bottom: 5,
     },
@@ -236,7 +257,7 @@ export const dateTimeScatterChartOpts: ApexOptions = {
     offsetY: 10,
   },
   xaxis: {
-    type: 'datetime',
+    type: "datetime",
   },
   yaxis: {
     max: 70,
@@ -256,12 +277,12 @@ export const dateTimeScatterChartOpts: ApexOptions = {
       },
     },
   ],
-}
+};
 
 export const scatterImagesChartOpts: ApexOptions = {
   chart: {
     height: 380,
-    type: 'scatter',
+    type: "scatter",
     animations: {
       enabled: false,
     },
@@ -272,10 +293,10 @@ export const scatterImagesChartOpts: ApexOptions = {
       show: false,
     },
   },
-  colors: ['#3b5998', '#e1306c'],
+  colors: ["#3b5998", "#e1306c"],
   series: [
     {
-      name: 'Messenger',
+      name: "Messenger",
       data: [
         [16.4, 5.4],
         [21.7, 4],
@@ -305,7 +326,7 @@ export const scatterImagesChartOpts: ApexOptions = {
       ],
     },
     {
-      name: 'Instagram',
+      name: "Instagram",
       data: [
         [6.4, 5.4],
         [11.7, 4],
@@ -331,7 +352,7 @@ export const scatterImagesChartOpts: ApexOptions = {
     size: 20,
   },
   fill: {
-    type: 'image',
+    type: "image",
     opacity: 1,
     image: {
       src: [googleImg.src, whatsappImg.src],
@@ -345,4 +366,4 @@ export const scatterImagesChartOpts: ApexOptions = {
     },
     offsetY: 7,
   },
-}
+};

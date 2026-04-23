@@ -1,16 +1,19 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import React from 'react'
-import { Card, CardBody, Col, Row, Table } from 'react-bootstrap'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import React from "react";
+import { Card, CardBody, Col, Row, Table } from "react-bootstrap";
 
-export const metadata: Metadata = { title: 'Grid System' }
+export const metadata: Metadata = { title: "Grid System" };
 
 const GridOptions = () => {
   return (
     <Card>
       <CardBody>
         <h4 className="header-title mb-1">Grid Options</h4>
-        <p className="text-muted">See how aspects of the Bootstrap grid system work across multiple devices with a handy table.</p>
+        <p className="text-muted">
+          See how aspects of the Bootstrap grid system work across multiple
+          devices with a handy table.
+        </p>
         <div className="table-responsive">
           <Table className="table-bordered table-striped mb-0">
             <thead>
@@ -118,8 +121,8 @@ const GridOptions = () => {
         </div>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const GridExample = () => {
   return (
@@ -240,8 +243,8 @@ const GridExample = () => {
         </div>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const Grid = () => {
   return (
@@ -258,7 +261,7 @@ const Grid = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default Grid
+export default Grid;

@@ -1,14 +1,14 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from '@/components/ApexChart'
-import { Col, Row } from 'react-bootstrap'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import ReactApexChart from "@/components/ApexChart";
+import { Col, Row } from "react-bootstrap";
 import {
   advancedTimelineChartOpts,
   basicTimelineChartOpts,
   distributedTimelineChartOpts,
   groupTimelineChartOpts,
   multiSeriesTimelineChartOpts,
-} from '../data'
+} from "../data";
 
 const BasicTimeline = () => {
   return (
@@ -23,8 +23,8 @@ const BasicTimeline = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const DistributedTimeline = () => {
   return (
@@ -39,8 +39,8 @@ const DistributedTimeline = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const MultiSeriesTimeline = () => {
   return (
@@ -55,8 +55,8 @@ const MultiSeriesTimeline = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AdvancedTimeline = () => {
   return (
@@ -71,8 +71,8 @@ const AdvancedTimeline = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const MultipleGroupTimeline = () => {
   return (
@@ -87,8 +87,8 @@ const MultipleGroupTimeline = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllTimeLineChart = () => {
   return (
@@ -115,7 +115,7 @@ const AllTimeLineChart = () => {
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default AllTimeLineChart
+export default AllTimeLineChart;

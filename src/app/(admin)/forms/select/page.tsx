@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllSelect from './components/AllSelect'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllSelect from "./components/AllSelect";
 
-export const metadata: Metadata = { title: 'Form Select' }
+export const metadata: Metadata = { title: "Form Select" };
 
 const SelectForm = () => {
   return (
@@ -10,7 +10,7 @@ const SelectForm = () => {
       <PageTitle title="Form Select" subTitle="Forms" />
       <AllSelect />
     </>
-  )
-}
+  );
+};
 
-export default SelectForm
+export default SelectForm;

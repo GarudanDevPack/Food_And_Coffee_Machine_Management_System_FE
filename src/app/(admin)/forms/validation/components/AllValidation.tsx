@@ -1,66 +1,115 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import { FormEvent, useState } from 'react'
-import { Button, Col, Form, FormCheck, FormControl, FormGroup, FormLabel, InputGroup, Row } from 'react-bootstrap'
-import Feedback from 'react-bootstrap/esm/Feedback'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import { FormEvent, useState } from "react";
+import {
+  Button,
+  Col,
+  Form,
+  FormCheck,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  InputGroup,
+  Row,
+} from "react-bootstrap";
+import Feedback from "react-bootstrap/esm/Feedback";
 
-import InputGroupText from 'react-bootstrap/esm/InputGroupText'
+import InputGroupText from "react-bootstrap/esm/InputGroupText";
 
 const CustomStylesValidation = () => {
-  const [validated, setValidated] = useState(false)
+  const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    const form = event.currentTarget
+    const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
     }
-    setValidated(true)
-  }
+    setValidated(true);
+  };
 
   return (
     <ComponentContainerCard
       title="Custom styles"
       description={
         <>
-          Custom feedback styles apply custom colors, borders, focus styles, and background icons to better communicate feedback. Background icons
+          Custom feedback styles apply custom colors, borders, focus styles, and
+          background icons to better communicate feedback. Background icons
           for&nbsp;
           <code>&lt;select&gt;</code>s are only available with&nbsp;
           <code>.form-select</code>, and not <code>.form-control</code>.
         </>
-      }>
-      <Form className="needs-validation" noValidate validated={validated} onSubmit={handleSubmit}>
+      }
+    >
+      <Form
+        className="needs-validation"
+        noValidate
+        validated={validated}
+        onSubmit={handleSubmit}
+      >
         <FormGroup className="mb-3">
           <FormLabel>First name</FormLabel>
-          <FormControl type="text" id="validationCustom01" placeholder="First name" defaultValue="Mark" required />
+          <FormControl
+            type="text"
+            id="validationCustom01"
+            placeholder="First name"
+            defaultValue="Mark"
+            required
+          />
           <Feedback>Looks good!</Feedback>
         </FormGroup>
         <FormGroup className="mb-3">
           <FormLabel>Last name</FormLabel>
-          <FormControl type="text" id="validationCustom02" placeholder="Last name" defaultValue="Otto" required />
+          <FormControl
+            type="text"
+            id="validationCustom02"
+            placeholder="Last name"
+            defaultValue="Otto"
+            required
+          />
           <Feedback>Looks good!</Feedback>
         </FormGroup>
         <FormGroup className="mb-3">
           <FormLabel>Username</FormLabel>
           <InputGroup>
             <InputGroupText id="inputGroupPrepend">@</InputGroupText>
-            <FormControl type="text" id="validationCustomUsername" placeholder="Username" required />
+            <FormControl
+              type="text"
+              id="validationCustomUsername"
+              placeholder="Username"
+              required
+            />
             <Feedback type="invalid">Please choose a username.</Feedback>
           </InputGroup>
         </FormGroup>
         <FormGroup className="mb-3">
           <FormLabel>City</FormLabel>
-          <FormControl type="text" id="validationCustom03" placeholder="City" required />
+          <FormControl
+            type="text"
+            id="validationCustom03"
+            placeholder="City"
+            required
+          />
           <Feedback type="invalid">Please provide a valid city.</Feedback>
         </FormGroup>
         <FormGroup className="mb-3">
           <FormLabel>State</FormLabel>
-          <FormControl type="text" id="validationCustom04" placeholder="State" required />
+          <FormControl
+            type="text"
+            id="validationCustom04"
+            placeholder="State"
+            required
+          />
           <Feedback type="invalid">Please provide a valid state.</Feedback>
         </FormGroup>
         <FormGroup className="mb-3">
           <FormLabel>Zip</FormLabel>
-          <FormControl type="text" id="validationCustom05" placeholder="Zip" required />
+          <FormControl
+            type="text"
+            id="validationCustom05"
+            placeholder="Zip"
+            required
+          />
           <Feedback type="invalid">Please provide a valid zip.</Feedback>
         </FormGroup>
         <FormGroup className="mb-3">
@@ -77,20 +126,20 @@ const CustomStylesValidation = () => {
         </Button>
       </Form>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const TooltipsValidation = () => {
-  const [validated, setValidated] = useState(false)
+  const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    const form = event.currentTarget
+    const form = event.currentTarget;
     if (!form.checkValidity()) {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
     }
-    setValidated(true)
-  }
+    setValidated(true);
+  };
 
   return (
     <ComponentContainerCard
@@ -99,20 +148,33 @@ const TooltipsValidation = () => {
         <>
           If your form layout allows it, you can swap the&nbsp;
           <code>
-            .{'{'}valid|invalid{'}'}-feedback
+            .{"{"}valid|invalid{"}"}-feedback
           </code>
           classes for&nbsp;
           <code>
-            .{'{'}valid|invalid{'}'}-tooltip
+            .{"{"}valid|invalid{"}"}-tooltip
           </code>
-          classes to display validation feedback in a styled tooltip. Be sure to have a parent with <code>position: relative</code>&nbsp; on it for
-          tooltip positioning. In the example below, our column classes have this already, but your project may require an alternative setup.
+          classes to display validation feedback in a styled tooltip. Be sure to
+          have a parent with <code>position: relative</code>&nbsp; on it for
+          tooltip positioning. In the example below, our column classes have
+          this already, but your project may require an alternative setup.
         </>
-      }>
-      <Form className="needs-validation" noValidate validated={validated} onSubmit={handleSubmit}>
+      }
+    >
+      <Form
+        className="needs-validation"
+        noValidate
+        validated={validated}
+        onSubmit={handleSubmit}
+      >
         <FormGroup className="position-relative mb-3">
           <FormLabel>First name</FormLabel>
-          <FormControl type="text" placeholder="First name" defaultValue="Mark" required />
+          <FormControl
+            type="text"
+            placeholder="First name"
+            defaultValue="Mark"
+            required
+          />
           <Feedback tooltip>Looks good!</Feedback>
           <Feedback type="invalid" tooltip>
             Please enter first name.
@@ -120,7 +182,12 @@ const TooltipsValidation = () => {
         </FormGroup>
         <FormGroup className="position-relative mb-3">
           <FormLabel>Last name</FormLabel>
-          <FormControl type="text" placeholder="Last name" defaultValue="Otto" required />
+          <FormControl
+            type="text"
+            placeholder="Last name"
+            defaultValue="Otto"
+            required
+          />
           <Feedback tooltip>Looks good!</Feedback>
           <Feedback type="invalid" tooltip>
             Please enter last name.
@@ -162,8 +229,8 @@ const TooltipsValidation = () => {
         </Button>
       </Form>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllValidation = () => {
   return (
@@ -175,7 +242,7 @@ const AllValidation = () => {
         <TooltipsValidation />
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default AllValidation
+export default AllValidation;

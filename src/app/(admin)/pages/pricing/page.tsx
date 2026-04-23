@@ -1,18 +1,35 @@
-import PageTitle from '@/components/PageTitle'
-import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { Card, CardBody, CardFooter, CardHeader, Col, Row } from 'react-bootstrap'
-import { pricingTwoData, PricingTwoType } from './data'
+import PageTitle from "@/components/PageTitle";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import { Metadata } from "next";
+import Link from "next/link";
+import {
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Col,
+  Row,
+} from "react-bootstrap";
+import { pricingTwoData, PricingTwoType } from "./data";
 
-export const metadata: Metadata = { title: 'Pricing' }
+export const metadata: Metadata = { title: "Pricing" };
 
-const PricingCard = ({ description, features, price, title, popular }: PricingTwoType) => {
+const PricingCard = ({
+  description,
+  features,
+  price,
+  title,
+  popular,
+}: PricingTwoType) => {
   return (
     <Card className="h-100">
-      <CardHeader className={` p-3 ${popular ? 'text-bg-success' : 'text-bg-primary'}  text-center`}>
+      <CardHeader
+        className={` p-3 ${popular ? "text-bg-success" : "text-bg-primary"}  text-center`}
+      >
         <h4 className="fw-bold fs-24">{title}</h4>
-        <h5 className="mt-2 mb-0 fw-normal text-white text-opacity-50">{description}.</h5>
+        <h5 className="mt-2 mb-0 fw-normal text-white text-opacity-50">
+          {description}.
+        </h5>
       </CardHeader>
       <CardBody className="p-3">
         <div className="d-flex align-items-center gap-2">
@@ -27,7 +44,10 @@ const PricingCard = ({ description, features, price, title, popular }: PricingTw
         <ul className="d-flex flex-column gap-2 list-unstyled fs-15">
           {features.map((item, idx) => (
             <li key={idx}>
-              <IconifyIcon icon="ri-check-line" className="text-primary fs-4 align-middle me-1" />
+              <IconifyIcon
+                icon="ri-check-line"
+                className="text-primary fs-4 align-middle me-1"
+              />
               &nbsp;
               {item}
             </li>
@@ -35,7 +55,10 @@ const PricingCard = ({ description, features, price, title, popular }: PricingTw
         </ul>
       </CardBody>
       <CardFooter>
-        <Link href="" className={`btn btn-${popular ? 'danger' : 'outline-primary'} btn-lg fw-semibold w-100`}>
+        <Link
+          href=""
+          className={`btn btn-${popular ? "danger" : "outline-primary"} btn-lg fw-semibold w-100`}
+        >
           Buy Now
         </Link>
       </CardFooter>
@@ -45,8 +68,8 @@ const PricingCard = ({ description, features, price, title, popular }: PricingTw
         </span>
       )}
     </Card>
-  )
-}
+  );
+};
 
 const Pricing = () => {
   return (
@@ -57,7 +80,8 @@ const Pricing = () => {
           <div className="text-center">
             <h3 className="mb-2">Our Plans and Pricing</h3>
             <p className="text-muted w-50 m-auto">
-              We have plans and prices that fit your business perfectly. Make your client site a success with our products.
+              We have plans and prices that fit your business perfectly. Make
+              your client site a success with our products.
             </p>
           </div>
           <Row className="mt-sm-4 align-items-end justify-content-center my-3">
@@ -70,7 +94,7 @@ const Pricing = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default Pricing
+export default Pricing;

@@ -1,10 +1,10 @@
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import React from 'react'
-import { Col, Row } from 'react-bootstrap'
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import React from "react";
+import { Col, Row } from "react-bootstrap";
 
-export const metadata: Metadata = { title: 'Ratio video' }
+export const metadata: Metadata = { title: "Ratio video" };
 
 const Ratio1 = () => {
   return (
@@ -14,13 +14,14 @@ const Ratio1 = () => {
         <>
           Use class <code>.ratio-21x9</code>
         </>
-      }>
+      }
+    >
       <div className="ratio ratio-21x9">
         <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const Ratio2 = () => {
   return (
@@ -30,13 +31,14 @@ const Ratio2 = () => {
         <>
           Use class <code>.ratio-1x1</code>
         </>
-      }>
+      }
+    >
       <div className="ratio ratio-1x1">
         <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const Ratio3 = () => {
   return (
@@ -46,13 +48,14 @@ const Ratio3 = () => {
         <>
           Use class <code>.ratio-16x9</code>
         </>
-      }>
+      }
+    >
       <div className="ratio ratio-16x9">
         <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 const Ratio4 = () => {
   return (
     <ComponentContainerCard
@@ -61,13 +64,14 @@ const Ratio4 = () => {
         <>
           Use class <code>.ratio-4x3</code>
         </>
-      }>
+      }
+    >
       <div className="ratio ratio-4x3">
         <iframe src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const Ratio = () => {
   return (
@@ -84,7 +88,7 @@ const Ratio = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default Ratio
+export default Ratio;

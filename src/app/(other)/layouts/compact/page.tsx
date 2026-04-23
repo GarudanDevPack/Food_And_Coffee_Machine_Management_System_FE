@@ -1,9 +1,7 @@
-import Compact from './components/Compact'
+import Compact from "./components/Compact";
 
 const CompactPage = () => {
-  return (
-    <Compact />
-  )
-}
+  return <Compact />;
+};
 
-export default CompactPage
+export default CompactPage;

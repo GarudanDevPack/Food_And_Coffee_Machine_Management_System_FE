@@ -1,10 +1,10 @@
-import { Metadata } from 'next'
-import Login from './component/Login'
+import { Metadata } from "next";
+import Login from "./component/Login";
 
-export const metadata: Metadata = { title: 'Login In' }
+export const metadata: Metadata = { title: "Login In" };
 
 const LoginPage = () => {
-  return <Login />
-}
+  return <Login />;
+};
 
-export default LoginPage
+export default LoginPage;

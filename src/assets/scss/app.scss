@@ -6,8 +6,8 @@ Email: support@coderthemes.com
 File: App Css File
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 // Core files
 @import "./node_modules/bootstrap/scss/functions";
@@ -20,8 +20,8 @@ File: App Css File
 @import "theme-mode";
 
 @import "./node_modules/bootstrap/scss/bootstrap";
-@import 'leaflet/dist/leaflet.css';
-@import 'gridjs/dist/theme/mermaid.css';
+@import "leaflet/dist/leaflet.css";
+@import "gridjs/dist/theme/mermaid.css";
 @import "nouislider/distribute/nouislider.css";
 
 // Structure
@@ -32,7 +32,6 @@ File: App Css File
 @import "structure/layout";
 @import "structure/footer";
 @import "structure/customizer";
-
 
 // Components
 @import "components/utilities";

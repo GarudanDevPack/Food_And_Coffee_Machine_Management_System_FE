@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllLineChart from './components/AllLineChart'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllLineChart from "./components/AllLineChart";
 
-export const metadata: Metadata = { title: 'Apex Line Charts' }
+export const metadata: Metadata = { title: "Apex Line Charts" };
 
 const LineChart = () => {
   return (
@@ -10,7 +10,7 @@ const LineChart = () => {
       <PageTitle title="Line Charts" subTitle="Apex" />
       <AllLineChart />
     </>
-  )
-}
+  );
+};
 
-export default LineChart
+export default LineChart;

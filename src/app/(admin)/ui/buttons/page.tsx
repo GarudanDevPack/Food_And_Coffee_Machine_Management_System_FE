@@ -1,10 +1,20 @@
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import PageTitle from '@/components/PageTitle'
-import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import { Metadata } from 'next'
-import { ButtonGroup as BSButtonGroup, Button, Card, CardBody, CardHeader, Col, DropdownButton, DropdownItem, Row } from 'react-bootstrap'
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import PageTitle from "@/components/PageTitle";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import { Metadata } from "next";
+import {
+  ButtonGroup as BSButtonGroup,
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  DropdownButton,
+  DropdownItem,
+  Row,
+} from "react-bootstrap";
 
-export const metadata: Metadata = { title: 'Buttons' }
+export const metadata: Metadata = { title: "Buttons" };
 
 const DefaultButtons = () => {
   return (
@@ -12,9 +22,11 @@ const DefaultButtons = () => {
       title="Default Buttons"
       description={
         <>
-          Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.
+          Use the button classes on an <code>&lt;a&gt;</code>,{" "}
+          <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-primary">
           Primary
@@ -42,8 +54,8 @@ const DefaultButtons = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ButtonOutline = () => {
   return (
@@ -51,9 +63,11 @@ const ButtonOutline = () => {
       title="Button Outline"
       description={
         <>
-          Use a classes <code>.btn-outline-**</code> to quickly create a bordered buttons.
+          Use a classes <code>.btn-outline-**</code> to quickly create a
+          bordered buttons.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-outline-primary">
           Primary
@@ -81,8 +95,8 @@ const ButtonOutline = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ButtonRounded = () => {
   return (
@@ -90,9 +104,11 @@ const ButtonRounded = () => {
       title="Button-Rounded"
       description={
         <>
-          Add <code>.rounded-pill</code> to default button to get rounded corners.
+          Add <code>.rounded-pill</code> to default button to get rounded
+          corners.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-primary rounded-pill">
           Primary
@@ -120,8 +136,8 @@ const ButtonRounded = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ButtonOutlineRounded = () => {
   return (
@@ -129,14 +145,19 @@ const ButtonOutlineRounded = () => {
       title="Button Outline Rounded"
       description={
         <>
-          Use a classes <code>.btn-outline-**</code> to quickly create a bordered buttons.
+          Use a classes <code>.btn-outline-**</code> to quickly create a
+          bordered buttons.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-outline-primary rounded-pill">
           Primary
         </button>
-        <button type="button" className="btn btn-outline-secondary rounded-pill">
+        <button
+          type="button"
+          className="btn btn-outline-secondary rounded-pill"
+        >
           Secondary
         </button>
         <button type="button" className="btn btn-outline-success rounded-pill">
@@ -156,8 +177,8 @@ const ButtonOutlineRounded = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const SoftButtons = () => {
   return (
@@ -165,9 +186,11 @@ const SoftButtons = () => {
       title="Soft Buttons"
       description={
         <>
-          Use a classes <code>.btn-soft-**</code> to quickly create a soft background color buttons.
+          Use a classes <code>.btn-soft-**</code> to quickly create a soft
+          background color buttons.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-soft-primary">
           Primary
@@ -192,8 +215,8 @@ const SoftButtons = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const SoftRoundedButtons = () => {
   return (
@@ -201,9 +224,11 @@ const SoftRoundedButtons = () => {
       title="Soft Rounded Buttons"
       description={
         <>
-          Use a classes <code>.btn-soft-**</code> <code>.rounded-pill</code> to quickly create a soft background color buttons with rounded.
+          Use a classes <code>.btn-soft-**</code> <code>.rounded-pill</code> to
+          quickly create a soft background color buttons with rounded.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-soft-primary rounded-pill">
           Primary
@@ -228,8 +253,8 @@ const SoftRoundedButtons = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const GradientButtons = () => {
   return (
@@ -237,9 +262,11 @@ const GradientButtons = () => {
       title="Gradient Buttons"
       description={
         <>
-          Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.
+          Use the button classes on an <code>&lt;a&gt;</code>,{" "}
+          <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-primary bg-gradient">
           Primary
@@ -264,8 +291,8 @@ const GradientButtons = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const GradientRoundedButtons = () => {
   return (
@@ -273,23 +300,40 @@ const GradientRoundedButtons = () => {
       title="Gradient Rounded Buttons"
       description={
         <>
-          Use a classes <code>.btn-outline-**</code> to quickly create a bordered buttons.
+          Use a classes <code>.btn-outline-**</code> to quickly create a
+          bordered buttons.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
-        <button type="button" className="btn btn-primary bg-gradient rounded-pill">
+        <button
+          type="button"
+          className="btn btn-primary bg-gradient rounded-pill"
+        >
           Primary
         </button>
-        <button type="button" className="btn btn-secondary bg-gradient rounded-pill">
+        <button
+          type="button"
+          className="btn btn-secondary bg-gradient rounded-pill"
+        >
           Secondary
         </button>
-        <button type="button" className="btn btn-soft-success bg-gradient rounded-pill">
+        <button
+          type="button"
+          className="btn btn-soft-success bg-gradient rounded-pill"
+        >
           Success
         </button>
-        <button type="button" className="btn btn-soft-danger bg-gradient rounded-pill">
+        <button
+          type="button"
+          className="btn btn-soft-danger bg-gradient rounded-pill"
+        >
           Danger
         </button>
-        <button type="button" className="btn btn-soft-warning bg-gradient rounded-pill">
+        <button
+          type="button"
+          className="btn btn-soft-warning bg-gradient rounded-pill"
+        >
           Warning
         </button>
         <button type="button" className="btn btn-info bg-gradient rounded-pill">
@@ -300,8 +344,8 @@ const GradientRoundedButtons = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const GhostButtons = () => {
   return (
@@ -309,9 +353,11 @@ const GhostButtons = () => {
       title="Ghost Buttons"
       description={
         <>
-          Use a classes <code>.btn-ghost-**</code> to quickly create a ghost background color buttons.
+          Use a classes <code>.btn-ghost-**</code> to quickly create a ghost
+          background color buttons.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-ghost-primary">
           Primary
@@ -336,8 +382,8 @@ const GhostButtons = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const GhostRoundedButtons = () => {
   return (
@@ -345,9 +391,11 @@ const GhostRoundedButtons = () => {
       title="Ghost Rounded Buttons"
       description={
         <>
-          Use a classes <code>.btn-ghost-**</code> <code>.rounded-pill</code> to quickly create a ghost background color buttons with rounded.
+          Use a classes <code>.btn-ghost-**</code> <code>.rounded-pill</code> to
+          quickly create a ghost background color buttons with rounded.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-ghost-primary rounded-pill">
           Primary
@@ -372,8 +420,8 @@ const GhostRoundedButtons = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ButtonSizes = () => {
   return (
@@ -383,7 +431,8 @@ const ButtonSizes = () => {
         <>
           Add <code>.btn-lg</code>, <code>.btn-sm</code> for additional sizes.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap align-items-center gap-2">
         <button type="button" className="btn btn-primary btn-lg">
           Large
@@ -396,8 +445,8 @@ const ButtonSizes = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ButtonDisabled = () => {
   return (
@@ -405,9 +454,11 @@ const ButtonDisabled = () => {
       title="Button-Disabled"
       description={
         <>
-          Add the <code>disabled</code> attribute to <code>&lt;button&gt;</code> buttons.
+          Add the <code>disabled</code> attribute to <code>&lt;button&gt;</code>{" "}
+          buttons.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-info" disabled>
           Info
@@ -423,12 +474,15 @@ const ButtonDisabled = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const IconButtons = () => {
   return (
-    <ComponentContainerCard title="Icon Buttons" description={<>Icon only button.</>}>
+    <ComponentContainerCard
+      title="Icon Buttons"
+      description={<>Icon only button.</>}
+    >
       <div className="d-flex flex-wrap gap-2">
         <button type="button" className="btn btn-light btn-icon">
           <IconifyIcon icon="tabler:heart" className="fs-16" />
@@ -452,24 +506,41 @@ const IconButtons = () => {
           <IconifyIcon icon="tabler:music" className="fs-18" />
         </button>
         <button type="button" className="btn btn-light">
-          <IconifyIcon icon="tabler:thumb-up" className="align-middle me-1 fs-18" /> Like
+          <IconifyIcon
+            icon="tabler:thumb-up"
+            className="align-middle me-1 fs-18"
+          />{" "}
+          Like
         </button>
         <button type="button" className="btn btn-warning">
-          <IconifyIcon icon="lucide:activity" className="avatar-xxs me-1" /> Launch
+          <IconifyIcon icon="lucide:activity" className="avatar-xxs me-1" />{" "}
+          Launch
         </button>
         <button type="button" className="btn btn-outline-success">
-          <IconifyIcon icon="tabler:pig-money" className="align-middle me-1 fs-18" /> Money
+          <IconifyIcon
+            icon="tabler:pig-money"
+            className="align-middle me-1 fs-18"
+          />{" "}
+          Money
         </button>
         <button type="button" className="btn btn-outline-primary">
-          <IconifyIcon icon="tabler:brand-paypal" className="align-middle me-1 fs-18" /> PayPal
+          <IconifyIcon
+            icon="tabler:brand-paypal"
+            className="align-middle me-1 fs-18"
+          />{" "}
+          PayPal
         </button>
         <button type="button" className="btn btn-soft-danger">
-          <IconifyIcon icon="solar:settings-bold-duotone" className="fs-18 align-middle me-1" /> <span>Settings</span>
+          <IconifyIcon
+            icon="solar:settings-bold-duotone"
+            className="fs-18 align-middle me-1"
+          />{" "}
+          <span>Settings</span>
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const BlockButton = () => {
   return (
@@ -477,9 +548,11 @@ const BlockButton = () => {
       title="Block Button"
       description={
         <>
-          Create block level buttons by adding class <code>.d-grid</code> to parent div.
+          Create block level buttons by adding class <code>.d-grid</code> to
+          parent div.
         </>
-      }>
+      }
+    >
       <div className="d-grid gap-2">
         <button type="button" className="btn btn-sm btn-primary">
           Block Button
@@ -489,8 +562,8 @@ const BlockButton = () => {
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ButtonGroup = () => {
   return (
@@ -498,9 +571,11 @@ const ButtonGroup = () => {
       title="Button Group"
       description={
         <>
-          Wrap a series of buttons with <code>.btn</code> in <code>.btn-group</code>.
+          Wrap a series of buttons with <code>.btn</code> in{" "}
+          <code>.btn-group</code>.
         </>
-      }>
+      }
+    >
       <div className="btn-group mb-2">
         <button type="button" className="btn btn-light">
           Left
@@ -591,8 +666,8 @@ const ButtonGroup = () => {
         </Col>
       </Row>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ToggleButton = () => {
   return (
@@ -600,25 +675,42 @@ const ToggleButton = () => {
       title="Toggle Button"
       description={
         <>
-          Add <code>data-bs-toggle=&quot;button&quot;</code> to toggle a button&apos;s <code>active</code> state. If you’re pre-toggling a button, you
-          must manually add the <code>.active</code> class <strong>and</strong> <code>aria-pressed=&quot;true&quot;</code> to ensure that it is
-          conveyed appropriately to assistive technologies.
+          Add <code>data-bs-toggle=&quot;button&quot;</code> to toggle a
+          button&apos;s <code>active</code> state. If you’re pre-toggling a
+          button, you must manually add the <code>.active</code> class{" "}
+          <strong>and</strong> <code>aria-pressed=&quot;true&quot;</code> to
+          ensure that it is conveyed appropriately to assistive technologies.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
-        <button type="button" className="btn btn-primary" data-bs-toggle="button">
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="button"
+        >
           Toggle button
         </button>
-        <button type="button" className="btn btn-primary active" data-bs-toggle="button" aria-pressed="true">
+        <button
+          type="button"
+          className="btn btn-primary active"
+          data-bs-toggle="button"
+          aria-pressed="true"
+        >
           Active toggle button
         </button>
-        <button type="button" className="btn btn-primary" disabled data-bs-toggle="button">
+        <button
+          type="button"
+          className="btn btn-primary"
+          disabled
+          data-bs-toggle="button"
+        >
           Disabled toggle button
         </button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ButtonTags = () => {
   return (
@@ -626,10 +718,14 @@ const ButtonTags = () => {
       title="Button tags"
       description={
         <>
-          The <code>.btn</code> classes are designed to be used with the <code>&lt;button&gt;</code> element. However, you can also use these classes
-          on <code>&lt;a&gt;</code> or <code>&lt;input&gt;</code> elements (though some browsers may apply a slightly different rendering).
+          The <code>.btn</code> classes are designed to be used with the{" "}
+          <code>&lt;button&gt;</code> element. However, you can also use these
+          classes on <code>&lt;a&gt;</code> or <code>&lt;input&gt;</code>{" "}
+          elements (though some browsers may apply a slightly different
+          rendering).
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <Button variant="primary" role="button">
           Link
@@ -638,12 +734,16 @@ const ButtonTags = () => {
           Button
         </button>
         <input className="btn btn-primary" type="button" defaultValue="Input" />
-        <input className="btn btn-primary" type="submit" defaultValue="Submit" />
+        <input
+          className="btn btn-primary"
+          type="submit"
+          defaultValue="Submit"
+        />
         <input className="btn btn-primary" type="reset" defaultValue="Reset" />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const BasicButton = () => {
   return (
@@ -653,16 +753,18 @@ const BasicButton = () => {
       </CardHeader>
       <CardBody>
         <p className="text-muted">
-          Bootstrap has a base <code>.btn</code> class that sets up basic styles such as padding and content alignment. By default, <code>.btn</code>
-          controls have a transparent border and background color, and lack any explicit focus and hover styles.
+          Bootstrap has a base <code>.btn</code> class that sets up basic styles
+          such as padding and content alignment. By default, <code>.btn</code>
+          controls have a transparent border and background color, and lack any
+          explicit focus and hover styles.
         </p>
         <button type="button" className="btn">
           Base class
         </button>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const ButtonsPage = () => {
   return (
@@ -745,7 +847,7 @@ const ButtonsPage = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default ButtonsPage
+export default ButtonsPage;

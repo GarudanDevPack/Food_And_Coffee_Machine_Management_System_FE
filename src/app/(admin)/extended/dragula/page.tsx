@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllDragula from './components/AllDragula'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllDragula from "./components/AllDragula";
 
-export const metadata: Metadata = { title: 'Dragula' }
+export const metadata: Metadata = { title: "Dragula" };
 
 const Dragula = () => {
   return (
@@ -10,7 +10,7 @@ const Dragula = () => {
       <PageTitle title="Dragula" subTitle="Extended UI" />
       <AllDragula />
     </>
-  )
-}
+  );
+};
 
-export default Dragula
+export default Dragula;

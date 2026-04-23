@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllMixedChart from './components/AllMixedChart'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllMixedChart from "./components/AllMixedChart";
 
-export const metadata: Metadata = { title: 'Apex Mixed Charts' }
+export const metadata: Metadata = { title: "Apex Mixed Charts" };
 
 const MixedChart = () => {
   return (
@@ -10,7 +10,7 @@ const MixedChart = () => {
       <PageTitle title="Mixed Charts" subTitle="Apex" />
       <AllMixedChart />
     </>
-  )
-}
+  );
+};
 
-export default MixedChart
+export default MixedChart;

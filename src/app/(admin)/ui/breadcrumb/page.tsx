@@ -1,10 +1,10 @@
-import PageTitle from '@/components/PageTitle'
-import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { Card, CardBody, CardHeader, Col, Row } from 'react-bootstrap'
+import PageTitle from "@/components/PageTitle";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import { Metadata } from "next";
+import Link from "next/link";
+import { Card, CardBody, CardHeader, Col, Row } from "react-bootstrap";
 
-export const metadata: Metadata = { title: 'Breadcrumb' }
+export const metadata: Metadata = { title: "Breadcrumb" };
 
 const ExampleBreadcrumb = () => {
   return (
@@ -15,8 +15,12 @@ const ExampleBreadcrumb = () => {
         </CardHeader>
         <CardBody>
           <p className="text-muted">
-            Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS. Please read the official{' '}
-            <Link target="_blank" href="https://getbootstrap.com/docs/5.3/components/breadcrumb/">
+            Indicate the current page’s location within a navigational hierarchy
+            that automatically adds separators via CSS. Please read the official{" "}
+            <Link
+              target="_blank"
+              href="https://getbootstrap.com/docs/5.3/components/breadcrumb/"
+            >
               Bootstrap
             </Link>
             documentation for more options.
@@ -34,7 +38,11 @@ const ExampleBreadcrumb = () => {
                 <Link href="#">Home</Link>
               </li>
               <div className="mx-1" style={{ height: 24 }}>
-                <IconifyIcon icon="tabler:chevron-right" height={16} width={16} />
+                <IconifyIcon
+                  icon="tabler:chevron-right"
+                  height={16}
+                  width={16}
+                />
               </div>
               <li className="breadcrumb-item active" aria-current="page">
                 Library
@@ -47,13 +55,21 @@ const ExampleBreadcrumb = () => {
                 <Link href="#">Home</Link>
               </li>
               <div className="mx-1" style={{ height: 24 }}>
-                <IconifyIcon icon="tabler:chevron-right" height={16} width={16} />
+                <IconifyIcon
+                  icon="tabler:chevron-right"
+                  height={16}
+                  width={16}
+                />
               </div>
               <li className="breadcrumb-item">
                 <Link href="#">Library</Link>
               </li>
               <div className="mx-1" style={{ height: 24 }}>
-                <IconifyIcon icon="tabler:chevron-right" height={16} width={16} />
+                <IconifyIcon
+                  icon="tabler:chevron-right"
+                  height={16}
+                  width={16}
+                />
               </div>
               <li className="breadcrumb-item active" aria-current="page">
                 Data
@@ -63,8 +79,8 @@ const ExampleBreadcrumb = () => {
         </CardBody>
       </Card>
     </>
-  )
-}
+  );
+};
 
 const BreadcrumbWithIcons = () => {
   return (
@@ -73,7 +89,9 @@ const BreadcrumbWithIcons = () => {
         <h4 className="header-title">With Icons</h4>
       </CardHeader>
       <CardBody>
-        <p className="text-muted">Optionally you can also specify the icon with your breadcrumb item.</p>
+        <p className="text-muted">
+          Optionally you can also specify the icon with your breadcrumb item.
+        </p>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb bg-light bg-opacity-50 p-2 mb-2">
             <li className="breadcrumb-item active" aria-current="page">
@@ -122,8 +140,8 @@ const BreadcrumbWithIcons = () => {
         </nav>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const DividersBreadcrumb = () => {
   return (
@@ -133,8 +151,12 @@ const DividersBreadcrumb = () => {
       </CardHeader>
       <CardBody>
         <p className="text-muted">
-          Indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS. Please read the official{' '}
-          <Link target="_blank" href="https://getbootstrap.com/docs/5.3/components/breadcrumb/">
+          Indicate the current page’s location within a navigational hierarchy
+          that automatically adds separators via CSS. Please read the official{" "}
+          <Link
+            target="_blank"
+            href="https://getbootstrap.com/docs/5.3/components/breadcrumb/"
+          >
             Bootstrap
           </Link>
           documentation for more options.
@@ -161,11 +183,19 @@ const DividersBreadcrumb = () => {
             <li className="breadcrumb-item">
               <Link href="">Home</Link>
             </li>
-            <IconifyIcon icon='ri:arrow-drop-right-line' width={25} height={25} />
+            <IconifyIcon
+              icon="ri:arrow-drop-right-line"
+              width={25}
+              height={25}
+            />
             <li className="breadcrumb-item content-none">
               <Link href="">Library</Link>
             </li>
-            <IconifyIcon icon='ri:arrow-drop-right-line' width={25} height={25}/>
+            <IconifyIcon
+              icon="ri:arrow-drop-right-line"
+              width={25}
+              height={25}
+            />
             <li className="breadcrumb-item active" aria-current="page">
               Data
             </li>
@@ -223,8 +253,8 @@ const DividersBreadcrumb = () => {
         </nav>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const BreadcrumbPage = () => {
   return (
@@ -246,7 +276,7 @@ const BreadcrumbPage = () => {
         </Row>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default BreadcrumbPage
+export default BreadcrumbPage;

@@ -1,9 +1,7 @@
-
-
 export type RemixIcons = {
-  iconName: string
-  title: string
-}
+  iconName: string;
+  title: string;
+};
 
 export const remixIconsData: RemixIcons[] = [
   { iconName: "ri:4k-line", title: "4k" },
@@ -49,5 +47,5 @@ export const remixIconsData: RemixIcons[] = [
   { iconName: "ri:more-line", title: "More" },
   { iconName: "ri:notification-line", title: "Notification" },
   { iconName: "ri:shopping-cart-line", title: "Shopping Cart" },
-  { iconName: "ri:phone-line", title: "Phone" }
-]
+  { iconName: "ri:phone-line", title: "Phone" },
+];

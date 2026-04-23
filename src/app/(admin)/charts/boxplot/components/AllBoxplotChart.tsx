@@ -1,18 +1,28 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from '@/components/ApexChart'
-import { Col, Row } from 'react-bootstrap'
-import { basicBoxplotChartOpts, horizontalBoxPlotChartOpts, scatterBoxplotChartOpts } from '../data'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import ReactApexChart from "@/components/ApexChart";
+import { Col, Row } from "react-bootstrap";
+import {
+  basicBoxplotChartOpts,
+  horizontalBoxPlotChartOpts,
+  scatterBoxplotChartOpts,
+} from "../data";
 
 const BasicBoxplot = () => {
   return (
     <ComponentContainerCard title="Basic Boxplot">
       <div dir="ltr">
-        <ReactApexChart height={350} options={basicBoxplotChartOpts} series={basicBoxplotChartOpts.series} type="boxPlot" className="apex-charts" />
+        <ReactApexChart
+          height={350}
+          options={basicBoxplotChartOpts}
+          series={basicBoxplotChartOpts.series}
+          type="boxPlot"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ScatterBoxplot = () => {
   return (
@@ -27,8 +37,8 @@ const ScatterBoxplot = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const HorizontalBoxPlot = () => {
   return (
@@ -43,8 +53,8 @@ const HorizontalBoxPlot = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllBoxplotChart = () => {
   return (
@@ -63,7 +73,7 @@ const AllBoxplotChart = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllBoxplotChart
+export default AllBoxplotChart;

@@ -1,20 +1,20 @@
-'use client'
-import { useLayoutContext } from '@/context/useLayoutContext'
-import { Settings } from 'lucide-react'
-import { lazy, useState } from 'react'
+"use client";
+import { useLayoutContext } from "@/context/useLayoutContext";
+import { Settings } from "lucide-react";
+import { lazy, useState } from "react";
 
-const ThemeCustomizer = lazy(() => import('@/components/ThemeCustomizer'))
+const ThemeCustomizer = lazy(() => import("@/components/ThemeCustomizer"));
 
 const ThemeCustomizerToggle = () => {
   const {
     themeCustomizer: { open, toggle },
-  } = useLayoutContext()
-  const [hasOpenedOnce, setHasOpenedOnce] = useState(open)
+  } = useLayoutContext();
+  const [hasOpenedOnce, setHasOpenedOnce] = useState(open);
 
   const toggleThemeCustomizerOffcanvas = () => {
-    if (!hasOpenedOnce) setHasOpenedOnce(true)
-    toggle()
-  }
+    if (!hasOpenedOnce) setHasOpenedOnce(true);
+    toggle();
+  };
 
   return (
     <>
@@ -24,13 +24,16 @@ const ThemeCustomizerToggle = () => {
           className="topbar-link"
           data-bs-toggle="offcanvas"
           data-bs-target="#theme-settings-offcanvas"
-          type="button">
+          type="button"
+        >
           <Settings className="fs-22" />
         </button>
       </div>
-      {hasOpenedOnce && <ThemeCustomizer open={open} toggle={toggleThemeCustomizerOffcanvas} />}
+      {hasOpenedOnce && (
+        <ThemeCustomizer open={open} toggle={toggleThemeCustomizerOffcanvas} />
+      )}
     </>
-  )
-}
+  );
+};
 
-export default ThemeCustomizerToggle
+export default ThemeCustomizerToggle;

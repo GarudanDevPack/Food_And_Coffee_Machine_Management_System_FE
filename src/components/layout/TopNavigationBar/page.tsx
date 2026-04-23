@@ -1,13 +1,13 @@
-import ThemeCustomizeToggle from '@/components/layout/TopNavigationBar/components/ThemeCustomizeToggle'
-import LogoBox from '@/components/LogoBox'
-import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import Apps from './components/Apps'
-import Flags from './components/Country'
-import LeftSideBarToggle from './components/LeftSideBarToggle'
-import Notifications from './components/Notifications'
-import ProfileDropdown from './components/ProfileDropdown'
-import ThemeModeToggle from './components/ThemeModeToggle'
-import SearchBox from './components/SearchBox'
+"use client";
+import ThemeCustomizeToggle from "@/components/layout/TopNavigationBar/components/ThemeCustomizeToggle";
+import LogoBox from "@/components/LogoBox";
+import Apps from "./components/Apps";
+import Flags from "./components/Country";
+import LeftSideBarToggle from "./components/LeftSideBarToggle";
+import Notifications from "./components/Notifications";
+import ProfileDropdown from "./components/ProfileDropdown";
+import ThemeModeToggle from "./components/ThemeModeToggle";
+import SearchBox from "./components/SearchBox";
 
 const TopNavigationBar = () => {
   return (
@@ -28,7 +28,7 @@ const TopNavigationBar = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default TopNavigationBar
+export default TopNavigationBar;

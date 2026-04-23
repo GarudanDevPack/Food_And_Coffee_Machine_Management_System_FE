@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllPagination from './components/AllPagination'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllPagination from "./components/AllPagination";
 
-export const metadata: Metadata = { title: 'Pagination}' }
+export const metadata: Metadata = { title: "Pagination}" };
 
 const Pagination = () => {
   return (
@@ -10,7 +10,7 @@ const Pagination = () => {
       <PageTitle title="Pagination" subTitle="Base UI" />
       <AllPagination />
     </>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;

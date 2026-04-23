@@ -1,41 +1,41 @@
-import { ApexOptions } from 'apexcharts'
+import { ApexOptions } from "apexcharts";
 
-import small2 from '@/assets/images/small/small-2.jpg'
+import small2 from "@/assets/images/small/small-2.jpg";
 
 export const basicRadialBarChartOpts: ApexOptions = {
   chart: {
     height: 320,
-    type: 'radialBar',
+    type: "radialBar",
   },
   plotOptions: {
     radialBar: {
       hollow: {
         // margin: 2,
-        size: '70%',
+        size: "70%",
       },
       track: {
-        background: 'rgba(170,184,197, 0.2)',
+        background: "rgba(170,184,197, 0.2)",
       },
     },
   },
-  colors: ['#39afd1'],
+  colors: ["#39afd1"],
   series: [70],
-  labels: ['CRICKET'],
-}
+  labels: ["CRICKET"],
+};
 
 export const multipleRadialBarsChartOpts: ApexOptions = {
   chart: {
     height: 320,
-    type: 'radialBar',
+    type: "radialBar",
   },
   plotOptions: {
     radialBar: {
       track: {
         margin: 20,
-        background: 'rgba(170,184,197, 0.2)',
+        background: "rgba(170,184,197, 0.2)",
       },
       hollow: {
-        size: '5%',
+        size: "5%",
       },
       dataLabels: {
         name: {
@@ -48,11 +48,11 @@ export const multipleRadialBarsChartOpts: ApexOptions = {
     },
   },
   stroke: {
-    lineCap: 'round',
+    lineCap: "round",
   },
-  colors: ['#35b8e0', '#fbcc5c', '#6b5eae', '#31ce77'],
+  colors: ["#35b8e0", "#fbcc5c", "#6b5eae", "#31ce77"],
   series: [44, 55, 67],
-  labels: ['Apples', 'Oranges', 'Bananas', 'Berries'],
+  labels: ["Apples", "Oranges", "Bananas", "Berries"],
   responsive: [
     {
       breakpoint: 380,
@@ -63,12 +63,12 @@ export const multipleRadialBarsChartOpts: ApexOptions = {
       },
     },
   ],
-}
+};
 
 export const circleChartOpts: ApexOptions = {
   chart: {
     height: 380,
-    type: 'radialBar',
+    type: "radialBar",
   },
   plotOptions: {
     radialBar: {
@@ -77,12 +77,12 @@ export const circleChartOpts: ApexOptions = {
       endAngle: 270,
       hollow: {
         margin: 5,
-        size: '30%',
-        background: 'transparent',
+        size: "30%",
+        background: "transparent",
         image: undefined,
       },
       track: {
-        background: 'rgba(170,184,197, 0.2)',
+        background: "rgba(170,184,197, 0.2)",
       },
       dataLabels: {
         name: {
@@ -94,14 +94,14 @@ export const circleChartOpts: ApexOptions = {
       },
     },
   },
-  colors: ['#31ce77', '#6b5eae', '#fa5c7c', '#fbcc5c'],
+  colors: ["#31ce77", "#6b5eae", "#fa5c7c", "#fbcc5c"],
   series: [76, 67, 61, 90],
-  labels: ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn'],
+  labels: ["Vimeo", "Messenger", "Facebook", "LinkedIn"],
   legend: {
     show: true,
     floating: true,
-    fontSize: '13px',
-    position: 'left',
+    fontSize: "13px",
+    position: "left",
     offsetX: 10,
     offsetY: 10,
     labels: {
@@ -111,7 +111,7 @@ export const circleChartOpts: ApexOptions = {
       size: 0,
     },
     formatter: function (seriesName, opts) {
-      return seriesName + ':  ' + opts.w.globals.series[opts.seriesIndex]
+      return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex];
     },
     itemMargin: {
       horizontal: 1,
@@ -127,15 +127,15 @@ export const circleChartOpts: ApexOptions = {
       },
     },
   ],
-}
+};
 
 export const circleImageChartOpts: ApexOptions = {
   chart: {
     height: 360,
-    type: 'radialBar',
+    type: "radialBar",
   },
   fill: {
-    type: 'image',
+    type: "image",
     image: {
       src: [small2.src],
     },
@@ -143,15 +143,15 @@ export const circleImageChartOpts: ApexOptions = {
   plotOptions: {
     radialBar: {
       hollow: {
-        size: '70%',
+        size: "70%",
       },
     },
   },
   series: [70],
   stroke: {
-    lineCap: 'round',
+    lineCap: "round",
   },
-  labels: ['Volatility'],
+  labels: ["Volatility"],
   responsive: [
     {
       breakpoint: 380,
@@ -162,12 +162,12 @@ export const circleImageChartOpts: ApexOptions = {
       },
     },
   ],
-}
+};
 
 export const strokedCircularChartOpts: ApexOptions = {
   chart: {
     height: 380,
-    type: 'radialBar',
+    type: "radialBar",
   },
   plotOptions: {
     radialBar: {
@@ -175,21 +175,21 @@ export const strokedCircularChartOpts: ApexOptions = {
       endAngle: 135,
       dataLabels: {
         name: {
-          fontSize: '16px',
+          fontSize: "16px",
           color: undefined,
           offsetY: 120,
         },
         value: {
           offsetY: 76,
-          fontSize: '22px',
+          fontSize: "22px",
           color: undefined,
           formatter: function (val) {
-            return val + '%'
+            return val + "%";
           },
         },
       },
       track: {
-        background: 'rgba(170,184,197, 0.2)',
+        background: "rgba(170,184,197, 0.2)",
         margin: 0,
       },
     },
@@ -197,7 +197,7 @@ export const strokedCircularChartOpts: ApexOptions = {
   fill: {
     gradient: {
       // enabled: true,
-      shade: 'dark',
+      shade: "dark",
       shadeIntensity: 0.2,
       inverseColors: false,
       opacityFrom: 1,
@@ -208,9 +208,9 @@ export const strokedCircularChartOpts: ApexOptions = {
   stroke: {
     dashArray: 4,
   },
-  colors: ['#6b5eae'],
+  colors: ["#6b5eae"],
   series: [67],
-  labels: ['Median Ratio'],
+  labels: ["Median Ratio"],
   responsive: [
     {
       breakpoint: 380,
@@ -221,12 +221,12 @@ export const strokedCircularChartOpts: ApexOptions = {
       },
     },
   ],
-}
+};
 
 export const gradientCircularChartOpts: ApexOptions = {
   chart: {
     height: 330,
-    type: 'radialBar',
+    type: "radialBar",
     toolbar: {
       show: true,
     },
@@ -237,12 +237,12 @@ export const gradientCircularChartOpts: ApexOptions = {
       endAngle: 225,
       hollow: {
         margin: 0,
-        size: '70%',
-        background: 'transparent',
+        size: "70%",
+        background: "transparent",
         image: undefined,
         imageOffsetX: 0,
         imageOffsetY: 0,
-        position: 'front',
+        position: "front",
         dropShadow: {
           enabled: true,
           top: 3,
@@ -252,8 +252,8 @@ export const gradientCircularChartOpts: ApexOptions = {
         },
       },
       track: {
-        background: 'rgba(170,184,197, 0.2)',
-        strokeWidth: '67%',
+        background: "rgba(170,184,197, 0.2)",
+        strokeWidth: "67%",
         margin: 0,
       },
 
@@ -262,24 +262,24 @@ export const gradientCircularChartOpts: ApexOptions = {
         name: {
           offsetY: -10,
           show: true,
-          color: '#888',
-          fontSize: '17px',
+          color: "#888",
+          fontSize: "17px",
         },
         value: {
-          color: '#111',
-          fontSize: '36px',
+          color: "#111",
+          fontSize: "36px",
           show: true,
         },
       },
     },
   },
   fill: {
-    type: 'gradient',
+    type: "gradient",
     gradient: {
-      shade: 'dark',
-      type: 'horizontal',
+      shade: "dark",
+      type: "horizontal",
       shadeIntensity: 0.5,
-      gradientToColors: ['#8f75da', '#727cf5'],
+      gradientToColors: ["#8f75da", "#727cf5"],
       inverseColors: true,
       opacityFrom: 1,
       opacityTo: 1,
@@ -288,15 +288,15 @@ export const gradientCircularChartOpts: ApexOptions = {
   },
   series: [75],
   stroke: {
-    lineCap: 'round',
+    lineCap: "round",
   },
-  labels: ['Percent'],
-}
+  labels: ["Percent"],
+};
 
 export const semiCircleChartOpts: ApexOptions = {
   series: [76],
   chart: {
-    type: 'radialBar',
+    type: "radialBar",
     offsetY: -20,
     sparkline: {
       enabled: true,
@@ -307,13 +307,13 @@ export const semiCircleChartOpts: ApexOptions = {
       startAngle: -90,
       endAngle: 90,
       track: {
-        background: 'rgba(170,184,197, 0.2)',
-        strokeWidth: '97%',
+        background: "rgba(170,184,197, 0.2)",
+        strokeWidth: "97%",
         margin: 5, // margin is in pixels
         dropShadow: {
           top: 2,
           left: 0,
-          color: '#eef2f7',
+          color: "#eef2f7",
           opacity: 1,
           blur: 2,
         },
@@ -324,7 +324,7 @@ export const semiCircleChartOpts: ApexOptions = {
         },
         value: {
           offsetY: -2,
-          fontSize: '22px',
+          fontSize: "22px",
         },
       },
     },
@@ -334,6 +334,6 @@ export const semiCircleChartOpts: ApexOptions = {
       top: -10,
     },
   },
-  colors: ['#8f75da', '#727cf5'],
-  labels: ['Average Results'],
-}
+  colors: ["#8f75da", "#727cf5"],
+  labels: ["Average Results"],
+};

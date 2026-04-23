@@ -1,7 +1,7 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from '@/components/ApexChart'
-import { Col, Row } from 'react-bootstrap'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import ReactApexChart from "@/components/ApexChart";
+import { Col, Row } from "react-bootstrap";
 import {
   basicRadialBarChartOpts,
   circleChartOpts,
@@ -10,7 +10,7 @@ import {
   multipleRadialBarsChartOpts,
   semiCircleChartOpts,
   strokedCircularChartOpts,
-} from '../data'
+} from "../data";
 
 const BasicRadialBarChart = () => {
   return (
@@ -23,8 +23,8 @@ const BasicRadialBarChart = () => {
         className="apex-charts"
       />
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const MultipleRadialBars = () => {
   return (
@@ -37,28 +37,40 @@ const MultipleRadialBars = () => {
         className="apex-charts"
       />
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const CircleChart = () => {
   return (
     <ComponentContainerCard title="Circle Chart - Custom Angle">
       <div className="text-center" dir="ltr">
-        <ReactApexChart height={380} options={circleChartOpts} series={circleChartOpts.series} type="radialBar" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={circleChartOpts}
+          series={circleChartOpts.series}
+          type="radialBar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const CircleImageChart = () => {
   return (
     <ComponentContainerCard title="Circle Chart with Image">
       <div dir="ltr">
-        <ReactApexChart height={380} options={circleImageChartOpts} series={circleImageChartOpts.series} type="radialBar" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={circleImageChartOpts}
+          series={circleImageChartOpts.series}
+          type="radialBar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const StrokedCircularChart = () => {
   return (
@@ -73,8 +85,8 @@ const StrokedCircularChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const GradientCircularChart = () => {
   return (
@@ -89,18 +101,23 @@ const GradientCircularChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const SemiCircleChart = () => {
   return (
     <ComponentContainerCard title="Semi Circle Gauge">
       <div dir="ltr">
-        <ReactApexChart options={semiCircleChartOpts} series={semiCircleChartOpts.series} type="radialBar" className="apex-charts" />
+        <ReactApexChart
+          options={semiCircleChartOpts}
+          series={semiCircleChartOpts.series}
+          type="radialBar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllRadialBarChart = () => {
   return (
@@ -135,7 +152,7 @@ const AllRadialBarChart = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllRadialBarChart
+export default AllRadialBarChart;

@@ -1,19 +1,33 @@
-import Link from 'next/link'
-import { Accordion, AccordionBody, AccordionHeader, AccordionItem, Card, CardBody, CardTitle, Col, Row } from 'react-bootstrap'
-import { faqData } from '../data'
+import Link from "next/link";
+import {
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  AccordionItem,
+  Card,
+  CardBody,
+  CardTitle,
+  Col,
+  Row,
+} from "react-bootstrap";
+import { faqData } from "../data";
 
 const GeneralFaq = () => {
   return (
     <Card>
       <CardBody>
-        <CardTitle as={'h4'} className="mb-3 anchor" id="general">
+        <CardTitle as={"h4"} className="mb-3 anchor" id="general">
           General FAQ&apos;s
         </CardTitle>
-        <Accordion id="accordionExample" defaultActiveKey={'0'}>
+        <Accordion id="accordionExample" defaultActiveKey={"0"}>
           {faqData.General.map((item, idx) => (
             <AccordionItem eventKey={`${idx}`} key={idx}>
-              <AccordionHeader as={'h2'}>{item.question}</AccordionHeader>
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <AccordionHeader as={"h2"}>{item.question}</AccordionHeader>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
                 <AccordionBody>{item.answer}</AccordionBody>
               </div>
             </AccordionItem>
@@ -21,21 +35,25 @@ const GeneralFaq = () => {
         </Accordion>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const IntegrationFaq = () => {
   return (
     <Card>
       <CardBody>
-        <CardTitle as={'h4'} className="mb-3 anchor" id="integration">
+        <CardTitle as={"h4"} className="mb-3 anchor" id="integration">
           Integration
         </CardTitle>
-        <Accordion id="accordionExample2" defaultActiveKey={'0'}>
+        <Accordion id="accordionExample2" defaultActiveKey={"0"}>
           {faqData.Integration.map((item, idx) => (
             <AccordionItem eventKey={`${idx}`} key={idx}>
-              <AccordionHeader as={'h2'}>{item.question}</AccordionHeader>
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <AccordionHeader as={"h2"}>{item.question}</AccordionHeader>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
                 <AccordionBody>{item.answer}</AccordionBody>
               </div>
             </AccordionItem>
@@ -43,21 +61,25 @@ const IntegrationFaq = () => {
         </Accordion>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const PaymentFaq = () => {
   return (
     <Card>
       <CardBody>
-        <CardTitle as={'h4'} className="mb-3 anchor" id="payment">
+        <CardTitle as={"h4"} className="mb-3 anchor" id="payment">
           Payment
         </CardTitle>
-        <Accordion id="accordionExample3" defaultActiveKey={'0'}>
+        <Accordion id="accordionExample3" defaultActiveKey={"0"}>
           {faqData.Payments.map((item, idx) => (
             <AccordionItem eventKey={`${idx}`} key={idx}>
-              <AccordionHeader as={'h2'}>{item.question}</AccordionHeader>
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <AccordionHeader as={"h2"}>{item.question}</AccordionHeader>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
                 <AccordionBody>{item.answer}</AccordionBody>
               </div>
             </AccordionItem>
@@ -65,21 +87,25 @@ const PaymentFaq = () => {
         </Accordion>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const ShippingFaq = () => {
   return (
     <Card>
       <CardBody>
-        <CardTitle as={'h4'} className="mb-3 anchor" id="shipping">
+        <CardTitle as={"h4"} className="mb-3 anchor" id="shipping">
           Shipping
         </CardTitle>
-        <Accordion id="accordionExample4" defaultActiveKey={'0'}>
+        <Accordion id="accordionExample4" defaultActiveKey={"0"}>
           {faqData.Shipping.map((item, idx) => (
             <AccordionItem eventKey={`${idx}`} key={idx}>
-              <AccordionHeader as={'h2'}>{item.question}</AccordionHeader>
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <AccordionHeader as={"h2"}>{item.question}</AccordionHeader>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
                 <AccordionBody>{item.answer}</AccordionBody>
               </div>
             </AccordionItem>
@@ -87,21 +113,25 @@ const ShippingFaq = () => {
         </Accordion>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const ReturnFaq = () => {
   return (
     <Card>
       <CardBody>
-        <CardTitle as={'h4'} className="mb-3 anchor" id="return">
+        <CardTitle as={"h4"} className="mb-3 anchor" id="return">
           Return
         </CardTitle>
-        <Accordion id="accordionExample5" defaultActiveKey={'0'}>
+        <Accordion id="accordionExample5" defaultActiveKey={"0"}>
           {faqData.Return.map((item, idx) => (
             <AccordionItem eventKey={`${idx}`} key={idx}>
-              <AccordionHeader as={'h2'}>{item.question}</AccordionHeader>
-              <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+              <AccordionHeader as={"h2"}>{item.question}</AccordionHeader>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
                 <AccordionBody>{item.answer}</AccordionBody>
               </div>
             </AccordionItem>
@@ -109,8 +139,8 @@ const ReturnFaq = () => {
         </Accordion>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const Faqs = () => {
   return (
@@ -156,7 +186,7 @@ const Faqs = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default Faqs
+export default Faqs;

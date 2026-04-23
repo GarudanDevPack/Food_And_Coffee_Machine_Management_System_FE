@@ -1,6 +1,6 @@
-import { currentYear, developedBy } from '@/context/constants'
-import Link from 'next/link'
-import { Col, Row } from 'react-bootstrap'
+import { currentYear, developedBy } from "@/context/constants";
+import Link from "next/link";
+import { Col, Row } from "react-bootstrap";
 
 const Footer = () => {
   return (
@@ -20,7 +20,7 @@ const Footer = () => {
         </Row>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

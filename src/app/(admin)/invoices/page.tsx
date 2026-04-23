@@ -1,9 +1,9 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import { Col, Row } from 'react-bootstrap'
-import InvoicesCard from './components/InvoiceCard'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import { Col, Row } from "react-bootstrap";
+import InvoicesCard from "./components/InvoiceCard";
 
-export const metadata: Metadata = { title: 'Invoices' }
+export const metadata: Metadata = { title: "Invoices" };
 
 const InvoicesPage = () => {
   return (
@@ -15,7 +15,7 @@ const InvoicesPage = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default InvoicesPage
+export default InvoicesPage;

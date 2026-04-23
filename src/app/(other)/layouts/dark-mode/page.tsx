@@ -1,10 +1,8 @@
-import React from 'react'
-import DarkMode from './components/DarkMode'
+import React from "react";
+import DarkMode from "./components/DarkMode";
 
 const DarkModePage = () => {
-  return (
-    <DarkMode />
-  )
-}
+  return <DarkMode />;
+};
 
-export default DarkModePage
+export default DarkModePage;

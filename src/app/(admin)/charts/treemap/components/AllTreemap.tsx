@@ -1,18 +1,29 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from '@/components/ApexChart'
-import { Col, Row } from 'react-bootstrap'
-import { basicTreemapChartOpts, colorTreemapChartOpts, distributedTreemapChartOpts, multipleTreemapChartOpts } from '../data'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import ReactApexChart from "@/components/ApexChart";
+import { Col, Row } from "react-bootstrap";
+import {
+  basicTreemapChartOpts,
+  colorTreemapChartOpts,
+  distributedTreemapChartOpts,
+  multipleTreemapChartOpts,
+} from "../data";
 
 const BasicTreemap = () => {
   return (
     <ComponentContainerCard title="Basic Treemap">
       <div dir="ltr">
-        <ReactApexChart height={350} options={basicTreemapChartOpts} series={basicTreemapChartOpts.series} type="treemap" className="apex-charts" />
+        <ReactApexChart
+          height={350}
+          options={basicTreemapChartOpts}
+          series={basicTreemapChartOpts.series}
+          type="treemap"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 const MultipleTreemap = () => {
   return (
     <ComponentContainerCard title="Treemap Multiple Series">
@@ -26,8 +37,8 @@ const MultipleTreemap = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const DistributedTreemap = () => {
   return (
@@ -42,18 +53,24 @@ const DistributedTreemap = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ColorTreemap = () => {
   return (
     <ComponentContainerCard title="Color Range Treemap">
       <div dir="ltr">
-        <ReactApexChart height={350} options={colorTreemapChartOpts} series={colorTreemapChartOpts.series} type="treemap" className="apex-charts" />
+        <ReactApexChart
+          height={350}
+          options={colorTreemapChartOpts}
+          series={colorTreemapChartOpts.series}
+          type="treemap"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllTreemap = () => {
   return (
@@ -75,7 +92,7 @@ const AllTreemap = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllTreemap
+export default AllTreemap;

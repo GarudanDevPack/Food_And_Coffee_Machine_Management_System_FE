@@ -1,21 +1,21 @@
-'use client'
-import type { ChildrenType } from '@/types/component-props'
-import { useSession } from 'next-auth/react'
-import { usePathname, useRouter } from 'next/navigation'
-import { Suspense } from 'react'
-import FallbackLoading from '../FallbackLoading'
+"use client";
+import type { ChildrenType } from "@/types/component-props";
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
+import { Suspense } from "react";
+import FallbackLoading from "../FallbackLoading";
 
 const AuthProtectionWrapper = ({ children }: ChildrenType) => {
-  const { status } = useSession()
-  const { push } = useRouter()
-  const pathname = usePathname()
+  const { status } = useSession();
+  const { push } = useRouter();
+  const pathname = usePathname();
 
-  if (status == 'unauthenticated') {
-    push(`/auth/login?redirectTo=${pathname}`)
-    return <FallbackLoading />
+  if (status == "unauthenticated") {
+    push(`/auth/login?redirectTo=${pathname}`);
+    return <FallbackLoading />;
   }
 
-  return <Suspense>{children}</Suspense>
-}
+  return <Suspense>{children}</Suspense>;
+};
 
-export default AuthProtectionWrapper
+export default AuthProtectionWrapper;

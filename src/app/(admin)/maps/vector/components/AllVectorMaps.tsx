@@ -1,7 +1,13 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import { CanadaVectorMap, IraqVectorMap, RussiaVectorMap, SpainVectorMap, UsaVectorMap } from '@/components/VectorMap'
-import { Col, Row } from 'react-bootstrap'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import {
+  CanadaVectorMap,
+  IraqVectorMap,
+  RussiaVectorMap,
+  SpainVectorMap,
+  UsaVectorMap,
+} from "@/components/VectorMap";
+import { Col, Row } from "react-bootstrap";
 import {
   CanadaVectorMapOpts,
   IraqVectorMapOpts,
@@ -10,66 +16,81 @@ import {
   UsaVectorMapOpts,
   worldLineMapOpts,
   worldMapOpts,
-} from '../data'
-import dynamic from 'next/dynamic'
+} from "../data";
+import dynamic from "next/dynamic";
 
-const WorldVectorMap = dynamic(() => import('@/components/VectorMap/WorldMap'), {
-  ssr: false,
-})
+const WorldVectorMap = dynamic(
+  () => import("@/components/VectorMap/WorldMap"),
+  {
+    ssr: false,
+  },
+);
 
 const GlobalWorldVectorMap = () => {
   return (
     <ComponentContainerCard title="World Vector Map">
       <WorldVectorMap height="360px" width="100%" options={worldMapOpts} />
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const WorldVectorMap2 = () => {
   return (
     <ComponentContainerCard title="World Vector Map">
       <WorldVectorMap height="360px" width="100%" options={worldLineMapOpts} />
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const CanadaVectorMaps = () => {
   return (
     <ComponentContainerCard title="Canada Vector Map">
-      <CanadaVectorMap height="360px" width="100%" options={CanadaVectorMapOpts} />
+      <CanadaVectorMap
+        height="360px"
+        width="100%"
+        options={CanadaVectorMapOpts}
+      />
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const RussiaVectorMaps = () => {
   return (
     <ComponentContainerCard title="Russia Vector Map">
-      <RussiaVectorMap height="360px" width="100%" options={RussiaVectorMapOpts} />
+      <RussiaVectorMap
+        height="360px"
+        width="100%"
+        options={RussiaVectorMapOpts}
+      />
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const USVectorMaps = () => {
   return (
     <ComponentContainerCard title="US Vector Map">
       <UsaVectorMap height="360px" width="100%" options={UsaVectorMapOpts} />
     </ComponentContainerCard>
-  )
-}
+  );
+};
 const IraqVectorMaps = () => {
   return (
     <ComponentContainerCard title="Iraq Vector Map">
       <IraqVectorMap height="360px" width="100%" options={IraqVectorMapOpts} />
     </ComponentContainerCard>
-  )
-}
+  );
+};
 const SpainVectorMaps = () => {
   return (
     <ComponentContainerCard title="Spain Vector Map">
-      <SpainVectorMap height="360px" width="100%" options={SpainVectorMapOpts} />
+      <SpainVectorMap
+        height="360px"
+        width="100%"
+        options={SpainVectorMapOpts}
+      />
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllVectorMaps = () => {
   return (
@@ -96,7 +117,7 @@ const AllVectorMaps = () => {
         <SpainVectorMaps />
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default AllVectorMaps
+export default AllVectorMaps;

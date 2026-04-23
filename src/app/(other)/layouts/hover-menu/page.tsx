@@ -1,9 +1,7 @@
-import HoverMenu from './components/HoverMenu'
+import HoverMenu from "./components/HoverMenu";
 
 const HoverMenuPage = () => {
-  return (
-    <HoverMenu />
-  )
-}
+  return <HoverMenu />;
+};
 
-export default HoverMenuPage
+export default HoverMenuPage;

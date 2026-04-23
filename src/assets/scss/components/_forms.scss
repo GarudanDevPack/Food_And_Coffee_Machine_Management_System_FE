@@ -6,17 +6,14 @@
 
 input.form-control[type="color"],
 input.form-control[type="range"] {
-    min-height: 39px;
+  min-height: 39px;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
-
-
-
 
 // Custom select
 
@@ -28,21 +25,21 @@ input::-webkit-inner-spin-button {
 .form-control.is-valid,
 .custom-select:valid,
 .form-control:valid {
-    &:focus {
-        box-shadow: none !important;
-    }
+  &:focus {
+    box-shadow: none !important;
+  }
 }
 
 select.form-control {
-    &:not([size]):not([multiple]) {
-        height: $input-height;
-    }
+  &:not([size]):not([multiple]) {
+    height: $input-height;
+  }
 }
 
 select.form-control-sm {
-    &:not([size]):not([multiple]) {
-        height: $input-height-sm;
-    }
+  &:not([size]):not([multiple]) {
+    height: $input-height-sm;
+  }
 }
 
 //
@@ -50,68 +47,66 @@ select.form-control-sm {
 //
 
 @each $state in map-keys($theme-colors) {
-
-    .form-checkbox-#{$state},
-    .form-radio-#{$state} {
-        .form-check-input {
-            &:checked {
-                background-color: var(--#{$prefix}#{$state});
-                border-color: var(--#{$prefix}#{$state});
-            }
-        }
+  .form-checkbox-#{$state},
+  .form-radio-#{$state} {
+    .form-check-input {
+      &:checked {
+        background-color: var(--#{$prefix}#{$state});
+        border-color: var(--#{$prefix}#{$state});
+      }
     }
+  }
 }
-
 
 // card radio
 .card-radio {
-    padding: 0;
+  padding: 0;
 
-    .form-check-label {
-        background-color: $card-bg;
-        border: 1px solid var(--#{$prefix}border-color);
-        border-radius: $border-radius;
-        padding: 1rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+  .form-check-label {
+    background-color: $card-bg;
+    border: 1px solid var(--#{$prefix}border-color);
+    border-radius: $border-radius;
+    padding: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    position: relative;
+    padding-right: 32px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .check-icon svg {
+    display: none;
+  }
+
+  .form-check-input {
+    display: none;
+
+    &:checked + .form-check-label {
+      & .check-icon svg {
+        // content: "\EB80";
+        // font-family: remixicon;
         display: block;
-        position: relative;
-        padding-right: 32px;
-
-        &:hover {
-            cursor: pointer;
-        }
+        position: absolute;
+        bottom: 2px;
+        right: 6px;
+        font-size: 16px;
+        color: var(--#{$prefix}primary);
+      }
     }
+  }
 
-    .check-icon svg {
-        display: none;
-    }
-
+  &.dark {
     .form-check-input {
-        display: none;
-
-        &:checked+.form-check-label {
-            & .check-icon svg {
-                // content: "\EB80";
-                // font-family: remixicon;
-                display: block;
-                position: absolute;
-                bottom: 2px;
-                right: 6px;
-                font-size: 16px;
-                color: var(--#{$prefix}primary);
-            }
+      &:checked + .form-check-label {
+        &:before {
+          color: $white;
         }
+      }
     }
-
-    &.dark {
-        .form-check-input {
-            &:checked+.form-check-label {
-                &:before {
-                    color: $white;
-                }
-            }
-        }
-    }
+  }
 }

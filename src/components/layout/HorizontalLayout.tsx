@@ -1,27 +1,34 @@
-import React, { Suspense, useEffect } from 'react'
-import TopNavigationBar from './TopNavigationBar/page'
-import FallbackLoading from '../FallbackLoading'
-import HorizontalNavBar from './HorizontalNav/page'
-import Footer from './Footer'
-import { getHorizontalMenuItems } from '@/helpers/Manu'
-import { ChildrenType } from '@/types/component-props'
-import { toggleDocumentAttribute } from '@/utils/layout'
-import { useLayoutContext } from '@/context/useLayoutContext'
-import { Offcanvas } from 'react-bootstrap'
-import VerticalNavigationBar from './VerticalNavigationBar/page'
+import React, { Suspense, useEffect } from "react";
+import TopNavigationBar from "./TopNavigationBar/page";
+import FallbackLoading from "../FallbackLoading";
+import HorizontalNavBar from "./HorizontalNav/page";
+import Footer from "./Footer";
+import { getHorizontalMenuItems } from "@/helpers/Manu";
+import { ChildrenType } from "@/types/component-props";
+import { toggleDocumentAttribute } from "@/utils/layout";
+import { useLayoutContext } from "@/context/useLayoutContext";
+import { Offcanvas } from "react-bootstrap";
+import VerticalNavigationBar from "./VerticalNavigationBar/page";
 
 const HorizontalLayout = ({ children }: ChildrenType) => {
-  const menuItems = getHorizontalMenuItems()
+  const menuItems = getHorizontalMenuItems();
 
-  const { layoutOrientation,menu,horizontalMenu } = useLayoutContext()
+  const { layoutOrientation, menu, horizontalMenu } = useLayoutContext();
 
   useEffect(() => {
-    toggleDocumentAttribute('data-layout', layoutOrientation === 'vertical' ? '' : 'topnav')
+    toggleDocumentAttribute(
+      "data-layout",
+      layoutOrientation === "vertical" ? "" : "topnav",
+    );
 
     return () => {
-      toggleDocumentAttribute('data-layout', layoutOrientation === 'vertical' ? '' : 'topnav', true)
-    }
-  })
+      toggleDocumentAttribute(
+        "data-layout",
+        layoutOrientation === "vertical" ? "" : "topnav",
+        true,
+      );
+    };
+  });
   return (
     <div className="wrapper">
       {/* {
@@ -37,7 +44,7 @@ const HorizontalLayout = ({ children }: ChildrenType) => {
       <Suspense fallback={<FallbackLoading />}>
         {/* {
           menu.size == 'default' && */}
-            <HorizontalNavBar menuItems={menuItems} />
+        <HorizontalNavBar menuItems={menuItems} />
         {/* } */}
       </Suspense>
 
@@ -46,7 +53,7 @@ const HorizontalLayout = ({ children }: ChildrenType) => {
         <Footer />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HorizontalLayout
+export default HorizontalLayout;

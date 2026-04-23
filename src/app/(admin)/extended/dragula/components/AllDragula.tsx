@@ -1,8 +1,8 @@
-'use client'
-import { Col, Row } from 'react-bootstrap'
-import DropExample from './DropExample'
-import MoveStuff from './MoveStuff'
-import MoveStuffHandle from './MoveStuffHandle'
+"use client";
+import { Col, Row } from "react-bootstrap";
+import DropExample from "./DropExample";
+import MoveStuff from "./MoveStuff";
+import MoveStuffHandle from "./MoveStuffHandle";
 
 const AllDragula = () => {
   return (
@@ -23,7 +23,7 @@ const AllDragula = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllDragula
+export default AllDragula;

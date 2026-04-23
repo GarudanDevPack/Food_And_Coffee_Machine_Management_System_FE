@@ -1,49 +1,71 @@
-'use client'
-import SelectFormInput from '@/components/form/SelectFormInput'
-import TextFormInput from '@/components/form/TextFormInput'
-import type { CalendarFormType } from '@/types/component-props'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useEffect } from 'react'
-import { Button, Col, Modal, ModalBody, ModalHeader, ModalTitle, Row } from 'react-bootstrap'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
-import type { SubmitEventType } from '../useCalendar'
+"use client";
+import SelectFormInput from "@/components/form/SelectFormInput";
+import TextFormInput from "@/components/form/TextFormInput";
+import type { CalendarFormType } from "@/types/component-props";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
+import {
+  Button,
+  Col,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  ModalTitle,
+  Row,
+} from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import type { SubmitEventType } from "../useCalendar";
 
-const AddEditEvent = ({ eventData, isEditable, onAddEvent, onRemoveEvent, onUpdateEvent, open, toggle }: CalendarFormType) => {
+const AddEditEvent = ({
+  eventData,
+  isEditable,
+  onAddEvent,
+  onRemoveEvent,
+  onUpdateEvent,
+  open,
+  toggle,
+}: CalendarFormType) => {
   const eventFormSchema = yup.object({
-    title: yup.string().required('Please enter event title'),
-    category: yup.string().required('Please select event category'),
-  })
+    title: yup.string().required("Please enter event title"),
+    category: yup.string().required("Please select event category"),
+  });
 
-  type FormValues = yup.InferType<typeof eventFormSchema>
+  type FormValues = yup.InferType<typeof eventFormSchema>;
 
   const { handleSubmit, control, setValue, reset } = useForm<FormValues>({
     resolver: yupResolver(eventFormSchema),
     defaultValues: {
-      title: eventData?.title ?? '',
-      category: eventData?.className ? String(eventData.className) : 'bg-danger',
+      title: eventData?.title ?? "",
+      category: eventData?.className
+        ? String(eventData.className)
+        : "bg-danger",
     },
-  })
+  });
 
   useEffect(() => {
     if (eventData?.title) {
-      setValue('title', String(eventData?.title))
-      setValue('category', String(eventData?.className))
+      setValue("title", String(eventData?.title));
+      setValue("category", String(eventData?.className));
     }
-  }, [eventData])
+  }, [eventData]);
 
   useEffect(() => {
-    if (!open) reset()
-  }, [open])
+    if (!open) reset();
+  }, [open]);
 
   const onSubmitEvent = (data: SubmitEventType) => {
-    isEditable ? onUpdateEvent(data) : onAddEvent(data)
-  }
+    isEditable ? onUpdateEvent(data) : onAddEvent(data);
+  };
 
   return (
     <Modal show={open} onHide={toggle} className="fade" tabIndex={-1}>
       <div className="modal-content">
-        <form onSubmit={handleSubmit(onSubmitEvent)} className="needs-validation" name="event-form">
+        <form
+          onSubmit={handleSubmit(onSubmitEvent)}
+          className="needs-validation"
+          name="event-form"
+        >
           <ModalHeader className="modal-header p-3 border-bottom-0" closeButton>
             <ModalTitle className="modal-title" as="h5">
               Event
@@ -52,7 +74,13 @@ const AddEditEvent = ({ eventData, isEditable, onAddEvent, onRemoveEvent, onUpda
           <ModalBody className="px-3 pb-3 pt-0">
             <Row>
               <Col xs={12}>
-                <TextFormInput control={control} name="title" containerClassName="mb-3" label="Event Name" placeholder="Insert Event Name" />
+                <TextFormInput
+                  control={control}
+                  name="title"
+                  containerClassName="mb-3"
+                  label="Event Name"
+                  placeholder="Insert Event Name"
+                />
               </Col>
               <Col xs={12}>
                 <SelectFormInput
@@ -61,13 +89,13 @@ const AddEditEvent = ({ eventData, isEditable, onAddEvent, onRemoveEvent, onUpda
                   label="Category"
                   containerClassName="mb-3"
                   options={[
-                    { value: 'bg-primary', label: 'Blue' },
-                    { value: 'bg-secondary', label: 'Gray Dark' },
-                    { value: 'bg-success', label: 'Green' },
-                    { value: 'bg-info', label: 'Cyan' },
-                    { value: 'bg-warning', label: 'Yellow' },
-                    { value: 'bg-danger', label: 'Red' },
-                    { value: 'bg-dark', label: 'Dark' },
+                    { value: "bg-primary", label: "Blue" },
+                    { value: "bg-secondary", label: "Gray Dark" },
+                    { value: "bg-success", label: "Green" },
+                    { value: "bg-info", label: "Cyan" },
+                    { value: "bg-warning", label: "Yellow" },
+                    { value: "bg-danger", label: "Red" },
+                    { value: "bg-dark", label: "Dark" },
                   ]}
                 />
               </Col>
@@ -75,13 +103,22 @@ const AddEditEvent = ({ eventData, isEditable, onAddEvent, onRemoveEvent, onUpda
             <Row>
               <Col xs={6}>
                 {isEditable && (
-                  <button onClick={onRemoveEvent} type="button" className="btn btn-danger">
+                  <button
+                    onClick={onRemoveEvent}
+                    type="button"
+                    className="btn btn-danger"
+                  >
                     Delete
                   </button>
                 )}
               </Col>
               <Col xs={6} className="text-end">
-                <Button variant="light" type="button" className="me-1" onClick={toggle}>
+                <Button
+                  variant="light"
+                  type="button"
+                  className="me-1"
+                  onClick={toggle}
+                >
                   Cancel
                 </Button>
                 <Button variant="primary" type="submit">
@@ -93,7 +130,7 @@ const AddEditEvent = ({ eventData, isEditable, onAddEvent, onRemoveEvent, onUpda
         </form>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
-export default AddEditEvent
+export default AddEditEvent;

@@ -1,89 +1,90 @@
-import { ApexOptions } from 'apexcharts'
+import { ApexOptions } from "apexcharts";
 
 function generateData(count: number, yrange: any) {
-  let i = 0
-  const series = []
+  let i = 0;
+  const series = [];
   while (i < count) {
-    const x = (i + 1).toString()
-    const y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min
+    const x = (i + 1).toString();
+    const y =
+      Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
     series.push({
       x: x,
       y: y,
-    })
-    i++
+    });
+    i++;
   }
-  return series
+  return series;
 }
 
 export const basicHeatmapChartOpts: ApexOptions = {
   chart: {
     height: 380,
-    type: 'heatmap',
+    type: "heatmap",
   },
   dataLabels: {
     enabled: false,
   },
-  colors: ['#6b5eae'],
+  colors: ["#6b5eae"],
   series: [
     {
-      name: 'Metric 1',
+      name: "Metric 1",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 2',
+      name: "Metric 2",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 3',
+      name: "Metric 3",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 4',
+      name: "Metric 4",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 5',
+      name: "Metric 5",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric  6',
+      name: "Metric  6",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 7',
+      name: "Metric 7",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 8',
+      name: "Metric 8",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 9',
+      name: "Metric 9",
       data: generateData(20, {
         min: 0,
         max: 90,
@@ -91,78 +92,88 @@ export const basicHeatmapChartOpts: ApexOptions = {
     },
   ],
   xaxis: {
-    type: 'category',
+    type: "category",
   },
-}
+};
 
 export const multipleSeriesHeatmapChartOpts: ApexOptions = {
   chart: {
     height: 380,
-    type: 'heatmap',
+    type: "heatmap",
   },
   dataLabels: {
     enabled: false,
   },
-  colors: ['#F3B415', '#F27036', '#663F59', '#6A6E94', '#4E88B4', '#00A7C6', '#18D8D8', '#A9D794', '#46AF78'],
+  colors: [
+    "#F3B415",
+    "#F27036",
+    "#663F59",
+    "#6A6E94",
+    "#4E88B4",
+    "#00A7C6",
+    "#18D8D8",
+    "#A9D794",
+    "#46AF78",
+  ],
   series: [
     {
-      name: 'Metric 1',
+      name: "Metric 1",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 2',
+      name: "Metric 2",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 3',
+      name: "Metric 3",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 4',
+      name: "Metric 4",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 5',
+      name: "Metric 5",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 6',
+      name: "Metric 6",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 7',
+      name: "Metric 7",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 8',
+      name: "Metric 8",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric 9',
+      name: "Metric 9",
       data: generateData(20, {
         min: 0,
         max: 90,
@@ -170,14 +181,14 @@ export const multipleSeriesHeatmapChartOpts: ApexOptions = {
     },
   ],
   xaxis: {
-    type: 'category',
+    type: "category",
   },
-}
+};
 
 export const HeatmapColorRangeChartOpts: ApexOptions = {
   chart: {
     height: 380,
-    type: 'heatmap',
+    type: "heatmap",
   },
   plotOptions: {
     heatmap: {
@@ -188,26 +199,26 @@ export const HeatmapColorRangeChartOpts: ApexOptions = {
           {
             from: -30,
             to: 5,
-            name: 'Low',
-            color: '#fa5c7c',
+            name: "Low",
+            color: "#fa5c7c",
           },
           {
             from: 6,
             to: 20,
-            name: 'Medium',
-            color: '#fbcc5c',
+            name: "Medium",
+            color: "#fbcc5c",
           },
           {
             from: 21,
             to: 45,
-            name: 'High',
-            color: '#39afd1',
+            name: "High",
+            color: "#39afd1",
           },
           {
             from: 46,
             to: 55,
-            name: 'Extreme',
-            color: '#31ce77',
+            name: "Extreme",
+            color: "#31ce77",
           },
         ],
       },
@@ -218,75 +229,75 @@ export const HeatmapColorRangeChartOpts: ApexOptions = {
   },
   series: [
     {
-      name: 'Jan',
+      name: "Jan",
       data: generateData(20, {
         min: -30,
         max: 55,
       }),
     },
     {
-      name: 'Feb',
+      name: "Feb",
       data: generateData(20, {
         min: -30,
         max: 55,
       }),
     },
     {
-      name: 'Mar',
+      name: "Mar",
       data: generateData(20, {
         min: -30,
         max: 55,
       }),
     },
     {
-      name: 'Apr',
+      name: "Apr",
       data: generateData(20, {
         min: -30,
         max: 55,
       }),
     },
     {
-      name: 'May',
+      name: "May",
       data: generateData(20, {
         min: -30,
         max: 55,
       }),
     },
     {
-      name: 'Jun',
+      name: "Jun",
       data: generateData(20, {
         min: -30,
         max: 55,
       }),
     },
     {
-      name: 'Jul',
+      name: "Jul",
       data: generateData(20, {
         min: -30,
         max: 55,
       }),
     },
     {
-      name: 'Aug',
+      name: "Aug",
       data: generateData(20, {
         min: -30,
         max: 55,
       }),
     },
     {
-      name: 'Sep',
+      name: "Sep",
       data: generateData(20, {
         min: -30,
         max: 55,
       }),
     },
   ],
-}
+};
 
 export const HeatmapRangeShadesChartOpts: ApexOptions = {
   chart: {
     height: 380,
-    type: 'heatmap',
+    type: "heatmap",
   },
   stroke: {
     width: 0,
@@ -300,83 +311,83 @@ export const HeatmapRangeShadesChartOpts: ApexOptions = {
           {
             from: 0,
             to: 50,
-            color: '#31ce77',
+            color: "#31ce77",
           },
           {
             from: 51,
             to: 100,
-            color: '#fbcc5c',
+            color: "#fbcc5c",
           },
         ],
       },
     },
   },
-  colors: ['#31ce77', '#fbcc5c'],
+  colors: ["#31ce77", "#fbcc5c"],
   dataLabels: {
     enabled: true,
     style: {
-      colors: ['#fff'],
+      colors: ["#fff"],
     },
   },
   series: [
     {
-      name: 'Metric1',
+      name: "Metric1",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric2',
+      name: "Metric2",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric3',
+      name: "Metric3",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric4',
+      name: "Metric4",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric5',
+      name: "Metric5",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric6',
+      name: "Metric6",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric7',
+      name: "Metric7",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric8',
+      name: "Metric8",
       data: generateData(20, {
         min: 0,
         max: 90,
       }),
     },
     {
-      name: 'Metric8',
+      name: "Metric8",
       data: generateData(20, {
         min: 0,
         max: 90,
@@ -385,9 +396,9 @@ export const HeatmapRangeShadesChartOpts: ApexOptions = {
   ],
 
   xaxis: {
-    type: 'category',
+    type: "category",
   },
   grid: {
-    borderColor: '#f1f3fa',
+    borderColor: "#f1f3fa",
   },
-}
+};

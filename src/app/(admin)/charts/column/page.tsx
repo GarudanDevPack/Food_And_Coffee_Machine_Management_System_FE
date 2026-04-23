@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import AllColumnChart from './Components/AllColumnChart'
-import { Metadata } from 'next'
+import PageTitle from "@/components/PageTitle";
+import AllColumnChart from "./Components/AllColumnChart";
+import { Metadata } from "next";
 
-export const metadata: Metadata = { title: 'Apex Column Charts' }
+export const metadata: Metadata = { title: "Apex Column Charts" };
 
 const ColumnChart = () => {
   return (
@@ -10,7 +10,7 @@ const ColumnChart = () => {
       <PageTitle title="Candlestick Charts" subTitle="Apex" />
       <AllColumnChart />
     </>
-  )
-}
+  );
+};
 
-export default ColumnChart
+export default ColumnChart;

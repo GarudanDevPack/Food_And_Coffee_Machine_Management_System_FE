@@ -1,7 +1,13 @@
-import Link from 'next/link'
-import IconifyIcon from './wrappers/IconifyIcon'
+import Link from "next/link";
+import IconifyIcon from "./wrappers/IconifyIcon";
 
-const PageTitle = ({ title, subTitle }: { title: string; subTitle?: string }) => {
+const PageTitle = ({
+  title,
+  subTitle,
+}: {
+  title: string;
+  subTitle?: string;
+}) => {
   return (
     <div className="page-title-head d-flex align-items-center gap-2">
       <div className="flex-grow-1">
@@ -13,7 +19,12 @@ const PageTitle = ({ title, subTitle }: { title: string; subTitle?: string }) =>
             <Link href="">QFOX</Link>
           </li>
           <div className="mx-1 flex-centered">
-            <IconifyIcon className="mt-0" icon="tabler:chevron-right" height={12} width={12} />
+            <IconifyIcon
+              className="mt-0"
+              icon="tabler:chevron-right"
+              height={12}
+              width={12}
+            />
           </div>
           {subTitle && (
             <>
@@ -21,7 +32,12 @@ const PageTitle = ({ title, subTitle }: { title: string; subTitle?: string }) =>
                 <Link href="">{subTitle}</Link>
               </li>
               <div className="mx-1  flex-centered">
-                <IconifyIcon className="mt-0" icon="tabler:chevron-right" height={12} width={12} />
+                <IconifyIcon
+                  className="mt-0"
+                  icon="tabler:chevron-right"
+                  height={12}
+                  width={12}
+                />
               </div>
             </>
           )}
@@ -29,7 +45,7 @@ const PageTitle = ({ title, subTitle }: { title: string; subTitle?: string }) =>
         </ol>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PageTitle
+export default PageTitle;

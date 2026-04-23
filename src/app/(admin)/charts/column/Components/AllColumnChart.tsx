@@ -1,7 +1,7 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from '@/components/ApexChart'
-import { Col, Row } from 'react-bootstrap'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import ReactApexChart from "@/components/ApexChart";
+import { Col, Row } from "react-bootstrap";
 import {
   basicColumnChartOpts,
   columnGroupChartOpts,
@@ -13,17 +13,23 @@ import {
   rangeColumnChartOpts,
   rotateColumnChartOpts,
   stackedColumnChartOpts,
-} from '../data'
+} from "../data";
 
 const BasicColumnChart = () => {
   return (
     <ComponentContainerCard title="Basic Column Chart">
       <div dir="ltr">
-        <ReactApexChart height={396} options={basicColumnChartOpts} series={basicColumnChartOpts.series} type="bar" className="apex-charts" />
+        <ReactApexChart
+          height={396}
+          options={basicColumnChartOpts}
+          series={basicColumnChartOpts.series}
+          type="bar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const DatalabelsChart = () => {
   return (
@@ -38,18 +44,24 @@ const DatalabelsChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const StackedColumnChart = () => {
   return (
     <ComponentContainerCard title="Stacked Column Chart">
       <div dir="ltr">
-        <ReactApexChart height={396} options={stackedColumnChartOpts} series={stackedColumnChartOpts.series} type="bar" className="apex-charts" />
+        <ReactApexChart
+          height={396}
+          options={stackedColumnChartOpts}
+          series={stackedColumnChartOpts.series}
+          type="bar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const FullStackedColumnChart = () => {
   return (
@@ -64,48 +76,72 @@ const FullStackedColumnChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ColumnMarkersChart = () => {
   return (
     <ComponentContainerCard title="Column with Markers">
       <div dir="ltr">
-        <ReactApexChart height={380} options={columnMarkersChartOpts} series={columnMarkersChartOpts.series} type="bar" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={columnMarkersChartOpts}
+          series={columnMarkersChartOpts.series}
+          type="bar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ColumnGroupChart = () => {
   return (
     <ComponentContainerCard title="Column with Group Label">
       <div dir="ltr">
-        <ReactApexChart height={396} options={columnGroupChartOpts} series={columnGroupChartOpts.series} type="bar" className="apex-charts" />
+        <ReactApexChart
+          height={396}
+          options={columnGroupChartOpts}
+          series={columnGroupChartOpts.series}
+          type="bar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ColumnRotatedChart = () => {
   return (
     <ComponentContainerCard title="Column Chart with rotated labels &amp; Annotations">
       <div dir="ltr">
-        <ReactApexChart height={396} options={rotateColumnChartOpts} series={rotateColumnChartOpts.series} type="bar" className="apex-charts" />
+        <ReactApexChart
+          height={396}
+          options={rotateColumnChartOpts}
+          series={rotateColumnChartOpts.series}
+          type="bar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ColumnNegativeValuesChart = () => {
   return (
     <ComponentContainerCard title="Column Chart with negative values">
       <div dir="ltr">
-        <ReactApexChart height={396} options={negativeColumnChartOpts} series={negativeColumnChartOpts.series} type="bar" className="apex-charts" />
+        <ReactApexChart
+          height={396}
+          options={negativeColumnChartOpts}
+          series={negativeColumnChartOpts.series}
+          type="bar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const DistributedColumnChart = () => {
   return (
@@ -120,18 +156,24 @@ const DistributedColumnChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const RangeColumnChart = () => {
   return (
     <ComponentContainerCard title="Range Column Chart">
       <div dir="ltr">
-        <ReactApexChart height={380} options={rangeColumnChartOpts} series={rangeColumnChartOpts.series} type="rangeBar" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={rangeColumnChartOpts}
+          series={rangeColumnChartOpts.series}
+          type="rangeBar"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllColumnChart = () => {
   return (
@@ -177,7 +219,7 @@ const AllColumnChart = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllColumnChart
+export default AllColumnChart;

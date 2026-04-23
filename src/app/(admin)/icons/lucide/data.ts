@@ -44,15 +44,15 @@ import {
   Unlock,
   User,
   Wifi,
-  Icon
-} from 'lucide-react'
-import Link from 'next/link'
-import { Card } from 'react-bootstrap'
+  Icon,
+} from "lucide-react";
+import Link from "next/link";
+import { Card } from "react-bootstrap";
 
 export type LucideType = {
-  icon: any
-  name: string
-}
+  icon: any;
+  name: string;
+};
 
 export const lucideData: LucideType[] = [
   { icon: Activity, name: "activity" },
@@ -99,5 +99,5 @@ export const lucideData: LucideType[] = [
   { icon: Trash, name: "trash" },
   { icon: Unlock, name: "unlock" },
   { icon: User, name: "user" },
-  { icon: Wifi, name: "wifi" }
-]
+  { icon: Wifi, name: "wifi" },
+];

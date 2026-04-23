@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllBarChart from './components/AllBarChart'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllBarChart from "./components/AllBarChart";
 
-export const metadata: Metadata = { title: 'Apex Bar Charts' }
+export const metadata: Metadata = { title: "Apex Bar Charts" };
 
 const BarChart = () => {
   return (
@@ -10,7 +10,7 @@ const BarChart = () => {
       <PageTitle title="Bar Charts" subTitle="Apex" />
       <AllBarChart />
     </>
-  )
-}
+  );
+};
 
-export default BarChart
+export default BarChart;

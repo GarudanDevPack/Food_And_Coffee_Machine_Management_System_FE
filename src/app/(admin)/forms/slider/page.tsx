@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllSlider from './components/AllSlider'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllSlider from "./components/AllSlider";
 
-export const metadata: Metadata = { title: 'Range Slider' }
+export const metadata: Metadata = { title: "Range Slider" };
 
 const RangeSlider = () => {
   return (
@@ -10,7 +10,7 @@ const RangeSlider = () => {
       <PageTitle title="Range Slider" subTitle="Forms" />
       <AllSlider />
     </>
-  )
-}
+  );
+};
 
-export default RangeSlider
+export default RangeSlider;

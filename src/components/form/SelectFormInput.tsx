@@ -1,10 +1,10 @@
-'use client'
-import { FormLabel } from 'react-bootstrap'
-import Feedback from 'react-bootstrap/esm/Feedback'
-import { Controller, FieldPath, FieldValues } from 'react-hook-form'
-import ReactSelect, { type Props } from 'react-select'
+"use client";
+import { FormLabel } from "react-bootstrap";
+import Feedback from "react-bootstrap/esm/Feedback";
+import { Controller, FieldPath, FieldValues } from "react-hook-form";
+import ReactSelect, { type Props } from "react-select";
 
-import type { FormInputProps } from '@/types/component-props'
+import type { FormInputProps } from "@/types/component-props";
 
 const SelectFormInput = <
   Option extends { value: string; label: string },
@@ -28,7 +28,7 @@ const SelectFormInput = <
       render={({ field, fieldState }) => (
         <div className={containerClassName}>
           {label &&
-            (typeof label === 'string' ? (
+            (typeof label === "string" ? (
               <FormLabel htmlFor={id ?? name} className={labelClassName}>
                 {label}
               </FormLabel>
@@ -41,15 +41,20 @@ const SelectFormInput = <
             {...field}
             options={options}
             onChange={(e) => field.onChange(e!.value)}
-            value={Array.isArray(options) && options?.find((op) => 'value' in op && op.value == field.value)}
+            value={
+              Array.isArray(options) &&
+              options?.find((op) => "value" in op && op.value == field.value)
+            }
             classNamePrefix="react-select"
             id={id ?? name}
           />
-          {!noValidate && fieldState.error?.message && <Feedback type="invalid">{fieldState.error?.message}</Feedback>}
+          {!noValidate && fieldState.error?.message && (
+            <Feedback type="invalid">{fieldState.error?.message}</Feedback>
+          )}
         </div>
       )}
     />
-  )
-}
+  );
+};
 
-export default SelectFormInput
+export default SelectFormInput;

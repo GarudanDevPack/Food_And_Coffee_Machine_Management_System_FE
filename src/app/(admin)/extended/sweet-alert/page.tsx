@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllAlert from './components/AllAlert'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllAlert from "./components/AllAlert";
 
-export const metadata: Metadata = { title: 'Sweet Alert 2' }
+export const metadata: Metadata = { title: "Sweet Alert 2" };
 
 const SweetAlert = () => {
   return (
@@ -10,7 +10,7 @@ const SweetAlert = () => {
       <PageTitle title="Sweet Alert 2" subTitle="Extended UI" />
       <AllAlert />
     </>
-  )
-}
+  );
+};
 
-export default SweetAlert
+export default SweetAlert;

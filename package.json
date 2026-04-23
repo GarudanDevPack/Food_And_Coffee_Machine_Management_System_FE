@@ -20,6 +20,7 @@
     "@hookform/resolvers": "^3.10.0",
     "@react-google-maps/api": "^2.20.5",
     "@smastrom/react-rating": "^1.5.0",
+    "@types/leaflet": "^1.9.21",
     "apexcharts": "^4.4.0",
     "bootstrap": "^5.3.3",
     "bun": "^1.2.2",
@@ -54,6 +55,7 @@
     "react-toastify": "^11.0.3",
     "resolve": "^1.22.10",
     "simplebar-react": "^3.3.0",
+    "socket.io-client": "^4.8.3",
     "sortablejs": "^1.15.6",
     "sweetalert2-react-content": "^5.1.0",
     "yup": "^1.6.1"

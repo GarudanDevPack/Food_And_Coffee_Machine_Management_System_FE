@@ -1,9 +1,9 @@
-import PageTitle from '@/components/PageTitle'
-import React from 'react'
-import AllNotifications from './components/AllNotifications'
-import { Metadata } from 'next'
+import PageTitle from "@/components/PageTitle";
+import React from "react";
+import AllNotifications from "./components/AllNotifications";
+import { Metadata } from "next";
 
-export const metadata: Metadata = { title: 'Notifications' }
+export const metadata: Metadata = { title: "Notifications" };
 
 const Notifications = () => {
   return (
@@ -11,7 +11,7 @@ const Notifications = () => {
       <PageTitle title="Notifications" subTitle="Base UI" />
       <AllNotifications />
     </>
-  )
-}
+  );
+};
 
-export default Notifications
+export default Notifications;

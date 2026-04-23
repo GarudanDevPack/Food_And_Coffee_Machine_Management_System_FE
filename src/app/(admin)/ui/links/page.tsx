@@ -1,12 +1,12 @@
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import PageTitle from '@/components/PageTitle'
-import { colorVariants } from '@/context/constants'
-import { Metadata } from 'next'
-import Link from 'next/link'
-import React from 'react'
-import { Col, Row } from 'react-bootstrap'
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import PageTitle from "@/components/PageTitle";
+import { colorVariants } from "@/context/constants";
+import { Metadata } from "next";
+import Link from "next/link";
+import React from "react";
+import { Col, Row } from "react-bootstrap";
 
-export const metadata: Metadata = { title: 'Links' }
+export const metadata: Metadata = { title: "Links" };
 
 const ColoredLinks = () => {
   return (
@@ -14,14 +14,18 @@ const ColoredLinks = () => {
       title="Colored links"
       description={
         <>
-          You can use the <code>.link-*</code> classes to colorize links. Unlike the
+          You can use the <code>.link-*</code> classes to colorize links. Unlike
+          the
           <Link href="/ui/utilities">
             <code>.text-*</code> classes
           </Link>
-          , these classes have a <code>:hover</code> and <code>:focus</code> state. Some of the link styles use a relatively light foreground color,
-          and should only be used on a dark background in order to have sufficient contrast.
+          , these classes have a <code>:hover</code> and <code>:focus</code>{" "}
+          state. Some of the link styles use a relatively light foreground
+          color, and should only be used on a dark background in order to have
+          sufficient contrast.
         </>
-      }>
+      }
+    >
       {colorVariants.slice(0, 6).map((item, idx) => (
         <p key={idx}>
           <Link href="" className={`link-${item}`}>
@@ -45,8 +49,8 @@ const ColoredLinks = () => {
         </Link>
       </p>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const LinkUtilities = () => {
   return (
@@ -54,37 +58,49 @@ const LinkUtilities = () => {
       title="Link utilities"
       description={
         <>
-          <Link href="/ui/utilities">Colored link helpers</Link> have been updated to pair with our link utilities. Use the new utilities to modify
-          the link opacity, underline opacity, and underline offset.
+          <Link href="/ui/utilities">Colored link helpers</Link> have been
+          updated to pair with our link utilities. Use the new utilities to
+          modify the link opacity, underline opacity, and underline offset.
         </>
-      }>
+      }
+    >
       {colorVariants.slice(0, 6).map((item, idx) => (
         <p key={idx}>
-          <Link href="" className={`link-${item} text-decoration-underline link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover`}>
+          <Link
+            href=""
+            className={`link-${item} text-decoration-underline link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover`}
+          >
             {item.charAt(0).toUpperCase() + item.slice(1)} link
           </Link>
         </p>
       ))}
       <p>
-        <Link href="" className="link-light text-decoration-underline link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+        <Link
+          href=""
+          className="link-light text-decoration-underline link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+        >
           Light link
         </Link>
       </p>
       <p>
-        <Link href="" className="link-dark text-decoration-underline link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+        <Link
+          href=""
+          className="link-dark text-decoration-underline link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+        >
           Dark link
         </Link>
       </p>
       <p>
         <Link
           href=""
-          className="link-body-emphasis text-decoration-underline link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">
+          className="link-body-emphasis text-decoration-underline link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"
+        >
           Emphasis link
         </Link>
       </p>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const LinkOpacity = () => {
   return (
@@ -92,10 +108,12 @@ const LinkOpacity = () => {
       title="Link opacity"
       description={
         <>
-          Change the alpha opacity of the link <code>rgba()</code> color value with utilities. Please be aware that changes to a color’s opacity can
+          Change the alpha opacity of the link <code>rgba()</code> color value
+          with utilities. Please be aware that changes to a color’s opacity can
           lead to links with <em>insufficient</em> contrast.
         </>
-      }>
+      }
+    >
       <p>
         <Link className="link-opacity-10" href="">
           Link opacity 10
@@ -122,12 +140,15 @@ const LinkOpacity = () => {
         </Link>
       </p>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const LinkHoverOpacity = () => {
   return (
-    <ComponentContainerCard title="Link hover opacity" description={<>You can even change the opacity level on hover.</>}>
+    <ComponentContainerCard
+      title="Link hover opacity"
+      description={<>You can even change the opacity level on hover.</>}
+    >
       <p>
         <Link className="link-opacity-10-hover" href="">
           Link hover opacity 10
@@ -154,34 +175,54 @@ const LinkHoverOpacity = () => {
         </Link>
       </p>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const UnderlineColor = () => {
   return (
-    <ComponentContainerCard title="Underline color" description={<>Change the underline’s color independent of the link text color.</>}>
+    <ComponentContainerCard
+      title="Underline color"
+      description={
+        <>Change the underline’s color independent of the link text color.</>
+      }
+    >
       <p>
-        <Link href="" className="text-decoration-underline link-underline-primary">
+        <Link
+          href=""
+          className="text-decoration-underline link-underline-primary"
+        >
           Primary underline
         </Link>
       </p>
       <p>
-        <Link href="" className="text-decoration-underline link-underline-secondary">
+        <Link
+          href=""
+          className="text-decoration-underline link-underline-secondary"
+        >
           Secondary underline
         </Link>
       </p>
       <p>
-        <Link href="" className="text-decoration-underline link-underline-success">
+        <Link
+          href=""
+          className="text-decoration-underline link-underline-success"
+        >
           Success underline
         </Link>
       </p>
       <p>
-        <Link href="" className="text-decoration-underline link-underline-danger">
+        <Link
+          href=""
+          className="text-decoration-underline link-underline-danger"
+        >
           Danger underline
         </Link>
       </p>
       <p>
-        <Link href="" className="text-decoration-underline link-underline-warning">
+        <Link
+          href=""
+          className="text-decoration-underline link-underline-warning"
+        >
           Warning underline
         </Link>
       </p>
@@ -191,7 +232,10 @@ const UnderlineColor = () => {
         </Link>
       </p>
       <p>
-        <Link href="" className="text-decoration-underline link-underline-light">
+        <Link
+          href=""
+          className="text-decoration-underline link-underline-light"
+        >
           Light underline
         </Link>
       </p>
@@ -201,8 +245,8 @@ const UnderlineColor = () => {
         </Link>
       </p>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const UnderlineOpacity = () => {
   return (
@@ -210,43 +254,63 @@ const UnderlineOpacity = () => {
       title="Underline opacity"
       description={
         <>
-          Change the underline’s opacity. Requires adding <code>.link-underline</code> to first set an <code>rgba()</code> color we use to then modify
-          the alpha opacity.
+          Change the underline’s opacity. Requires adding{" "}
+          <code>.link-underline</code> to first set an <code>rgba()</code> color
+          we use to then modify the alpha opacity.
         </>
-      }>
+      }
+    >
       <p>
-        <Link className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-0" href="">
+        <Link
+          className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-0"
+          href=""
+        >
           Underline opacity 0
         </Link>
       </p>
       <p>
-        <Link className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-10" href="">
+        <Link
+          className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-10"
+          href=""
+        >
           Underline opacity 10
         </Link>
       </p>
       <p>
-        <Link className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-25" href="">
+        <Link
+          className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-25"
+          href=""
+        >
           Underline opacity 25
         </Link>
       </p>
       <p>
-        <Link className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-50" href="">
+        <Link
+          className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-50"
+          href=""
+        >
           Underline opacity 50
         </Link>
       </p>
       <p>
-        <Link className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-75" href="">
+        <Link
+          className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-75"
+          href=""
+        >
           Underline opacity 75
         </Link>
       </p>
       <p className="mb-0">
-        <Link className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-100" href="">
+        <Link
+          className="text-decoration-underline link-offset-2 link-underline link-underline-opacity-100"
+          href=""
+        >
           Underline opacity 100
         </Link>
       </p>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const UnderlineOffset = () => {
   return (
@@ -254,10 +318,12 @@ const UnderlineOffset = () => {
       title="Underline offset"
       description={
         <>
-          Change the underline’s opacity. Requires adding <code>.link-underline</code> to first set an <code>rgba()</code> color we use to then modify
-          the alpha opacity.
+          Change the underline’s opacity. Requires adding{" "}
+          <code>.link-underline</code> to first set an <code>rgba()</code> color
+          we use to then modify the alpha opacity.
         </>
-      }>
+      }
+    >
       <p>
         <Link href="">Default link</Link>
       </p>
@@ -277,8 +343,8 @@ const UnderlineOffset = () => {
         </Link>
       </p>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const HoverVariants = () => {
   return (
@@ -286,18 +352,22 @@ const HoverVariants = () => {
       title="Hover variants"
       description={
         <>
-          Just like the <code>.link-opacity-*-hover</code> utilities, <code>.link-offset</code> and <code>.link-underline-opacity</code> utilities
-          include <code>:hover</code> variants by default. Mix and match to create unique link styles.
+          Just like the <code>.link-opacity-*-hover</code> utilities,{" "}
+          <code>.link-offset</code> and <code>.link-underline-opacity</code>{" "}
+          utilities include <code>:hover</code> variants by default. Mix and
+          match to create unique link styles.
         </>
-      }>
+      }
+    >
       <Link
         className="link-offset-2 link-offset-3-hover text-decoration-underline link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
-        href="">
+        href=""
+      >
         Underline opacity 0
       </Link>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const Links = () => {
   return (
@@ -336,7 +406,7 @@ const Links = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default Links
+export default Links;

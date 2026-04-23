@@ -1,30 +1,34 @@
-'use client'
-import avatar1 from '@/assets/images/users/avatar-1.jpg'
-import avatar2 from '@/assets/images/users/avatar-2.jpg'
-import avatar3 from '@/assets/images/users/avatar-3.jpg'
-import avatar4 from '@/assets/images/users/avatar-4.jpg'
-import avatar5 from '@/assets/images/users/avatar-5.jpg'
-import avatar6 from '@/assets/images/users/avatar-6.jpg'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import Image, { StaticImageData } from 'next/image'
-import { useState } from 'react'
-import { Card, CardBody, Col, Row } from 'react-bootstrap'
-import { ReactSortable } from 'react-sortablejs'
+"use client";
+import avatar1 from "@/assets/images/users/avatar-1.jpg";
+import avatar2 from "@/assets/images/users/avatar-2.jpg";
+import avatar3 from "@/assets/images/users/avatar-3.jpg";
+import avatar4 from "@/assets/images/users/avatar-4.jpg";
+import avatar5 from "@/assets/images/users/avatar-5.jpg";
+import avatar6 from "@/assets/images/users/avatar-6.jpg";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import Image, { StaticImageData } from "next/image";
+import { useState } from "react";
+import { Card, CardBody, Col, Row } from "react-bootstrap";
+import { ReactSortable } from "react-sortablejs";
 
 type TeamMemberType = {
-  id: number
-  name: string
-  avatar: StaticImageData
-  position: string
-  desc?: string
-}
+  id: number;
+  name: string;
+  avatar: StaticImageData;
+  position: string;
+  desc?: string;
+};
 
 const MovableCard = ({ item }: { item: TeamMemberType }) => {
   return (
     <Card className="mb-0 mt-2">
       <CardBody>
         <div className="d-flex align-items-start">
-          <Image src={item.avatar} alt="image" className="me-3 d-none d-sm-block avatar-sm rounded-circle" />
+          <Image
+            src={item.avatar}
+            alt="image"
+            className="me-3 d-none d-sm-block avatar-sm rounded-circle"
+          />
           <div className="w-100 overflow-hidden">
             <h5 className="mb-1 mt-0">{item.name}</h5>
             <p> {item.position} </p>
@@ -38,57 +42,57 @@ const MovableCard = ({ item }: { item: TeamMemberType }) => {
         </div>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 const MoveStuff = () => {
   const [team1, setTeam1] = useState<TeamMemberType[]>([
     {
       id: 1,
-      name: 'Louis K. Bond',
+      name: "Louis K. Bond",
       avatar: avatar1,
-      position: 'Founder & CEO',
+      position: "Founder & CEO",
       desc: "Disrupt pork belly poutine, asymmetrical tousled succulents selfies. You probably haven't heard of them tattooed master cleanse live-edge keffiyeh.",
     },
     {
       id: 2,
-      name: 'Dennis N. Cloutier',
+      name: "Dennis N. Cloutier",
       avatar: avatar2,
-      position: 'Software Engineer',
+      position: "Software Engineer",
       desc: "Disrupt pork belly poutine, asymmetrical tousled succulents selfies. You probably haven't heard of them tattooed master cleanse live-edge keffiyeh.",
     },
     {
       id: 3,
-      name: 'Susan J. Sander',
+      name: "Susan J. Sander",
       avatar: avatar3,
-      position: 'Web Designer',
+      position: "Web Designer",
       desc: "Disrupt pork belly poutine, asymmetrical tousled succulents selfies. You probably haven't heard of them tattooed master cleanse live-edge keffiyeh.",
     },
-  ])
+  ]);
 
   const [team2, setTeam2] = useState<TeamMemberType[]>([
     {
       id: 1,
-      name: 'James M. Short',
+      name: "James M. Short",
       avatar: avatar4,
-      position: 'Web Developer',
+      position: "Web Developer",
       desc: "Disrupt pork belly poutine, asymmetrical tousled succulents selfies. You probably haven't heard of them tattooed master cleanse live-edge keffiyeh.",
     },
     {
       id: 2,
-      name: 'Gabriel J. Snyder',
+      name: "Gabriel J. Snyder",
       avatar: avatar5,
-      position: 'Business Analyst',
+      position: "Business Analyst",
       desc: "Disrupt pork belly poutine, asymmetrical tousled succulents selfies. You probably haven't heard of them tattooed master cleanse live-edge keffiyeh.",
     },
     {
       id: 3,
-      name: 'Louie C. Mason',
+      name: "Louie C. Mason",
       avatar: avatar6,
-      position: 'Human Resources',
+      position: "Human Resources",
       desc: "Disrupt pork belly poutine, asymmetrical tousled succulents selfies. You probably haven't heard of them tattooed master cleanse live-edge keffiyeh.",
     },
-  ])
+  ]);
 
   return (
     <>
@@ -98,14 +102,28 @@ const MoveStuff = () => {
           <>
             Just specify the data attribute&nbsp;
             <code>data-plugin=&apos;dragula&apos;</code> and&nbsp;
-            <code>data-containers=&apos;[&quot;first-container-id&quot;, &quot;second-container-id&quot;]&apos;</code>.
+            <code>
+              data-containers=&apos;[&quot;first-container-id&quot;,
+              &quot;second-container-id&quot;]&apos;
+            </code>
+            .
           </>
-        }>
-        <Row data-plugin="dragula" data-containers='["company-list-left", "company-list-right"]'>
+        }
+      >
+        <Row
+          data-plugin="dragula"
+          data-containers='["company-list-left", "company-list-right"]'
+        >
           <Col md={6}>
             <div className="bg-light bg-opacity-50 p-2 p-lg-4">
               <h5 className="mt-0">Part 1</h5>
-              <ReactSortable group="teamList" list={team1} setList={setTeam1} id="company-list-left" className="py-2">
+              <ReactSortable
+                group="teamList"
+                list={team1}
+                setList={setTeam1}
+                id="company-list-left"
+                className="py-2"
+              >
                 {team1.map((item, idx) => (
                   <MovableCard key={idx} item={item} />
                 ))}
@@ -115,7 +133,13 @@ const MoveStuff = () => {
           <Col md={6}>
             <div className="bg-light bg-opacity-50 p-2 p-lg-4">
               <h5 className="mt-0">Part 2</h5>
-              <ReactSortable group="teamList" list={team2} setList={setTeam2} id="company-list-right" className="py-2">
+              <ReactSortable
+                group="teamList"
+                list={team2}
+                setList={setTeam2}
+                id="company-list-right"
+                className="py-2"
+              >
                 {team2.map((item, idx) => (
                   <MovableCard key={idx} item={item} />
                 ))}
@@ -125,7 +149,7 @@ const MoveStuff = () => {
         </Row>
       </ComponentContainerCard>
     </>
-  )
-}
+  );
+};
 
-export default MoveStuff
+export default MoveStuff;

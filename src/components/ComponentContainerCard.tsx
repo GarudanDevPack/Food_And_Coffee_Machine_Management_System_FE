@@ -1,13 +1,17 @@
-import { ReactNode } from 'react'
-import { Card, CardBody, CardHeader } from 'react-bootstrap'
+import { ReactNode } from "react";
+import { Card, CardBody, CardHeader } from "react-bootstrap";
 
 type ContainerCardProps = {
-  title: string
-  description?: ReactNode
-  children: ReactNode
-}
+  title: string;
+  description?: ReactNode;
+  children: ReactNode;
+};
 
-const ComponentContainerCard = ({ title, description, children }: ContainerCardProps) => {
+const ComponentContainerCard = ({
+  title,
+  description,
+  children,
+}: ContainerCardProps) => {
   return (
     <Card>
       <CardHeader className="border-0 border-bottom border-dashed">
@@ -18,7 +22,7 @@ const ComponentContainerCard = ({ title, description, children }: ContainerCardP
         {children}
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
-export default ComponentContainerCard
+export default ComponentContainerCard;

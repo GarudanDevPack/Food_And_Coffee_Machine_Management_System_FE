@@ -1,9 +1,7 @@
-import IconView from './components/IconView'
+import IconView from "./components/IconView";
 
 const IconViewPage = () => {
-  return (
-    <IconView />
-  )
-}
+  return <IconView />;
+};
 
-export default IconViewPage
+export default IconViewPage;

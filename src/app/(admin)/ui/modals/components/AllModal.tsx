@@ -1,32 +1,61 @@
-'use client'
-import logoDark from '@/assets/images/logo-dark.png'
-import logo from '@/assets/images/logo.png'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import IconifyIcon from '@/components/wrappers/IconifyIcon'
-import useModal from '@/hooks/useModal'
-import useToggle from '@/hooks/useToggle'
-import { toSentenceCase } from '@/utils/change-casing'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState } from 'react'
-import { Button, Col, Form, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row } from 'react-bootstrap'
+"use client";
+import logoDark from "@/assets/images/logo-dark.png";
+import logo from "@/assets/images/logo.png";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import useModal from "@/hooks/useModal";
+import useToggle from "@/hooks/useToggle";
+import { toSentenceCase } from "@/utils/change-casing";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  Button,
+  Col,
+  Form,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  ModalTitle,
+  Row,
+} from "react-bootstrap";
 
 const BootstrapModals = () => {
-  const { isTrue: isStandardOpen, toggle: toggleStandard } = useToggle()
-  const { isOpen, size, className, scroll, toggleModal, openModalWithSize, openModalWithClass, openModalWithScroll } = useModal()
+  const { isTrue: isStandardOpen, toggle: toggleStandard } = useToggle();
+  const {
+    isOpen,
+    size,
+    className,
+    scroll,
+    toggleModal,
+    openModalWithSize,
+    openModalWithClass,
+    openModalWithScroll,
+  } = useModal();
   return (
-    <ComponentContainerCard title="Bootstrap Modals" description={<>A rendered modal with header, body, and set of actions in the footer.</>}>
+    <ComponentContainerCard
+      title="Bootstrap Modals"
+      description={
+        <>
+          A rendered modal with header, body, and set of actions in the footer.
+        </>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <Button variant="primary" onClick={toggleStandard}>
           Standard Modal
         </Button>
-        <Button variant="info" onClick={() => openModalWithSize('lg')}>
+        <Button variant="info" onClick={() => openModalWithSize("lg")}>
           Large Modal
         </Button>
-        <Button variant="success" onClick={() => openModalWithSize('sm')}>
+        <Button variant="success" onClick={() => openModalWithSize("sm")}>
           Small Modal
         </Button>
-        <Button variant="primary" onClick={() => openModalWithClass('modal-full-width')}>
+        <Button
+          variant="primary"
+          onClick={() => openModalWithClass("modal-full-width")}
+        >
           Full Width Modal
         </Button>
         <Button variant="secondary" onClick={openModalWithScroll}>
@@ -40,19 +69,25 @@ const BootstrapModals = () => {
         </ModalHeader>
         <ModalBody>
           <h5>Text in a modal</h5>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+          <p>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p>
           <hr />
           <h5>Overflowing text to show scroll behavior</h5>
           <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+            ac consectetur ac, vestibulum at eros.
           </p>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+            auctor.
           </p>
           <p className="mb-0">
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.
-            Donec ullamcorper nulla non metus auctor fringilla.
+            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+            cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
+            dui. Donec ullamcorper nulla non metus auctor fringilla.
           </p>
         </ModalBody>
         <ModalFooter>
@@ -65,7 +100,14 @@ const BootstrapModals = () => {
         </ModalFooter>
       </Modal>
 
-      <Modal className="fade" show={isOpen} onHide={toggleModal} dialogClassName={className} size={size} scrollable={scroll}>
+      <Modal
+        className="fade"
+        show={isOpen}
+        onHide={toggleModal}
+        dialogClassName={className}
+        size={size}
+        scrollable={scroll}
+      >
         <ModalHeader onHide={toggleModal} closeButton>
           <h4 className="modal-title">Modal Heading</h4>
         </ModalHeader>
@@ -74,76 +116,94 @@ const BootstrapModals = () => {
           {scroll && (
             <>
               <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros.
+                Cras mattis consectetur purus sit amet fermentum. Cras justo
+                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                risus, porta ac consectetur ac, vestibulum at eros.
               </p>
               <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-                auctor.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor.
               </p>
               <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros.
+                Cras mattis consectetur purus sit amet fermentum. Cras justo
+                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                risus, porta ac consectetur ac, vestibulum at eros.
               </p>
               <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-                auctor.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor.
               </p>
               <p>
-                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.
-                Donec ullamcorper nulla non metus auctor fringilla.
+                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+                cursus magna, vel scelerisque nisl consectetur et. Donec sed
+                odio dui. Donec ullamcorper nulla non metus auctor fringilla.
               </p>
               <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros.
+                Cras mattis consectetur purus sit amet fermentum. Cras justo
+                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                risus, porta ac consectetur ac, vestibulum at eros.
               </p>
               <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-                auctor.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor.
               </p>
               <p>
-                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.
-                Donec ullamcorper nulla non metus auctor fringilla.
+                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+                cursus magna, vel scelerisque nisl consectetur et. Donec sed
+                odio dui. Donec ullamcorper nulla non metus auctor fringilla.
               </p>
               <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros.
+                Cras mattis consectetur purus sit amet fermentum. Cras justo
+                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                risus, porta ac consectetur ac, vestibulum at eros.
               </p>
               <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-                auctor.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor.
               </p>
               <p>
-                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.
-                Donec ullamcorper nulla non metus auctor fringilla.
+                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+                cursus magna, vel scelerisque nisl consectetur et. Donec sed
+                odio dui. Donec ullamcorper nulla non metus auctor fringilla.
               </p>
               <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros.
+                Cras mattis consectetur purus sit amet fermentum. Cras justo
+                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                risus, porta ac consectetur ac, vestibulum at eros.
               </p>
               <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-                auctor.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor.
               </p>
               <p>
-                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.
-                Donec ullamcorper nulla non metus auctor fringilla.
+                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+                cursus magna, vel scelerisque nisl consectetur et. Donec sed
+                odio dui. Donec ullamcorper nulla non metus auctor fringilla.
               </p>
               <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros.
+                Cras mattis consectetur purus sit amet fermentum. Cras justo
+                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                risus, porta ac consectetur ac, vestibulum at eros.
               </p>
               <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-                auctor.
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur
+                et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+                dolor auctor.
               </p>
               <p>
-                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui.
-                Donec ullamcorper nulla non metus auctor fringilla.
+                Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
+                cursus magna, vel scelerisque nisl consectetur et. Donec sed
+                odio dui. Donec ullamcorper nulla non metus auctor fringilla.
               </p>
               <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-                ac consectetur ac, vestibulum at eros.
+                Cras mattis consectetur purus sit amet fermentum. Cras justo
+                odio, dapibus ac facilisis in, egestas eget quam. Morbi leo
+                risus, porta ac consectetur ac, vestibulum at eros.
               </p>
             </>
           )}
@@ -158,15 +218,18 @@ const BootstrapModals = () => {
         )}
       </Modal>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ModalsWithPages = () => {
-  const { isTrue: signUpModal, toggle: toggleSignUp } = useToggle()
-  const { isTrue: signInModal, toggle: toggleSignIn } = useToggle()
+  const { isTrue: signUpModal, toggle: toggleSignUp } = useToggle();
+  const { isTrue: signInModal, toggle: toggleSignIn } = useToggle();
 
   return (
-    <ComponentContainerCard title="Modal with Pages" description={<>Examples of custom modals.</>}>
+    <ComponentContainerCard
+      title="Modal with Pages"
+      description={<>Examples of custom modals.</>}
+    >
       <div className="d-flex flex-wrap gap-2">
         <Button variant="primary" onClick={toggleSignUp}>
           Sign Up Modal
@@ -195,23 +258,42 @@ const ModalsWithPages = () => {
               <label htmlFor="username" className="form-label">
                 Name
               </label>
-              <Form.Control type="email" id="username" required placeholder="Michael Zenaty" />
+              <Form.Control
+                type="email"
+                id="username"
+                required
+                placeholder="Michael Zenaty"
+              />
             </div>
             <div className="mb-3">
               <label htmlFor="emailaddress" className="form-label">
                 Email address
               </label>
-              <Form.Control type="email" id="emailaddress" required placeholder="john@deo.com" />
+              <Form.Control
+                type="email"
+                id="emailaddress"
+                required
+                placeholder="john@deo.com"
+              />
             </div>
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
                 Password
               </label>
-              <Form.Control type="password" required id="password" placeholder="Enter your password" />
+              <Form.Control
+                type="password"
+                required
+                id="password"
+                placeholder="Enter your password"
+              />
             </div>
             <div className="mb-3">
               <div className="form-check">
-                <input type="checkbox" className="form-check-input" id="customCheck1" />
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="customCheck1"
+                />
                 <label className="form-check-label" htmlFor="customCheck1">
                   I accept <Link href="">Terms and Conditions</Link>
                 </label>
@@ -245,19 +327,33 @@ const ModalsWithPages = () => {
               <label htmlFor="emailaddress1" className="form-label">
                 Email address
               </label>
-              <Form.Control type="email" id="emailaddress1" required placeholder="john@deo.com" />
+              <Form.Control
+                type="email"
+                id="emailaddress1"
+                required
+                placeholder="john@deo.com"
+              />
             </div>
 
             <div className="mb-3">
               <label htmlFor="password1" className="form-label">
                 Password
               </label>
-              <Form.Control type="password" required id="password1" placeholder="Enter your password" />
+              <Form.Control
+                type="password"
+                required
+                id="password1"
+                placeholder="Enter your password"
+              />
             </div>
 
             <div className="mb-3">
               <div className="form-check">
-                <input type="checkbox" className="form-check-input" id="customCheck2" />
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="customCheck2"
+                />
                 <label className="form-check-label" htmlFor="customCheck2">
                   Remember me
                 </label>
@@ -273,25 +369,30 @@ const ModalsWithPages = () => {
         </ModalBody>
       </Modal>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ModalWithAlerts = () => {
-  const { isOpen, className, toggleModal, openModalWithClass } = useModal()
+  const { isOpen, className, toggleModal, openModalWithClass } = useModal();
 
   return (
-    <ComponentContainerCard title="Modal based Alerts" description={<>Show different contexual alert messages using modal component</>}>
+    <ComponentContainerCard
+      title="Modal based Alerts"
+      description={
+        <>Show different contexual alert messages using modal component</>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
-        <Button variant="success" onClick={() => openModalWithClass('success')}>
+        <Button variant="success" onClick={() => openModalWithClass("success")}>
           Success Alert
         </Button>
-        <Button variant="info" onClick={() => openModalWithClass('info')}>
+        <Button variant="info" onClick={() => openModalWithClass("info")}>
           Info Alert
         </Button>
-        <Button variant="warning" onClick={() => openModalWithClass('warning')}>
+        <Button variant="warning" onClick={() => openModalWithClass("warning")}>
           Warning Alert
         </Button>
-        <Button variant="danger" onClick={() => openModalWithClass('danger')}>
+        <Button variant="danger" onClick={() => openModalWithClass("danger")}>
           Danger Alert
         </Button>
         <Modal className="fade" show={isOpen} onHide={toggleModal} size="sm">
@@ -300,7 +401,10 @@ const ModalWithAlerts = () => {
               <div className="text-center">
                 <IconifyIcon icon="ri:information-line" className="h1" />
                 <h4 className="mt-2">Well Done!</h4>
-                <p className="mt-3">Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                <p className="mt-3">
+                  Cras mattis consectetur purus sit amet fermentum. Cras justo
+                  odio, dapibus ac facilisis in, egestas eget quam.
+                </p>
                 <Button variant="light" className="my-2" onClick={toggleModal}>
                   Continue
                 </Button>
@@ -310,56 +414,78 @@ const ModalWithAlerts = () => {
         </Modal>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ModalPositions = () => {
-  const { isOpen, className, toggleModal, openModalWithClass } = useModal()
+  const { isOpen, className, toggleModal, openModalWithClass } = useModal();
 
   return (
     <ComponentContainerCard
       title="Modal Position"
       description={
         <>
-          Specify the position for the modal. You can display modal at top, bottom, center or right of page by specifying classes&nbsp;
-          <code>modal-top</code>, <code>modal-bottom</code>, <code>modal-dialog-centered</code> and <code>modal-right</code>
+          Specify the position for the modal. You can display modal at top,
+          bottom, center or right of page by specifying classes&nbsp;
+          <code>modal-top</code>, <code>modal-bottom</code>,{" "}
+          <code>modal-dialog-centered</code> and <code>modal-right</code>
           respectively.
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
-        <Button variant="secondary" onClick={() => openModalWithClass('modal-top')}>
+        <Button
+          variant="secondary"
+          onClick={() => openModalWithClass("modal-top")}
+        >
           Top Modal
         </Button>
-        <Button variant="secondary" onClick={() => openModalWithClass('modal-bottom')}>
+        <Button
+          variant="secondary"
+          onClick={() => openModalWithClass("modal-bottom")}
+        >
           Bottom Modal
         </Button>
-        <Button variant="secondary" onClick={() => openModalWithClass('modal-dialog-centered')}>
+        <Button
+          variant="secondary"
+          onClick={() => openModalWithClass("modal-dialog-centered")}
+        >
           Center modal
         </Button>
       </div>
       <Modal show={isOpen} onHide={toggleModal} dialogClassName={className}>
-        {className != 'modal-right' && (
+        {className != "modal-right" && (
           <ModalHeader onHide={toggleModal} closeButton>
             <h4 className="modal-title">Modal Heading</h4>
           </ModalHeader>
         )}
         <ModalBody>
-          {className === 'modal-right' ? (
+          {className === "modal-right" ? (
             <div className="text-center">
               <h4 className="mt-0">Text in a modal</h4>
-              <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-              <Button variant="danger" type="button" size="sm" onClick={toggleModal} data-bs-dismiss="modal">
+              <p>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </p>
+              <Button
+                variant="danger"
+                type="button"
+                size="sm"
+                onClick={toggleModal}
+                data-bs-dismiss="modal"
+              >
                 Close
               </Button>
             </div>
           ) : (
             <>
               <h5>Text in a modal</h5>
-              <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+              <p>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </p>
             </>
           )}
         </ModalBody>
-        {className != 'modal-right' && (
+        {className != "modal-right" && (
           <ModalFooter>
             <Button variant="light" onClick={toggleModal}>
               Close
@@ -371,29 +497,42 @@ const ModalPositions = () => {
         )}
       </Modal>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ModalWithColoredHeader = () => {
-  const { isOpen, className, toggleModal, openModalWithClass } = useModal()
+  const { isOpen, className, toggleModal, openModalWithClass } = useModal();
 
   return (
-    <ComponentContainerCard title="Colored Header Modals" description={<>A rendered modal with header having contexual background color.</>}>
+    <ComponentContainerCard
+      title="Colored Header Modals"
+      description={
+        <>A rendered modal with header having contexual background color.</>
+      }
+    >
       <Modal className="fade" show={isOpen} onHide={toggleModal}>
         <ModalHeader className={`modal-colored-header bg-${className}`}>
           <h4 className="modal-title text-white" id="primary-header-modalLabel">
             Modal Heading
           </h4>
-          <button type="button" className="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            className="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </ModalHeader>
         <ModalBody>
           <h5 className="mt-0">{className} Background</h5>
           <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
+            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+            ac consectetur ac, vestibulum at eros.
           </p>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+            auctor.
           </p>
         </ModalBody>
         <ModalFooter>
@@ -404,46 +543,58 @@ const ModalWithColoredHeader = () => {
         </ModalFooter>
       </Modal>
       <div className="d-flex flex-wrap gap-2">
-        <Button variant="primary" onClick={() => openModalWithClass('primary')}>
+        <Button variant="primary" onClick={() => openModalWithClass("primary")}>
           Primary Header
         </Button>
-        <Button variant="success" onClick={() => openModalWithClass('success')}>
+        <Button variant="success" onClick={() => openModalWithClass("success")}>
           Success Header
         </Button>
-        <Button variant="info" onClick={() => openModalWithClass('info')}>
+        <Button variant="info" onClick={() => openModalWithClass("info")}>
           Info Header
         </Button>
-        <Button variant="warning" onClick={() => openModalWithClass('warning')}>
+        <Button variant="warning" onClick={() => openModalWithClass("warning")}>
           Warning Header
         </Button>
-        <Button variant="danger" onClick={() => openModalWithClass('danger')}>
+        <Button variant="danger" onClick={() => openModalWithClass("danger")}>
           Danger Header
         </Button>
-        <Button variant="dark" onClick={() => openModalWithClass('dark')}>
+        <Button variant="dark" onClick={() => openModalWithClass("dark")}>
           Dark Header
         </Button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ModalWithFilled = () => {
-  const { isOpen, className, toggleModal, openModalWithClass } = useModal()
+  const { isOpen, className, toggleModal, openModalWithClass } = useModal();
 
   return (
-    <ComponentContainerCard title="Filled Modals" description={<>A rendered modal with header, body and footer having contexual background color.</>}>
+    <ComponentContainerCard
+      title="Filled Modals"
+      description={
+        <>
+          A rendered modal with header, body and footer having contexual
+          background color.
+        </>
+      }
+    >
       <Modal show={isOpen} onHide={toggleModal} className="fade">
         <div className={`modal-filled bg-${className}`}>
           <ModalHeader onHide={toggleModal} closeButton>
-            <h4 className="modal-title">{toSentenceCase(className)} Filled Modal</h4>
+            <h4 className="modal-title">
+              {toSentenceCase(className)} Filled Modal
+            </h4>
           </ModalHeader>
           <ModalBody>
             <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-              consectetur ac, vestibulum at eros.
+              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+              ac consectetur ac, vestibulum at eros.
             </p>
             <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur
+              et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
               auctor.
             </p>
           </ModalBody>
@@ -458,36 +609,42 @@ const ModalWithFilled = () => {
         </div>
       </Modal>
       <div className="d-flex flex-wrap gap-2">
-        <Button variant="primary" onClick={() => openModalWithClass('primary')}>
+        <Button variant="primary" onClick={() => openModalWithClass("primary")}>
           Primary Filled
         </Button>
-        <Button variant="success" onClick={() => openModalWithClass('success')}>
+        <Button variant="success" onClick={() => openModalWithClass("success")}>
           Success Filled
         </Button>
-        <Button variant="info" onClick={() => openModalWithClass('info')}>
+        <Button variant="info" onClick={() => openModalWithClass("info")}>
           Info Filled
         </Button>
-        <Button variant="warning" onClick={() => openModalWithClass('warning')}>
+        <Button variant="warning" onClick={() => openModalWithClass("warning")}>
           Warning Filled
         </Button>
-        <Button variant="danger" onClick={() => openModalWithClass('danger')}>
+        <Button variant="danger" onClick={() => openModalWithClass("danger")}>
           Danger Filled
         </Button>
-        <Button variant="dark" onClick={() => openModalWithClass('dark')}>
+        <Button variant="dark" onClick={() => openModalWithClass("dark")}>
           Dark Filled
         </Button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const MultipleModal = () => {
-  const { isTrue: isOpen, toggle: toggleModal } = useToggle()
-  const { isTrue: isNextOpen, toggle: toggleNextModal } = useToggle()
+  const { isTrue: isOpen, toggle: toggleModal } = useToggle();
+  const { isTrue: isNextOpen, toggle: toggleNextModal } = useToggle();
   return (
     <ComponentContainerCard
       title="Multiple Modal"
-      description={<>Display a series of modals one by one to guide your users on multiple aspects or take step wise input.</>}>
+      description={
+        <>
+          Display a series of modals one by one to guide your users on multiple
+          aspects or take step wise input.
+        </>
+      }
+    >
       <Modal show={isOpen} onHide={toggleModal}>
         <ModalHeader closeButton>
           <h4 className="modal-title" id="multiple-oneModalLabel">
@@ -496,15 +653,18 @@ const MultipleModal = () => {
         </ModalHeader>
         <ModalBody>
           <h5 className="mt-0">Text in a modal</h5>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+          <p>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p>
         </ModalBody>
         <ModalFooter>
           <Button
             variant="primary"
             onClick={() => {
-              toggleModal()
-              toggleNextModal()
-            }}>
+              toggleModal();
+              toggleNextModal();
+            }}
+          >
             Next
           </Button>
         </ModalFooter>
@@ -517,7 +677,9 @@ const MultipleModal = () => {
         </ModalHeader>
         <ModalBody>
           <h5 className="mt-0">Text in a modal</h5>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+          <p>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p>
         </ModalBody>
         <ModalFooter>
           <Button variant="primary" onClick={toggleNextModal}>
@@ -531,48 +693,62 @@ const MultipleModal = () => {
         </Button>
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const ToggleBetweenModals = () => {
-  const { isTrue: isOpen, toggle: toggleModal } = useToggle()
-  const { isTrue: isNextOpen, toggle: toggleNextModal } = useToggle()
+  const { isTrue: isOpen, toggle: toggleModal } = useToggle();
+  const { isTrue: isNextOpen, toggle: toggleNextModal } = useToggle();
   return (
     <ComponentContainerCard
       title="Toggle Between Modals"
       description={
         <>
-          Toggle between multiple modals with some clever placement of the <code>data-bs-target</code> and <code>data-bs-toggle</code> attributes.
+          Toggle between multiple modals with some clever placement of the{" "}
+          <code>data-bs-target</code> and <code>data-bs-toggle</code>{" "}
+          attributes.
         </>
-      }>
+      }
+    >
       <Modal className="fade" show={isOpen} onHide={toggleModal} centered>
         <ModalHeader closeButton>
           <h5 className="modal-title">Modal 1</h5>
         </ModalHeader>
-        <ModalBody className="modal-body">Show a second modal and hide this one with the button below.</ModalBody>
+        <ModalBody className="modal-body">
+          Show a second modal and hide this one with the button below.
+        </ModalBody>
         <ModalFooter>
           <Button
             variant="primary"
             onClick={() => {
-              toggleModal()
-              toggleNextModal()
-            }}>
+              toggleModal();
+              toggleNextModal();
+            }}
+          >
             Open second modal
           </Button>
         </ModalFooter>
       </Modal>
-      <Modal className="fade" show={isNextOpen} onHide={toggleNextModal} centered>
+      <Modal
+        className="fade"
+        show={isNextOpen}
+        onHide={toggleNextModal}
+        centered
+      >
         <ModalHeader closeButton>
           <h5 className="modal-title">Modal 2</h5>
         </ModalHeader>
-        <ModalBody>Hide this modal and show the first with the button below.</ModalBody>
+        <ModalBody>
+          Hide this modal and show the first with the button below.
+        </ModalBody>
         <ModalFooter>
           <Button
             variant="primary"
             onClick={() => {
-              toggleModal()
-              toggleNextModal()
-            }}>
+              toggleModal();
+              toggleNextModal();
+            }}
+          >
             Back to first
           </Button>
         </ModalFooter>
@@ -581,28 +757,36 @@ const ToggleBetweenModals = () => {
         Open First Modal
       </Button>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const FullscreenModal = () => {
-  const sizes: string[] = ['sm-down', 'md-down', 'lg-down', 'xl-down', 'xxl-down']
-  const [fullscreen, setFullscreen] = useState<undefined | string>(undefined)
-  const [show, setShow] = useState(false)
+  const sizes: string[] = [
+    "sm-down",
+    "md-down",
+    "lg-down",
+    "xl-down",
+    "xxl-down",
+  ];
+  const [fullscreen, setFullscreen] = useState<undefined | string>(undefined);
+  const [show, setShow] = useState(false);
 
   const handleShow = (breakpoint: string) => {
-    setFullscreen(breakpoint)
-    setShow(true)
-  }
+    setFullscreen(breakpoint);
+    setShow(true);
+  };
 
   return (
     <ComponentContainerCard
       title="Fullscreen Modal"
       description={
         <>
-          Another override is the option to pop up a modal that covers the user viewport, available via modifier classes that are placed on a&nbsp;
+          Another override is the option to pop up a modal that covers the user
+          viewport, available via modifier classes that are placed on a&nbsp;
           <code>.modal-dialog</code>
         </>
-      }>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <Button type="button" variant="primary" onClick={() => setShow(true)}>
           Fullscreen Modal
@@ -611,45 +795,72 @@ const FullscreenModal = () => {
         {(sizes || []).map((size, idx) => (
           <Button key={idx} onClick={() => handleShow(size)}>
             Full Screen
-            {typeof size === 'string' && ` Below ${size.split('-')[0]}`}
+            {typeof size === "string" && ` Below ${size.split("-")[0]}`}
           </Button>
         ))}
       </div>
-      <Modal show={show} fullscreen={fullscreen ?? true} onHide={() => setShow(false)}>
+      <Modal
+        show={show}
+        fullscreen={fullscreen ?? true}
+        onHide={() => setShow(false)}
+      >
         <ModalHeader closeButton>
           <Modal.Title>Modal</Modal.Title>
         </ModalHeader>
         <ModalBody>...</ModalBody>
         <ModalFooter>
-          <span role="button" className="btn btn-light waves-effect" onClick={() => setShow(false)}>
+          <span
+            role="button"
+            className="btn btn-light waves-effect"
+            onClick={() => setShow(false)}
+          >
             Close
           </span>
-          <Button type="button" variant="primary" onClick={() => setShow(false)}>
+          <Button
+            type="button"
+            variant="primary"
+            onClick={() => setShow(false)}
+          >
             Save Changes
           </Button>
         </ModalFooter>
       </Modal>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const StaticBackdropModal = () => {
-  const { isTrue: isOpen, toggle: toggleModal } = useToggle()
+  const { isTrue: isOpen, toggle: toggleModal } = useToggle();
   return (
     <ComponentContainerCard
       title="Static Backdrop"
-      description={<>When backdrop is set to static, the modal will not close when clicking outside it. Click the button below to try it.</>}>
+      description={
+        <>
+          When backdrop is set to static, the modal will not close when clicking
+          outside it. Click the button below to try it.
+        </>
+      }
+    >
       <div className="d-flex flex-wrap gap-2">
         <Button variant="info" onClick={toggleModal}>
           Static Backdrop
         </Button>
       </div>
-      <Modal className="fade" show={isOpen} onHide={toggleModal} backdrop="static" keyboard={false}>
+      <Modal
+        className="fade"
+        show={isOpen}
+        onHide={toggleModal}
+        backdrop="static"
+        keyboard={false}
+      >
         <ModalHeader closeButton>
           <Modal.Title as="h5">Modal title</Modal.Title>
         </ModalHeader>
         <ModalBody>
-          <p className="m-0">I will not close if you click outside me. Don&apos;t even try to press escape key.</p>
+          <p className="m-0">
+            I will not close if you click outside me. Don&apos;t even try to
+            press escape key.
+          </p>
         </ModalBody>
         <ModalFooter>
           <Button variant="secondary" onClick={toggleModal}>
@@ -659,58 +870,73 @@ const StaticBackdropModal = () => {
         </ModalFooter>
       </Modal>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const VaryingModalContent = () => {
-  const [recipient, setReceipt] = useState<string>('')
-  const { isOpen, toggleModal, className, openModalWithSize } = useModal()
+  const [recipient, setReceipt] = useState<string>("");
+  const { isOpen, toggleModal, className, openModalWithSize } = useModal();
 
   return (
     <ComponentContainerCard
       title="Varying Modal Content"
       description={
         <>
-          Have a bunch of buttons that all trigger the same modal with slightly different contents? Use&nbsp;
+          Have a bunch of buttons that all trigger the same modal with slightly
+          different contents? Use&nbsp;
           <code>event.relatedTarget</code> and&nbsp;
-          <Link href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes" target="_blank">
+          <Link
+            href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes"
+            target="_blank"
+          >
             HTML <code>data-bs-*</code>
             attributes
           </Link>
-          to vary the contents of the modal depending on which button was clicked.
+          to vary the contents of the modal depending on which button was
+          clicked.
         </>
-      }>
+      }
+    >
       <div className="hstack gap-2 flex-wrap">
         <Button
           type="button"
           variant="primary"
           onClick={() => {
-            openModalWithSize('lg')
-            setReceipt('@mdo')
-          }}>
+            openModalWithSize("lg");
+            setReceipt("@mdo");
+          }}
+        >
           Open modal for @mdo
         </Button>
         <Button
           type="button"
           variant="primary"
           onClick={() => {
-            openModalWithSize('lg')
-            setReceipt('@fat')
-          }}>
+            openModalWithSize("lg");
+            setReceipt("@fat");
+          }}
+        >
           Open modal for @fat
         </Button>
         <Button
           type="button"
           variant="primary"
           onClick={() => {
-            openModalWithSize('lg')
-            setReceipt('@getbootstrap')
-          }}>
+            openModalWithSize("lg");
+            setReceipt("@getbootstrap");
+          }}
+        >
           Open modal for @getbootstrap
         </Button>
       </div>
 
-      <Modal className="fade" tabIndex={-1} show={isOpen} onHide={toggleModal} dialogClassName={className}>
+      <Modal
+        className="fade"
+        tabIndex={-1}
+        show={isOpen}
+        onHide={toggleModal}
+        dialogClassName={className}
+      >
         <ModalHeader onHide={toggleModal} closeButton>
           <Modal.Title as="h5">New message to {recipient}</Modal.Title>
         </ModalHeader>
@@ -720,13 +946,22 @@ const VaryingModalContent = () => {
               <label htmlFor="recipient-name" className="col-form-label">
                 Recipient:
               </label>
-              <Form.Control type="text" className="form-control" id="recipient-name" placeholder={recipient} />
+              <Form.Control
+                type="text"
+                className="form-control"
+                id="recipient-name"
+                placeholder={recipient}
+              />
             </div>
             <div className="mb-3">
               <label htmlFor="message-text" className="col-form-label">
                 Message:
               </label>
-              <Form.Control as={'textarea'}  className="form-control" id="message-text"></Form.Control>
+              <Form.Control
+                as={"textarea"}
+                className="form-control"
+                id="message-text"
+              ></Form.Control>
             </div>
           </Form>
         </div>
@@ -740,8 +975,8 @@ const VaryingModalContent = () => {
         </ModalFooter>
       </Modal>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllModal = () => {
   return (
@@ -792,7 +1027,7 @@ const AllModal = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllModal
+export default AllModal;

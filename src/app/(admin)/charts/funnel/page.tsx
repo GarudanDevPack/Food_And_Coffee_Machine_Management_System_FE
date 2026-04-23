@@ -1,6 +1,6 @@
-import React from 'react'
-import FunnelChart from './components/FunnelChart'
-import PageTitle from '@/components/PageTitle'
+import React from "react";
+import FunnelChart from "./components/FunnelChart";
+import PageTitle from "@/components/PageTitle";
 
 const FunnelPage = () => {
   return (
@@ -8,7 +8,7 @@ const FunnelPage = () => {
       <PageTitle title="Funnel Charts" subTitle="Apex" />
       <FunnelChart />
     </>
-  )
-}
+  );
+};
 
-export default FunnelPage
+export default FunnelPage;

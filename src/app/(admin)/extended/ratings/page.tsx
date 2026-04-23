@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllRating from './components/AllRating'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllRating from "./components/AllRating";
 
-export const metadata: Metadata = { title: 'Ratings' }
+export const metadata: Metadata = { title: "Ratings" };
 
 const Ratings = () => {
   return (
@@ -10,7 +10,7 @@ const Ratings = () => {
       <PageTitle title="Ratings" subTitle="Extended UI" />
       <AllRating />
     </>
-  )
-}
+  );
+};
 
-export default Ratings
+export default Ratings;

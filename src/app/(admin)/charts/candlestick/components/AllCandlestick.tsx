@@ -1,8 +1,12 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from '@/components/ApexChart'
-import { Col, Row } from 'react-bootstrap'
-import { candlestickLineChartOpts, categoryChartChartOpts, simpleCandlestickChartOpts } from '../data'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import ReactApexChart from "@/components/ApexChart";
+import { Col, Row } from "react-bootstrap";
+import {
+  candlestickLineChartOpts,
+  categoryChartChartOpts,
+  simpleCandlestickChartOpts,
+} from "../data";
 
 const SimpleCandlestickChart = () => {
   return (
@@ -17,8 +21,8 @@ const SimpleCandlestickChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const CategoryChart = () => {
   return (
@@ -33,8 +37,8 @@ const CategoryChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const CandlestickLineChart = () => {
   return (
@@ -49,8 +53,8 @@ const CandlestickLineChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllCandlestick = () => {
   return (
@@ -69,7 +73,7 @@ const AllCandlestick = () => {
         </Col>
       </Row>
     </div>
-  )
-}
+  );
+};
 
-export default AllCandlestick
+export default AllCandlestick;

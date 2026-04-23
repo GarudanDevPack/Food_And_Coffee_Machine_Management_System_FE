@@ -1,10 +1,10 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import { Card } from 'react-bootstrap'
-import EmailArea from './components/EmailArea'
-import { EmailProvider } from '@/context/useEmailContext'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import { Card } from "react-bootstrap";
+import EmailArea from "./components/EmailArea";
+import { EmailProvider } from "@/context/useEmailContext";
 
-export const metadata: Metadata = { title: 'Inbox' }
+export const metadata: Metadata = { title: "Inbox" };
 
 const EmailPage = () => {
   return (
@@ -18,7 +18,7 @@ const EmailPage = () => {
         </EmailProvider>
       </Card>
     </>
-  )
-}
+  );
+};
 
-export default EmailPage
+export default EmailPage;

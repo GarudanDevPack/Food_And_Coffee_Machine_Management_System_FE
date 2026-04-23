@@ -1,14 +1,14 @@
-'use client'
-import 'jsvectormap'
-import 'jsvectormap/dist/maps/italy.js'
+"use client";
+import "jsvectormap";
+import "jsvectormap/dist/maps/italy.js";
 
 //components
-import BaseVectorMap from './BaseVectorMap'
+import BaseVectorMap from "./BaseVectorMap";
 
 interface ItalyVectorMapProps {
-  width?: string
-  height?: string
-  options?: any
+  width?: string;
+  height?: string;
+  options?: any;
 }
 
 const ItalyVectorMap = ({ width, height, options }: ItalyVectorMapProps) => {
@@ -16,7 +16,7 @@ const ItalyVectorMap = ({ width, height, options }: ItalyVectorMapProps) => {
     <>
       <BaseVectorMap width={width} height={height} options={options} />
     </>
-  )
-}
+  );
+};
 
-export default ItalyVectorMap
+export default ItalyVectorMap;

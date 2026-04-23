@@ -1,9 +1,7 @@
-import FullView from './components/FullView'
+import FullView from "./components/FullView";
 
 const FullViewPage = () => {
-  return (
-    <FullView />
-  )
-}
+  return <FullView />;
+};
 
-export default FullViewPage
+export default FullViewPage;

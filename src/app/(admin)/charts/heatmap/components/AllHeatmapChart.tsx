@@ -1,18 +1,29 @@
-'use client'
-import ComponentContainerCard from '@/components/ComponentContainerCard'
-import ReactApexChart from '@/components/ApexChart'
-import { Col, Row } from 'react-bootstrap'
-import { basicHeatmapChartOpts, HeatmapColorRangeChartOpts, HeatmapRangeShadesChartOpts, multipleSeriesHeatmapChartOpts } from '../data'
+"use client";
+import ComponentContainerCard from "@/components/ComponentContainerCard";
+import ReactApexChart from "@/components/ApexChart";
+import { Col, Row } from "react-bootstrap";
+import {
+  basicHeatmapChartOpts,
+  HeatmapColorRangeChartOpts,
+  HeatmapRangeShadesChartOpts,
+  multipleSeriesHeatmapChartOpts,
+} from "../data";
 
 const BasicHeatmapChart = () => {
   return (
     <ComponentContainerCard title="Basic Heatmap - Single Series">
       <div dir="ltr">
-        <ReactApexChart height={380} options={basicHeatmapChartOpts} series={basicHeatmapChartOpts.series} type="heatmap" className="apex-charts" />
+        <ReactApexChart
+          height={380}
+          options={basicHeatmapChartOpts}
+          series={basicHeatmapChartOpts.series}
+          type="heatmap"
+          className="apex-charts"
+        />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const MultipleHeatmapChart = () => {
   return (
@@ -27,8 +38,8 @@ const MultipleHeatmapChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const HeatmapColorRangeChart = () => {
   return (
@@ -43,8 +54,8 @@ const HeatmapColorRangeChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const HeatmapRangeShadesChart = () => {
   return (
@@ -59,8 +70,8 @@ const HeatmapRangeShadesChart = () => {
         />
       </div>
     </ComponentContainerCard>
-  )
-}
+  );
+};
 
 const AllHeatmapChart = () => {
   return (
@@ -82,7 +93,7 @@ const AllHeatmapChart = () => {
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default AllHeatmapChart
+export default AllHeatmapChart;

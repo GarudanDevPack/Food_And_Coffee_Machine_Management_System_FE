@@ -1,7 +1,7 @@
-'use client'
-import { currency } from '@/context/constants'
-import ReactApexChart from '@/components/ApexChart'
-import { Card, CardBody, Col, Row, Table } from 'react-bootstrap'
+"use client";
+import { currency } from "@/context/constants";
+import ReactApexChart from "@/components/ApexChart";
+import { Card, CardBody, Col, Row, Table } from "react-bootstrap";
 import {
   chart1Opts,
   chart2Opts,
@@ -14,29 +14,47 @@ import {
   spark1ChartOpts,
   spark2ChartOpts,
   spark3ChartOpts,
-} from '../data'
+} from "../data";
 
 const ChangeChart1 = () => {
   return (
     <Col md={4}>
-      <ReactApexChart height={160} options={spark1ChartOpts} series={spark1ChartOpts.series} type="area" className="apex-charts" />
+      <ReactApexChart
+        height={160}
+        options={spark1ChartOpts}
+        series={spark1ChartOpts.series}
+        type="area"
+        className="apex-charts"
+      />
     </Col>
-  )
-}
+  );
+};
 const ChangeChart2 = () => {
   return (
     <Col md={4}>
-      <ReactApexChart height={160} options={spark2ChartOpts} series={spark2ChartOpts.series} type="area" className="apex-charts" />
+      <ReactApexChart
+        height={160}
+        options={spark2ChartOpts}
+        series={spark2ChartOpts.series}
+        type="area"
+        className="apex-charts"
+      />
     </Col>
-  )
-}
+  );
+};
 const ChangeChart3 = () => {
   return (
     <Col md={4}>
-      <ReactApexChart height={160} options={spark3ChartOpts} series={spark3ChartOpts.series} type="area" className="apex-charts" />
+      <ReactApexChart
+        height={160}
+        options={spark3ChartOpts}
+        series={spark3ChartOpts.series}
+        type="area"
+        className="apex-charts"
+      />
     </Col>
-  )
-}
+  );
+};
 
 const SparkChart = () => {
   return (
@@ -67,40 +85,88 @@ const SparkChart = () => {
                       <td className="ps-3">{currency}32,554</td>
                       <td>15%</td>
                       <td>
-                        <ReactApexChart height={40} width={140} options={chart1Opts} series={chart1Opts.series} type="line" />
+                        <ReactApexChart
+                          height={40}
+                          width={140}
+                          options={chart1Opts}
+                          series={chart1Opts.series}
+                          type="line"
+                        />
                       </td>
                       <td>
-                        <ReactApexChart height={60} width={100} options={chart5Opts} series={chart5Opts.series} type="bar" />
+                        <ReactApexChart
+                          height={60}
+                          width={100}
+                          options={chart5Opts}
+                          series={chart5Opts.series}
+                          type="bar"
+                        />
                       </td>
                     </tr>
                     <tr>
                       <td className="ps-3">{currency}23,533</td>
                       <td>7%</td>
                       <td>
-                        <ReactApexChart height={40} width={140} options={chart2Opts} series={chart2Opts.series} type="line" />
+                        <ReactApexChart
+                          height={40}
+                          width={140}
+                          options={chart2Opts}
+                          series={chart2Opts.series}
+                          type="line"
+                        />
                       </td>
                       <td>
-                        <ReactApexChart height={60} width={100} options={chart6Opts} series={chart6Opts.series} type="bar" />
+                        <ReactApexChart
+                          height={60}
+                          width={100}
+                          options={chart6Opts}
+                          series={chart6Opts.series}
+                          type="bar"
+                        />
                       </td>
                     </tr>
                     <tr>
                       <td className="ps-3">{currency}54,276</td>
                       <td>9%</td>
                       <td>
-                        <ReactApexChart height={40} width={140} options={chart3Opts} series={chart3Opts.series} type="line" />
+                        <ReactApexChart
+                          height={40}
+                          width={140}
+                          options={chart3Opts}
+                          series={chart3Opts.series}
+                          type="line"
+                        />
                       </td>
                       <td>
-                        <ReactApexChart height={60} width={100} options={chart7Opts} series={chart7Opts.series} type="bar" />
+                        <ReactApexChart
+                          height={60}
+                          width={100}
+                          options={chart7Opts}
+                          series={chart7Opts.series}
+                          type="bar"
+                        />
                       </td>
                     </tr>
                     <tr>
                       <td className="ps-3">{currency}11,533</td>
                       <td>2%</td>
                       <td>
-                        <ReactApexChart height={40} width={140} options={chart4Opts} series={chart4Opts.series} type="line" />
+                        <ReactApexChart
+                          height={40}
+                          width={140}
+                          options={chart4Opts}
+                          series={chart4Opts.series}
+                          type="line"
+                        />
                       </td>
                       <td>
-                        <ReactApexChart height={60} width={100} options={chart8Opts} series={chart8Opts.series} type="bar" />
+                        <ReactApexChart
+                          height={60}
+                          width={100}
+                          options={chart8Opts}
+                          series={chart8Opts.series}
+                          type="bar"
+                        />
                       </td>
                     </tr>
                   </tbody>
@@ -111,7 +177,7 @@ const SparkChart = () => {
         </Card>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default SparkChart
+export default SparkChart;

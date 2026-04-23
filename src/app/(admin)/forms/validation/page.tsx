@@ -1,8 +1,8 @@
-import PageTitle from '@/components/PageTitle'
-import { Metadata } from 'next'
-import AllValidation from './components/AllValidation'
+import PageTitle from "@/components/PageTitle";
+import { Metadata } from "next";
+import AllValidation from "./components/AllValidation";
 
-export const metadata: Metadata = { title: 'Form Validation' }
+export const metadata: Metadata = { title: "Form Validation" };
 
 const ValidationPage = () => {
   return (
@@ -10,7 +10,7 @@ const ValidationPage = () => {
       <PageTitle title="Form Validation" subTitle="Forms" />
       <AllValidation />
     </>
-  )
-}
+  );
+};
 
-export default ValidationPage
+export default ValidationPage;

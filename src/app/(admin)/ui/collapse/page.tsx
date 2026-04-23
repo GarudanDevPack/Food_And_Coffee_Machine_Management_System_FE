@@ -1,9 +1,9 @@
-import PageTitle from '@/components/PageTitle'
-import React from 'react'
-import AllCollapse from './components/AllCollapse'
-import { Metadata } from 'next'
+import PageTitle from "@/components/PageTitle";
+import React from "react";
+import AllCollapse from "./components/AllCollapse";
+import { Metadata } from "next";
 
-export const metadata: Metadata = { title: 'Collapse' }
+export const metadata: Metadata = { title: "Collapse" };
 
 const CollapsePage = () => {
   return (
@@ -11,7 +11,7 @@ const CollapsePage = () => {
       <PageTitle title="Collapse" subTitle="Base UI" />
       <AllCollapse />
     </>
-  )
-}
+  );
+};
 
-export default CollapsePage
+export default CollapsePage;
