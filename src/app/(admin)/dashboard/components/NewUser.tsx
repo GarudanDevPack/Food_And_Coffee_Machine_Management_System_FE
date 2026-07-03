@@ -42,6 +42,7 @@ interface Order {
   orderId?: string;
   userId?: string;
   machineId?: string;
+  machineName?: string;
   itemName?: string;
   totalAmount?: number;
   status?: string;
@@ -169,16 +170,16 @@ const NewUser = () => {
                   </thead>
                   <tbody>
                     {recentOrders.map((order) => (
-                      <tr key={order._id}>
+                      <tr key={order.orderId ?? String(order._id)}>
                         <td>
                           <span className="text-muted fs-12">
-                            {order.orderId ?? order._id.slice(-8)}
+                            {order.orderId ?? String(order._id).slice(-8)}
                           </span>
                         </td>
                         <td>{order.itemName ?? "—"}</td>
                         <td>
                           <span className="text-muted fs-12">
-                            {order.machineId ?? "—"}
+                            {order.machineName ?? order.machineId ?? "—"}
                           </span>
                         </td>
                         <td className="text-end fw-semibold">

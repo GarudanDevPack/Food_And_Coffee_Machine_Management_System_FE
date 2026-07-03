@@ -77,9 +77,9 @@ export default function AlertsPage() {
   }, [token]);
 
   const handleResolve = async (a: Alert) => {
-    setResolvingId(a._id ?? a.id);
+    setResolvingId(String(a._id ?? a.id ?? ""));
     try {
-      await alertsApi.resolve(token, a._id ?? a.id);
+      await alertsApi.resolve(token, String(a._id ?? a.id ?? ""));
       toast.success("Alert resolved");
       fetchAlerts();
     } catch (err: any) {
@@ -100,7 +100,7 @@ export default function AlertsPage() {
     });
     if (!r.isConfirmed) return;
     try {
-      await alertsApi.delete(token, a._id ?? a.id);
+      await alertsApi.delete(token, String(a._id ?? a.id ?? ""));
       toast.success("Deleted");
       fetchAlerts();
     } catch (err: any) {
@@ -221,7 +221,7 @@ export default function AlertsPage() {
                   ) : (
                     displayed.map((a) => (
                       <tr
-                        key={a._id ?? a.id}
+                        key={String(a._id ?? a.id ?? "")}
                         className={
                           a.resolved ? "" : severityRowClass(a.severity)
                         }
@@ -260,10 +260,10 @@ export default function AlertsPage() {
                                 variant="soft-success"
                                 size="sm"
                                 onClick={() => handleResolve(a)}
-                                disabled={resolvingId === (a._id ?? a.id)}
+                                disabled={resolvingId === String(a._id ?? a.id ?? "")}
                                 title="Resolve"
                               >
-                                {resolvingId === (a._id ?? a.id) ? (
+                                {resolvingId === String(a._id ?? a.id ?? "") ? (
                                   <Spinner size="sm" />
                                 ) : (
                                   <i className="ri-check-line" />

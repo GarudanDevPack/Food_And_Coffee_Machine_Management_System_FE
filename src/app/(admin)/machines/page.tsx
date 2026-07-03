@@ -3,17 +3,19 @@ import { fmtDateTime } from "@/lib/fmt";
 import PageTitle from "@/components/PageTitle";
 import { machinesApi } from "@/lib/api";
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Badge,
   Button,
   Card,
   CardBody,
   Col,
+  Modal,
   Row,
   Spinner,
   Table,
 } from "react-bootstrap";
+import { QRCodeSVG } from "qrcode.react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import IconifyIcon from "@/components/wrappers/IconifyIcon";
@@ -78,6 +80,8 @@ export default function MachinesPage() {
   const [modalMachine, setModalMachine] = useState<Machine | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [batchMachineId, setBatchMachineId] = useState<string | null>(null);
+  const [qrMachine, setQrMachine] = useState<Machine | null>(null);
+  const qrRef = useRef<SVGSVGElement>(null);
 
   const fetchMachines = async () => {
     if (!token) return;
@@ -189,6 +193,29 @@ export default function MachinesPage() {
   const openEdit = (m: Machine) => {
     setModalMachine(m);
     setShowModal(true);
+  };
+
+  const downloadQR = () => {
+    const svg = qrRef.current;
+    if (!svg) return;
+    const size = 300;
+    const pad = 20;
+    const canvas = document.createElement("canvas");
+    canvas.width = size + pad * 2;
+    canvas.height = size + pad * 2;
+    const ctx = canvas.getContext("2d")!;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const xml = new XMLSerializer().serializeToString(svg);
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, pad, pad, size, size);
+      const a = document.createElement("a");
+      a.download = `qr-${qrMachine?.machineId ?? "machine"}.png`;
+      a.href = canvas.toDataURL("image/png");
+      a.click();
+    };
+    img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(xml)));
   };
 
   const total = machines.length;
@@ -356,200 +383,86 @@ export default function MachinesPage() {
                               LKR {(m.totalRevenue ?? 0).toLocaleString()}
                             </td>
                             <td>
-                              <div className="d-flex gap-1 justify-content-center align-items-center">
+                              <div className="d-flex gap-1 justify-content-center align-items-center" style={{ minWidth: "max-content" }}>
                                 {/* Flush — coffee only */}
                                 {m.machineType !== "food" && (
-                                  <button
+                                  <Button
+                                    variant="soft-warning"
+                                    size="sm"
                                     title="Flush"
-                                    disabled={
-                                      !canControl || !!m.flushMode || isActing
-                                    }
+                                    disabled={!canControl || !!m.flushMode || isActing}
                                     onClick={() => handleFlush(m)}
-                                    style={{
-                                      width: 32,
-                                      height: 32,
-                                      borderRadius: "50%",
-                                      border: "none",
-                                      cursor: "pointer",
-                                      background:
-                                        !canControl || !!m.flushMode || isActing
-                                          ? "#d8ccf5"
-                                          : "#7c3aed",
-                                      color: "#fff",
-                                      display: "flex",
-                                      alignItems: "center",
-                                      justifyContent: "center",
-                                      transition: "background 0.2s",
-                                      padding: 0,
-                                    }}
                                   >
                                     {isActing ? (
-                                      <Spinner
-                                        size="sm"
-                                        style={{
-                                          width: "0.75rem",
-                                          height: "0.75rem",
-                                        }}
-                                      />
+                                      <Spinner size="sm" style={{ width: "0.75rem", height: "0.75rem" }} />
                                     ) : (
-                                      <IconifyIcon
-                                        icon="ri:recycle-line"
-                                        style={{ fontSize: 16 }}
-                                      />
+                                      <IconifyIcon icon="ri:drop-line" />
                                     )}
-                                  </button>
+                                  </Button>
                                 )}
                                 {/* Sleep / Wake */}
-                                <button
+                                <Button
+                                  variant={isSleeping ? "soft-success" : "soft-secondary"}
+                                  size="sm"
                                   title={isSleeping ? "Wake" : "Sleep"}
-                                  disabled={
-                                    (!canControl && !isSleeping) || isActing
-                                  }
+                                  disabled={(!canControl && !isSleeping) || isActing}
                                   onClick={() => handleSleepToggle(m)}
-                                  style={{
-                                    width: 32,
-                                    height: 32,
-                                    borderRadius: "50%",
-                                    border: "none",
-                                    cursor: "pointer",
-                                    background:
-                                      (!canControl && !isSleeping) || isActing
-                                        ? "#ccc"
-                                        : isSleeping
-                                          ? "#198754"
-                                          : "#1a1a2e",
-                                    color: "#fff",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    transition: "background 0.2s",
-                                    padding: 0,
-                                  }}
                                 >
                                   {isActing ? (
-                                    <Spinner
-                                      size="sm"
-                                      style={{
-                                        width: "0.75rem",
-                                        height: "0.75rem",
-                                      }}
-                                    />
+                                    <Spinner size="sm" style={{ width: "0.75rem", height: "0.75rem" }} />
                                   ) : (
-                                    <IconifyIcon
-                                      icon={
-                                        isSleeping
-                                          ? "ri:sun-line"
-                                          : "ri:moon-fill"
-                                      }
-                                      style={{ fontSize: 16 }}
-                                    />
+                                    <IconifyIcon icon={isSleeping ? "ri:restart-line" : "ri:shut-down-line"} />
                                   )}
-                                </button>
+                                </Button>
                                 {/* Food: Load Batch */}
                                 {m.machineType === "food" && (
-                                  <button
+                                  <Button
+                                    variant="soft-primary"
+                                    size="sm"
                                     title="Load Batch"
-                                    onClick={() =>
-                                      setBatchMachineId(m.machineId!)
-                                    }
-                                    style={{
-                                      width: 32,
-                                      height: 32,
-                                      borderRadius: "50%",
-                                      border: "none",
-                                      cursor: "pointer",
-                                      background: "#0d6efd",
-                                      color: "#fff",
-                                      display: "flex",
-                                      alignItems: "center",
-                                      justifyContent: "center",
-                                      padding: 0,
-                                    }}
+                                    onClick={() => setBatchMachineId(m.machineId!)}
                                   >
-                                    <IconifyIcon
-                                      icon="ri:inbox-line"
-                                      style={{ fontSize: 16 }}
-                                    />
-                                  </button>
+                                    <IconifyIcon icon="ri:upload-2-line" />
+                                  </Button>
                                 )}
                                 {/* Expand batches (food) */}
                                 {m.machineType === "food" && (
-                                  <button
+                                  <Button
+                                    variant="soft-secondary"
+                                    size="sm"
                                     title="View Batches"
-                                    onClick={() =>
-                                      setExpandedId(isExpanded ? null : rowId)
-                                    }
-                                    style={{
-                                      width: 32,
-                                      height: 32,
-                                      borderRadius: "50%",
-                                      border: "none",
-                                      cursor: "pointer",
-                                      background: "#6c757d",
-                                      color: "#fff",
-                                      display: "flex",
-                                      alignItems: "center",
-                                      justifyContent: "center",
-                                      padding: 0,
-                                    }}
+                                    onClick={() => setExpandedId(isExpanded ? null : rowId)}
                                   >
-                                    <IconifyIcon
-                                      icon={
-                                        isExpanded
-                                          ? "ri:arrow-up-s-line"
-                                          : "ri:arrow-down-s-line"
-                                      }
-                                      style={{ fontSize: 16 }}
-                                    />
-                                  </button>
+                                    <IconifyIcon icon={isExpanded ? "ri:close-circle-line" : "ri:list-check"} />
+                                  </Button>
                                 )}
+                                {/* QR Code */}
+                                <Button
+                                  variant="soft-info"
+                                  size="sm"
+                                  title="Show QR"
+                                  onClick={() => setQrMachine(m)}
+                                >
+                                  <IconifyIcon icon="ri:qr-code-line" />
+                                </Button>
                                 {/* Edit */}
-                                <button
+                                <Button
+                                  variant="soft-primary"
+                                  size="sm"
                                   title="Edit"
                                   onClick={() => openEdit(m)}
-                                  style={{
-                                    width: 32,
-                                    height: 32,
-                                    borderRadius: "50%",
-                                    border: "none",
-                                    cursor: "pointer",
-                                    background:
-                                      "linear-gradient(135deg, #f7971e, #e84040)",
-                                    color: "#fff",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    padding: 0,
-                                  }}
                                 >
-                                  <IconifyIcon
-                                    icon="ri:pencil-fill"
-                                    style={{ fontSize: 16 }}
-                                  />
-                                </button>
+                                  <IconifyIcon icon="ri:edit-2-line" />
+                                </Button>
                                 {/* Delete */}
-                                <button
+                                <Button
+                                  variant="soft-danger"
+                                  size="sm"
                                   title="Delete"
                                   onClick={() => handleDelete(m)}
-                                  style={{
-                                    width: 32,
-                                    height: 32,
-                                    borderRadius: "50%",
-                                    border: "none",
-                                    cursor: "pointer",
-                                    background: "#e63946",
-                                    color: "#fff",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    padding: 0,
-                                  }}
                                 >
-                                  <IconifyIcon
-                                    icon="ri:delete-bin-5-fill"
-                                    style={{ fontSize: 16 }}
-                                  />
-                                </button>
+                                  <IconifyIcon icon="ri:delete-bin-2-line" />
+                                </Button>
                               </div>
                             </td>
                           </tr>
@@ -665,6 +578,42 @@ export default function MachinesPage() {
         onHide={() => setBatchMachineId(null)}
         onSaved={fetchMachines}
       />
+
+      {/* QR Modal */}
+      <Modal
+        show={!!qrMachine}
+        onHide={() => setQrMachine(null)}
+        centered
+        size="sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="fs-15">
+            QR — {qrMachine?.name ?? qrMachine?.machineId}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-center py-4">
+          <QRCodeSVG
+            ref={qrRef}
+            value={qrMachine?.machineId ?? ""}
+            size={220}
+            bgColor="#ffffff"
+            fgColor="#000000"
+            level="H"
+          />
+          <div className="mt-2 text-muted fs-12">
+            <code>{qrMachine?.machineId}</code>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" size="sm" onClick={() => setQrMachine(null)}>
+            Close
+          </Button>
+          <Button variant="success" size="sm" onClick={downloadQR}>
+            <IconifyIcon icon="ri:download-2-line" className="me-1" />
+            Download PNG
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

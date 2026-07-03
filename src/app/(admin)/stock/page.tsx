@@ -17,6 +17,7 @@ import {
 } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
 
 interface Machine {
   _id: string;
@@ -459,15 +460,34 @@ export default function StockPage() {
   const [showCoffeeModal, setShowCoffeeModal] = useState(false);
   const [editingInv, setEditingInv] = useState<InventoryItem | null>(null);
 
-  const fetchMachines = () => {
+  const fetchMachines = async () => {
     if (!token) return;
-    machinesApi
-      .list(token)
-      .then((d) => {
-        setMachines(d as Machine[]);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    try {
+      const [machineData, itemData] = await Promise.all([
+        machinesApi.list(token),
+        itemsApi.list(token),
+      ]);
+      // Build id→name map so item names show even when backend itemName is null
+      const nameMap = new Map<string, string>(
+        (itemData as Item[]).map((i) => [String(i._id ?? i.id), i.name]),
+      );
+      const enriched = (machineData as Machine[]).map((m) => ({
+        ...m,
+        inventory: (m.inventory ?? []).map((inv: any) => {
+          const id = typeof inv.itemId === "string" ? inv.itemId : "";
+          return {
+            ...inv,
+            itemId: id || inv.itemId,
+            itemName: inv.itemName ?? (id ? nameMap.get(id) : undefined),
+          };
+        }),
+      }));
+      setMachines(enriched);
+    } catch {
+      // silent — machines stay empty on error
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -518,6 +538,39 @@ export default function StockPage() {
       fetchBatches();
     } catch (err: any) {
       toast.error(err.message ?? "Failed");
+    }
+  };
+
+  const handleDeleteInv = async (inv: InventoryItem) => {
+    if (!selectedMachine) return;
+    const itemId = String(inv.itemId ?? "");
+    if (!itemId) {
+      toast.error("Cannot delete: item has no ID");
+      return;
+    }
+    const result = await Swal.fire({
+      title: "Remove item?",
+      text: `Remove "${inv.itemName ?? itemId}" from inventory?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      confirmButtonText: "Remove",
+    });
+    if (!result.isConfirmed) return;
+    try {
+      await machinesApi.removeItem(token, selectedMachine.machineId, itemId);
+      toast.success("Item removed from inventory");
+      // Remove immediately from local state so the row disappears right away
+      setMachines((prev) =>
+        prev.map((m) =>
+          m.machineId === selectedMachineId
+            ? { ...m, inventory: (m.inventory ?? []).filter((i) => String(i.itemId) !== itemId) }
+            : m,
+        ),
+      );
+      fetchMachines();
+    } catch (err: any) {
+      toast.error(err.message ?? "Failed to remove item");
     }
   };
 
@@ -621,17 +674,27 @@ export default function StockPage() {
                           {inv.gramsPerCup ? `${inv.gramsPerCup}g` : "—"}
                         </td>
                         <td className="text-center">
-                          <Button
-                            variant="soft-primary"
-                            size="sm"
-                            onClick={() => {
-                              setEditingInv(inv);
-                              setShowCoffeeModal(true);
-                            }}
-                            title="Update stock"
-                          >
-                            <i className="ri-pencil-line" />
-                          </Button>
+                          <div className="d-flex gap-1 justify-content-center">
+                            <Button
+                              variant="soft-primary"
+                              size="sm"
+                              onClick={() => {
+                                setEditingInv(inv);
+                                setShowCoffeeModal(true);
+                              }}
+                              title="Edit stock"
+                            >
+                              <IconifyIcon icon="ri:edit-2-line" />
+                            </Button>
+                            <Button
+                              variant="soft-danger"
+                              size="sm"
+                              onClick={() => handleDeleteInv(inv)}
+                              title="Remove item"
+                            >
+                              <IconifyIcon icon="ri:delete-bin-2-line" />
+                            </Button>
+                          </div>
                         </td>
                       </tr>
                     ))

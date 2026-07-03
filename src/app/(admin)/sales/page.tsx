@@ -83,7 +83,7 @@ export default function SalesPage() {
     xaxis: {
       categories: revenueByMachine
         .slice(0, 10)
-        .map((r) => r.name || r.machineId),
+        .map((r) => r.name || r.machineId || ""),
       labels: { style: { fontSize: "11px" }, rotate: -20 },
     },
     colors: ["#0acf97"],

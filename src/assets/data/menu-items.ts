@@ -95,6 +95,12 @@ export const MENU_ITEMS: MenuItemType[] = [
     url: "/agents",
   },
   {
+    key: "clients",
+    label: "Clients",
+    icon: UserPlus,
+    url: "/clients",
+  },
+  {
     key: "organizations",
     label: "Organizations",
     icon: Building2,

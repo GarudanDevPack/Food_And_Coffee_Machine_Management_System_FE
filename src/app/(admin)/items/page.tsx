@@ -17,6 +17,7 @@ import {
 } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
 
 interface Item {
   _id?: string;
@@ -298,6 +299,22 @@ export default function ItemsPage() {
     fetchItems();
   }, [token]);
 
+  const handleToggleAvailable = async (item: Item) => {
+    try {
+      await itemsApi.update(token, item._id ?? item.id, {
+        isAvailable: !item.isAvailable,
+      });
+      toast.success(
+        item.isAvailable
+          ? `"${item.name}" marked unavailable`
+          : `"${item.name}" marked available`,
+      );
+      fetchItems();
+    } catch (err: any) {
+      toast.error(err.message ?? "Failed to update availability");
+    }
+  };
+
   const handleDelete = async (item: Item) => {
     const result = await Swal.fire({
       title: "Delete Item?",
@@ -452,21 +469,45 @@ export default function ItemsPage() {
                         <td className="text-center">
                           <div className="d-flex gap-1 justify-content-center">
                             <Button
+                              variant={
+                                item.isAvailable !== false
+                                  ? "soft-success"
+                                  : "soft-secondary"
+                              }
+                              size="sm"
+                              title={
+                                item.isAvailable !== false
+                                  ? "Mark Unavailable"
+                                  : "Mark Available"
+                              }
+                              onClick={() => handleToggleAvailable(item)}
+                            >
+                              <IconifyIcon
+                                icon={
+                                  item.isAvailable !== false
+                                    ? "ri:toggle-fill"
+                                    : "ri:toggle-line"
+                                }
+                              />
+                            </Button>
+                            <Button
                               variant="soft-primary"
                               size="sm"
+                              title="Edit"
                               onClick={() => {
                                 setEditing(item);
                                 setShowModal(true);
                               }}
                             >
-                              <i className="ri-edit-line" />
+                              <IconifyIcon icon="ri:edit-2-line" />
                             </Button>
                             <Button
                               variant="soft-danger"
                               size="sm"
+                              title="Delete"
                               onClick={() => handleDelete(item)}
                             >
-                              <i className="ri-delete-bin-line" />
+                              <IconifyIcon icon="ri:delete-bin-2-line" />
                             </Button>
                           </div>
                         </td>

@@ -19,6 +19,7 @@ import {
 import { disconnectSocket, getSocket } from "@/lib/socket";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import IconifyIcon from "@/components/wrappers/IconifyIcon";
 
 interface OrderItem {
   itemId?: string;
@@ -81,7 +82,7 @@ export default function OrdersPage() {
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState("");
   const [machineFilter, setMachineFilter] = useState("");
-  const [dateFilter, setDateFilter] = useState<DateFilter>("today");
+  const [dateFilter, setDateFilter] = useState<DateFilter>("all");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [actionId, setActionId] = useState<string | null>(null);
 
@@ -381,13 +382,7 @@ export default function OrdersPage() {
                                     setExpandedId(isExpanded ? null : rowId)
                                   }
                                 >
-                                  <i
-                                    className={
-                                      isExpanded
-                                        ? "ri-eye-off-line"
-                                        : "ri-eye-line"
-                                    }
-                                  />
+                                  <IconifyIcon icon={isExpanded ? "ri:eye-off-line" : "ri:eye-line"} />
                                 </Button>
                                 {canComplete && (
                                   <Button
@@ -400,7 +395,7 @@ export default function OrdersPage() {
                                     {isActing ? (
                                       <Spinner size="sm" />
                                     ) : (
-                                      <i className="ri-check-line" />
+                                      <IconifyIcon icon="ri:check-line" />
                                     )}
                                   </Button>
                                 )}
@@ -412,7 +407,7 @@ export default function OrdersPage() {
                                     disabled={isActing}
                                     onClick={() => handleFail(o)}
                                   >
-                                    <i className="ri-close-line" />
+                                    <IconifyIcon icon="ri:close-line" />
                                   </Button>
                                 )}
                               </div>

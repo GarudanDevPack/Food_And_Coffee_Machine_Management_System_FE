@@ -208,6 +208,11 @@ export const machinesApi = {
       method: "DELETE",
       token,
     }),
+  removeItem: (token: string, machineId: string, itemId: string) =>
+    request<void>(`/machines/${machineId}/items/${itemId}`, {
+      method: "DELETE",
+      token,
+    }),
 };
 
 // ─── Items ───────────────────────────────────────────────────────────────────
