@@ -1,5 +1,4 @@
 "use client";
-import { fmtDate } from "@/lib/fmt";
 import PageTitle from "@/components/PageTitle";
 import { usersApi } from "@/lib/api";
 import { useSession } from "next-auth/react";
