@@ -103,7 +103,7 @@ const PromotionModal = ({ show, onHide, promo, token, onSaved }: any) => {
         endDate: new Date(form.endDate).toISOString(),
       };
       if (promo) {
-        await promotionsApi.update(token, promo._id ?? promo.id, payload);
+        await promotionsApi.update(token, (promo._id ?? promo.id)!, payload);
         toast.success("Promotion updated");
       } else {
         await promotionsApi.create(token, payload);
@@ -253,7 +253,7 @@ export default function PromotionsPage() {
     });
     if (!r.isConfirmed) return;
     try {
-      await promotionsApi.delete(token, p._id ?? p.id);
+      await promotionsApi.delete(token, (p._id ?? p.id)!);
       toast.success("Deleted");
       fetchPromotions();
     } catch (err: any) {

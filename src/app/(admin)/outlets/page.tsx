@@ -154,7 +154,7 @@ const OutletModal = ({ show, onHide, editing, token, onSaved }: any) => {
         longitude: coords?.lng ?? null,
       };
       if (editing) {
-        await outletsApi.update(token, editing._id ?? editing.id, payload);
+        await outletsApi.update(token, (editing._id ?? editing.id)!, payload);
         toast.success("Outlet updated");
       } else {
         await outletsApi.create(token, payload);

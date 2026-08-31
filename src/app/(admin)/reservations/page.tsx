@@ -78,9 +78,9 @@ export default function AdminReservationsPage() {
   }, [token]);
 
   const handleConfirm = async (r: Reservation) => {
-    setProcessingId(r._id ?? r.id);
+    setProcessingId(r._id ?? r.id ?? null);
     try {
-      await reservationsApi.confirm(token, r._id ?? r.id);
+      await reservationsApi.confirm(token, (r._id ?? r.id)!);
       toast.success("Reservation confirmed");
       fetchData();
     } catch (err: any) {
@@ -91,9 +91,9 @@ export default function AdminReservationsPage() {
   };
 
   const handleComplete = async (r: Reservation) => {
-    setProcessingId(r._id ?? r.id);
+    setProcessingId(r._id ?? r.id ?? null);
     try {
-      await reservationsApi.complete(token, r._id ?? r.id);
+      await reservationsApi.complete(token, (r._id ?? r.id)!);
       toast.success("Marked as completed");
       fetchData();
     } catch (err: any) {
@@ -114,11 +114,11 @@ export default function AdminReservationsPage() {
       confirmButtonText: "Cancel Reservation",
     });
     if (!result.isConfirmed) return;
-    setProcessingId(r._id ?? r.id);
+    setProcessingId(r._id ?? r.id ?? null);
     try {
       await reservationsApi.cancel(
         token,
-        r._id ?? r.id,
+        (r._id ?? r.id)!,
         result.value || undefined,
       );
       toast.success("Reservation cancelled");

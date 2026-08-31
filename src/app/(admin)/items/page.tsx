@@ -104,7 +104,7 @@ const ItemModal = ({ show, onHide, item, token, onSaved }: any) => {
       }
 
       if (item) {
-        await itemsApi.update(token, item._id ?? item.id, payload);
+        await itemsApi.update(token, (item._id ?? item.id)!, payload);
         toast.success("Item updated");
       } else {
         await itemsApi.create(token, payload);
@@ -301,7 +301,7 @@ export default function ItemsPage() {
 
   const handleToggleAvailable = async (item: Item) => {
     try {
-      await itemsApi.update(token, item._id ?? item.id, {
+      await itemsApi.update(token, (item._id ?? item.id)!, {
         isAvailable: !item.isAvailable,
       });
       toast.success(
@@ -326,7 +326,7 @@ export default function ItemsPage() {
     });
     if (!result.isConfirmed) return;
     try {
-      await itemsApi.delete(token, item._id ?? item.id);
+      await itemsApi.delete(token, (item._id ?? item.id)!);
       toast.success("Item deleted");
       fetchItems();
     } catch (err: any) {

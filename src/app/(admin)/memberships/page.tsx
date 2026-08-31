@@ -99,7 +99,7 @@ export default function MembershipsPage() {
     });
     if (!r.isConfirmed) return;
     try {
-      await membershipsApi.cancel(token, m._id ?? m.id);
+      await membershipsApi.cancel(token, (m._id ?? m.id)!);
       toast.success("Membership cancelled");
       fetchMemberships();
     } catch (err: any) {

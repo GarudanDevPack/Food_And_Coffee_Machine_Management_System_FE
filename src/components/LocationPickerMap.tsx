@@ -28,7 +28,7 @@ interface LatLng {
 
 function ClickHandler({ onChange }: { onChange: (ll: LatLng) => void }) {
   useMapEvents({
-    click(e) {
+    click(e: L.LeafletMouseEvent) {
       onChange({ lat: e.latlng.lat, lng: e.latlng.lng });
     },
   });

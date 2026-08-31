@@ -194,9 +194,9 @@ export default function WalletPage() {
       confirmButtonText: "Approve",
     });
     if (!r.isConfirmed) return;
-    setProcessingId(t._id ?? t.id);
+    setProcessingId(t._id ?? t.id ?? null);
     try {
-      await walletApi.verifyTopup(token, t._id ?? t.id);
+      await walletApi.verifyTopup(token, (t._id ?? t.id)!);
       toast.success("Top-up approved");
       fetchData();
     } catch (err: any) {
@@ -218,9 +218,9 @@ export default function WalletPage() {
       confirmButtonText: "Reject",
     });
     if (!r.isConfirmed) return;
-    setProcessingId(t._id ?? t.id);
+    setProcessingId(t._id ?? t.id ?? null);
     try {
-      await walletApi.rejectTopup(token, t._id ?? t.id, r.value || undefined);
+      await walletApi.rejectTopup(token, (t._id ?? t.id)!, r.value || undefined);
       toast.success("Top-up rejected");
       fetchData();
     } catch (err: any) {

@@ -102,7 +102,7 @@ const OrgModal = ({ show, onHide, org, token, onSaved }: any) => {
         notes: form.notes || undefined,
       };
       if (org) {
-        await organizationsApi.update(token, org._id ?? org.id, payload);
+        await organizationsApi.update(token, (org._id ?? org.id)!, payload);
         toast.success("Organization updated");
       } else {
         await organizationsApi.create(token, payload);
@@ -228,7 +228,7 @@ const AssignModal = ({ show, onHide, org, token, onSaved }: any) => {
     try {
       await organizationsApi.assignMachine(
         token,
-        org._id ?? org.id,
+        (org._id ?? org.id)!,
         machineId.trim(),
       );
       toast.success("Machine assigned");
@@ -244,7 +244,7 @@ const AssignModal = ({ show, onHide, org, token, onSaved }: any) => {
   const removeMachine = async (mid: string) => {
     setSaving(true);
     try {
-      await organizationsApi.removeMachine(token, org._id ?? org.id, mid);
+      await organizationsApi.removeMachine(token, (org._id ?? org.id)!, mid);
       toast.success("Machine removed");
       onSaved();
     } catch (err: any) {
@@ -260,7 +260,7 @@ const AssignModal = ({ show, onHide, org, token, onSaved }: any) => {
     try {
       await organizationsApi.assignAgent(
         token,
-        org._id ?? org.id,
+        (org._id ?? org.id)!,
         agentId.trim(),
       );
       toast.success("Agent assigned");
@@ -276,7 +276,7 @@ const AssignModal = ({ show, onHide, org, token, onSaved }: any) => {
   const removeAgent = async (aid: string) => {
     setSaving(true);
     try {
-      await organizationsApi.removeAgent(token, org._id ?? org.id, aid);
+      await organizationsApi.removeAgent(token, (org._id ?? org.id)!, aid);
       toast.success("Agent removed");
       onSaved();
     } catch (err: any) {
