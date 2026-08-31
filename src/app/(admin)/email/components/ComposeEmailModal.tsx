@@ -1,6 +1,7 @@
 import amazonImg from "@/assets/images/brands/amazon.svg";
 import avatar2 from "@/assets/images/users/avatar-2.jpg";
 import IconifyIcon from "@/components/wrappers/IconifyIcon";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -15,8 +16,9 @@ import {
   ModalTitle,
   Row,
 } from "react-bootstrap";
-import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
+
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 interface ComposeEmailProps {
   isOpen: boolean;

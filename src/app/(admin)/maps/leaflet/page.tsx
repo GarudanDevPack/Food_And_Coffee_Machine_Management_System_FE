@@ -1,6 +1,6 @@
 import PageTitle from "@/components/PageTitle";
 import React from "react";
-import AllLeaflet from "./components/AllLeaflet";
+import AllLeaflet from "./components/AllLeafletClient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Leaflet Maps" };

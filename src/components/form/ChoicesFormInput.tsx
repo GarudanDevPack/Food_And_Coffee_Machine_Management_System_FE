@@ -1,5 +1,5 @@
 "use client";
-import Choices, { type Options as ChoiceOption } from "choices.js";
+import type { Options as ChoiceOption } from "choices.js";
 import {
   type HTMLAttributes,
   type ReactElement,
@@ -33,8 +33,13 @@ const ChoicesFormInput = ({
   const choicesRef = useRef<HTMLInputElement & HTMLSelectElement>(null);
 
   useEffect(() => {
-    if (choicesRef.current) {
-      const choices = new Choices(choicesRef.current, {
+    if (!choicesRef.current) return;
+    let choices: InstanceType<typeof import("choices.js").default> | undefined;
+    let cancelled = false;
+
+    import("choices.js").then(({ default: Choices }) => {
+      if (cancelled || !choicesRef.current) return;
+      choices = new Choices(choicesRef.current, {
         ...options,
         placeholder: true,
         allowHTML: true,
@@ -46,7 +51,12 @@ const ChoicesFormInput = ({
           onChange(e.target.value);
         }
       });
-    }
+    });
+
+    return () => {
+      cancelled = true;
+      choices?.destroy();
+    };
   }, [choicesRef]);
 
   return allowInput ? (

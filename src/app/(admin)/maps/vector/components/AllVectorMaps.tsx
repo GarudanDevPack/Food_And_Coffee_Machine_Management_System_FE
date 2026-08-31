@@ -1,12 +1,5 @@
 "use client";
 import ComponentContainerCard from "@/components/ComponentContainerCard";
-import {
-  CanadaVectorMap,
-  IraqVectorMap,
-  RussiaVectorMap,
-  SpainVectorMap,
-  UsaVectorMap,
-} from "@/components/VectorMap";
 import { Col, Row } from "react-bootstrap";
 import {
   CanadaVectorMapOpts,
@@ -19,11 +12,33 @@ import {
 } from "../data";
 import dynamic from "next/dynamic";
 
+// jsvectormap touches DOM globals (e.g. Element) at import time, so every
+// vector map must be excluded from SSR/prerendering, not just World's.
 const WorldVectorMap = dynamic(
   () => import("@/components/VectorMap/WorldMap"),
   {
     ssr: false,
   },
+);
+const CanadaVectorMap = dynamic(
+  () => import("@/components/VectorMap/CanadaMap"),
+  { ssr: false },
+);
+const RussiaVectorMap = dynamic(
+  () => import("@/components/VectorMap/RussiaMap"),
+  { ssr: false },
+);
+const SpainVectorMap = dynamic(
+  () => import("@/components/VectorMap/SpainMap"),
+  { ssr: false },
+);
+const UsaVectorMap = dynamic(
+  () => import("@/components/VectorMap/UsaVectorMap"),
+  { ssr: false },
+);
+const IraqVectorMap = dynamic(
+  () => import("@/components/VectorMap/IraqVectorMap"),
+  { ssr: false },
 );
 
 const GlobalWorldVectorMap = () => {

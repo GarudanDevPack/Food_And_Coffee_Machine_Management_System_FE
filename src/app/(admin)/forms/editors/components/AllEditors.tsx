@@ -1,9 +1,11 @@
 "use client";
 import ComponentContainerCard from "@/components/ComponentContainerCard";
+import dynamic from "next/dynamic";
 import { Col, Row } from "react-bootstrap";
-import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.bubble.css";
 import "react-quill-new/dist/quill.snow.css";
+
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 let valueBubble = "";
 let valueSnow = "";
