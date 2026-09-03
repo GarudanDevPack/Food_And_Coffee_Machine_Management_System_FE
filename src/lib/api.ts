@@ -194,6 +194,11 @@ export const machinesApi = {
       method: "POST",
       token,
     }),
+  configMode: (token: string, machineId: string) =>
+    request<{ message: string }>(`/machines/${machineId}/config-mode`, {
+      method: "POST",
+      token,
+    }),
   // Food machine batches
   addBatch: (token: string, machineId: string, data: unknown) =>
     request<unknown>(`/machines/${machineId}/batches`, {

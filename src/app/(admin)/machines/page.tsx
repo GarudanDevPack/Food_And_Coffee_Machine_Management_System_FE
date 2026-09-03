@@ -167,6 +167,22 @@ export default function MachinesPage() {
     });
   };
 
+  const handleConfigMode = async (m: Machine) => {
+    const r = await Swal.fire({
+      title: "Trigger Config Mode?",
+      text: "This will put the machine into configuration mode.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Yes, trigger it",
+    });
+    if (!r.isConfirmed) return;
+    await withAction(m.machineId!, async () => {
+      await machinesApi.configMode(token, m.machineId!);
+      toast.success("Config mode triggered");
+    });
+  };
+
   const handleDelete = async (m: Machine) => {
     const r = await Swal.fire({
       title: "Delete Machine?",
@@ -434,6 +450,18 @@ export default function MachinesPage() {
                                     onClick={() => setExpandedId(isExpanded ? null : rowId)}
                                   >
                                     <IconifyIcon icon={isExpanded ? "ri:close-circle-line" : "ri:list-check"} />
+                                  </Button>
+                                )}
+                                {/* Config Mode — coffee only */}
+                                {m.machineType !== "food" && (
+                                  <Button
+                                    variant="soft-warning"
+                                    size="sm"
+                                    title="Config Mode"
+                                    disabled={!canControl || isActing}
+                                    onClick={() => handleConfigMode(m)}
+                                  >
+                                    <IconifyIcon icon="ri:settings-3-line" />
                                   </Button>
                                 )}
                                 {/* QR Code */}
